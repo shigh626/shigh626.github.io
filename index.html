@@ -56,11 +56,9 @@
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/tags/Life/">Life</a></li>
+				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 	        
 				<li><a href="/tags/Java/">Java</a></li>
-	        
-				<li><a href="/tags/Golang/">Golang</a></li>
 	        
 				<li><a href="/tags/%E5%BC%80%E5%8F%91%E8%80%85/">开发者</a></li>
 	        
@@ -122,8 +120,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -144,13 +140,11 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 25%"><a href="/tags/Life/">Life</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/Java/">Java</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/Java/">Java</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/Golang/">Golang</a></li>
-		        
-					<li style="width: 25%"><a href="/tags/%E5%BC%80%E5%8F%91%E8%80%85/">开发者</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/%E5%BC%80%E5%8F%91%E8%80%85/">开发者</a></li>
 		        
 				</ul>
 			</nav>
@@ -187,7 +181,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="1. 两数之和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/two-sum/">1. 两数之和</a></h4><p>难度简单11330</p>
+        <p>难度简单</p>
 <p>给定一个整数数组 <code>nums</code> 和一个整数目标值 <code>target</code>，请你在该数组中找出 <strong>和为目标值</strong> <em><code>target</code></em> 的那 <strong>两个</strong> 整数，并返回它们的数组下标。</p>
 <p>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。</p>
 <p>你可以按任意顺序返回答案。</p>
@@ -202,8 +196,12 @@
 
 
 
+
+
 <p>Java版：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        Map&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;(nums.length-<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (map.containsKey(target - nums[i]))&#123;</span><br><span class="line">                res[<span class="number">1</span>] = i;</span><br><span class="line">                res[<span class="number">0</span>] = map.get(target - nums[i]);</span><br><span class="line">                <span class="keyword">return</span> res;</span><br><span class="line">            &#125;</span><br><span class="line">            map.put(nums[i],i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 
 
 
@@ -270,7 +268,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/16/Git1/">Git1</a>
+      <a class="article-title" href="/2021/06/16/Git1/">初识Git</a>
     </h1>
   
 
@@ -349,7 +347,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/16/Linux1/">Linux1</a>
+      <a class="article-title" href="/2021/06/16/Linux1/">初识Linux</a>
     </h1>
   
 
@@ -363,9 +361,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="https://www.runoob.com/wp-content/uploads/2014/06/linux.jpg" alt="linux"></p>
-<p>Linux 是一种自由和开放源码的类 UNIX 操作系统。</p>
-<p>Linux 英文解释为 <strong>Linux is not Unix</strong>。</p>
-<p>Linux 是在 1991 由林纳斯·托瓦兹在赫尔辛基大学上学时创立的，主要受到 Minix 和 Unix 思想的启发。</p>
+<p>Linux 内核最初只是由芬兰人林纳斯·托瓦兹（Linus Torvalds）在赫尔辛基大学上学时出于个人爱好而编写的。</p>
+<p>Linux 是一套免费使用和自由传播的类 Unix 操作系统，是一个基于 POSIX（可移植操作系统接口） 和 UNIX 的多用户、多任务、支持多线程和多 CPU 的操作系统。</p>
+<p>Linux 能运行主要的 UNIX 工具软件、应用程序和网络协议。它支持 32 位和 64 位硬件。Linux 继承了 Unix 以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。</p>
         
           <a class="article-more-a" href="/2021/06/16/Linux1/#more">more >></a>
         
@@ -428,7 +426,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/16/CSS1/">CSS1</a>
+      <a class="article-title" href="/2021/06/16/CSS1/">初识CSS</a>
     </h1>
   
 
