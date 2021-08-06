@@ -8,18 +8,22 @@
   <link rel="dns-prefetch" href="https://shigh626.github.io">
   <title>26 | sync.Mutex与sync.RWMutex | stone&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="author： 郝林 time： 2021-07-02 ![img](golang 26-sync-Mutex与sync-RWMutex&#x2F;01.jpg) 从本篇文章开始，我们将一起探讨 Go 语言自带标准库中一些比较核心的代码包。这会涉及这些代码包的标准用法、使用禁忌、背后原理以及周边的知识。 既然 Go 语言是以独特的并发编程模型傲视群雄的语言，那么我们就先来学习与并发编程关系最紧密的代码包。">
+  <meta name="description" content="author： 郝林 time： 2021-07-02     从本篇文章开始，我们将一起探讨 Go 语言自带标准库中一些比较核心的代码包。这会涉及这些代码包的标准用法、使用禁忌、背后原理以及周边的知识。 既然 Go 语言是以独特的并发编程模型傲视群雄的语言，那么我们就先来学习与并发编程关系最紧密的代码包。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="26 | sync.Mutex与sync.RWMutex">
 <meta property="og:url" content="https://shigh626.github.io/2021/07/02/golang%2026-sync-Mutex%E4%B8%8Esync-RWMutex/index.html">
 <meta property="og:site_name" content="stone&#39;s blog">
-<meta property="og:description" content="author： 郝林 time： 2021-07-02 ![img](golang 26-sync-Mutex与sync-RWMutex&#x2F;01.jpg) 从本篇文章开始，我们将一起探讨 Go 语言自带标准库中一些比较核心的代码包。这会涉及这些代码包的标准用法、使用禁忌、背后原理以及周边的知识。 既然 Go 语言是以独特的并发编程模型傲视群雄的语言，那么我们就先来学习与并发编程关系最紧密的代码包。">
+<meta property="og:description" content="author： 郝林 time： 2021-07-02     从本篇文章开始，我们将一起探讨 Go 语言自带标准库中一些比较核心的代码包。这会涉及这些代码包的标准用法、使用禁忌、背后原理以及周边的知识。 既然 Go 语言是以独特的并发编程模型傲视群雄的语言，那么我们就先来学习与并发编程关系最紧密的代码包。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://shigh626.github.io/2021/07/02/golang%2026-sync-Mutex%E4%B8%8Esync-RWMutex/01.jpg">
+<meta property="og:image" content="https://shigh626.github.io/2021/07/02/golang%2026-sync-Mutex%E4%B8%8Esync-RWMutex/02.png">
+<meta property="og:image" content="https://shigh626.github.io/2021/07/02/golang%2026-sync-Mutex%E4%B8%8Esync-RWMutex/03.png">
 <meta property="article:published_time" content="2021-07-01T18:10:26.000Z">
-<meta property="article:modified_time" content="2021-08-06T18:09:47.318Z">
+<meta property="article:modified_time" content="2021-08-06T18:25:24.041Z">
 <meta property="article:author" content="stone">
 <meta property="article:tag" content="Golang">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shigh626.github.io/2021/07/02/golang%2026-sync-Mutex%E4%B8%8Esync-RWMutex/01.jpg">
   
     <link rel="alternative" href="/atom.xml" title="stone&#39;s blog" type="application/atom+xml">
   
@@ -183,7 +187,10 @@
       
         <p><code>author</code>： 郝林</p>
 <p><code>time</code>： 2021-07-02</p>
-<p>![img](golang 26-sync-Mutex与sync-RWMutex/01.jpg)</p>
+<img src="/2021/07/02/golang%2026-sync-Mutex%E4%B8%8Esync-RWMutex/01.jpg" alt="img">
+
+
+
 <p>从本篇文章开始，我们将一起探讨 Go 语言自带标准库中一些比较核心的代码包。这会涉及这些代码包的标准用法、使用禁忌、背后原理以及周边的知识。</p>
 <p>既然 Go 语言是以独特的并发编程模型傲视群雄的语言，那么我们就先来学习与并发编程关系最紧密的代码包。</p>
 <span id="more"></span>
@@ -204,7 +211,8 @@
 <p>这时，我们可以说，多个并发运行的线程对这个共享资源的访问是完全串行的。只要一个代码片段需要实现对共享资源的串行化访问，就可以被视为一个临界区（critical section），也就是我刚刚说的，由于要访问到资源而必须进入的那个区域。</p>
 <p>比如，在我前面举的那个例子中，实现了数据块写入操作的代码就共同组成了一个临界区。如果针对同一个共享资源，这样的代码片段有多个，那么它们就可以被称为相关临界区。</p>
 <p>它们可以是一个内含了共享数据的结构体及其方法，也可以是操作同一块共享数据的多个函数。临界区总是需要受到保护的，否则就会产生竞态条件。<strong>施加保护的重要手段之一，就是使用实现了某种同步机制的工具，也称为同步工具。</strong></p>
-<p>![img](golang 26-sync-Mutex与sync-RWMutex/02.png)</p>
+<img src="/2021/07/02/golang%2026-sync-Mutex%E4%B8%8Esync-RWMutex/02.png" alt="img">
+
 <p>（竞态条件、临界区与同步工具）</p>
 <p><strong>在 Go 语言中，可供我们选择的同步工具并不少。</strong>其中，最重要且最常用的同步工具当属互斥量（mutual exclusion，简称 mutex）。sync包中的Mutex就是与其对应的类型，该类型的值可以被称为互斥量或者互斥锁。</p>
 <p>一个互斥锁可以被用来保护一个临界区或者一组相关临界区。我们可以通过它来保证，在同一时刻只有一个 goroutine 处于该临界区之内。</p>
@@ -244,7 +252,8 @@
 <p>忘记解锁导致的问题有时候是比较隐秘的，并不会那么快就暴露出来。这也是我们需要特别关注它的原因。相比之下，解锁未锁定的互斥锁会立即引发 panic。</p>
 <p>并且，与死锁导致的 panic 一样，它们是无法被恢复的。<strong>因此，我们总是应该保证，对于每一个锁定操作，都要有且只有一个对应的解锁操作。</strong></p>
 <p>换句话说，我们应该让它们成对出现。这也算是互斥锁的一个很重要的使用原则了。在很多时候，利用defer语句进行解锁可以更容易做到这一点。</p>
-<p>![img](golang 26-sync-Mutex与sync-RWMutex/03.png)</p>
+<img src="/2021/07/02/golang%2026-sync-Mutex%E4%B8%8Esync-RWMutex/03.png" alt="img">
+
 <p>（互斥锁的重复锁定和重复解锁）</p>
 <p>最后，可能你已经知道，Go 语言中的互斥锁是开箱即用的。换句话说，一旦我们声明了一个sync.Mutex类型的变量，就可以直接使用它了。</p>
 <p>不过要注意，该类型是一个结构体类型，属于值类型中的一种。把它传给一个函数、将它从函数中返回、把它赋给其他变量、让它进入某个通道都会导致它的副本的产生。</p>
