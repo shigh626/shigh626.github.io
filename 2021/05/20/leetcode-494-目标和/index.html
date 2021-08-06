@@ -8,17 +8,18 @@
   <link rel="dns-prefetch" href="https://shigh626.github.io">
   <title>leetcode 494-目标和 | stone&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这都被你发现了">
+  <meta name="description" content="给你一个整数数组 nums 和一个整数 target 。 向数组中的每个整数前添加 ‘+’ 或 ‘-‘ ，然后串联起所有整数，可以构造一个 表达式 ： 例如，nums &#x3D; [2, 1] ，可以在 2 之前添加 ‘+’ ，在 1 之前添加 ‘-‘ ，然后串联起来得到表达式 “+2-1” 。返回可以通过上述方法构造的、运算结果等于 target 的不同 表达式 的数目。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode 494-目标和">
 <meta property="og:url" content="https://shigh626.github.io/2021/05/20/leetcode-494-%E7%9B%AE%E6%A0%87%E5%92%8C/index.html">
 <meta property="og:site_name" content="stone&#39;s blog">
-<meta property="og:description" content="这都被你发现了">
+<meta property="og:description" content="给你一个整数数组 nums 和一个整数 target 。 向数组中的每个整数前添加 ‘+’ 或 ‘-‘ ，然后串联起所有整数，可以构造一个 表达式 ： 例如，nums &#x3D; [2, 1] ，可以在 2 之前添加 ‘+’ ，在 1 之前添加 ‘-‘ ，然后串联起来得到表达式 “+2-1” 。返回可以通过上述方法构造的、运算结果等于 target 的不同 表达式 的数目。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-19T16:49:04.000Z">
-<meta property="article:modified_time" content="2021-08-06T19:20:40.555Z">
+<meta property="article:modified_time" content="2021-08-06T19:25:30.033Z">
 <meta property="article:author" content="stone">
-<meta property="article:tag" content="Leetcode、hot100">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="hot100">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="stone&#39;s blog" type="application/atom+xml">
@@ -181,7 +182,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>给你一个整数数组 nums 和一个整数 target 。</p>
+<p>向数组中的每个整数前添加 ‘+’ 或 ‘-‘ ，然后串联起所有整数，可以构造一个 表达式 ：</p>
+<p>例如，nums = [2, 1] ，可以在 2 之前添加 ‘+’ ，在 1 之前添加 ‘-‘ ，然后串联起来得到表达式 “+2-1” 。<br>返回可以通过上述方法构造的、运算结果等于 target 的不同 表达式 的数目。</p>
+ <span id="more"></span>
+
+<h6 id="494-target-sum"><a href="#494-target-sum" class="headerlink" title="494. target-sum"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/target-sum/">494. target-sum</a></h6><p>示例 1：</p>
+<p>输入：nums = [1,1,1,1,1], target = 3<br>输出：5<br>解释：一共有 5 种方法让最终目标和为 3 。<br>-1 + 1 + 1 + 1 + 1 = 3<br>+1 - 1 + 1 + 1 + 1 = 3<br>+1 + 1 - 1 + 1 + 1 = 3<br>+1 + 1 + 1 - 1 + 1 = 3<br>+1 + 1 + 1 + 1 - 1 = 3<br>示例 2：</p>
+<p>输入：nums = [1], target = 1<br>输出：1</p>
+<p>提示：</p>
+<p>1 &lt;= nums.length &lt;= 20<br>0 &lt;= nums[i] &lt;= 1000<br>0 &lt;= sum(nums[i]) &lt;= 1000<br>-1000 &lt;= target &lt;= 1000</p>
+
       
 
       
@@ -215,7 +226,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Leetcode、hot100</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hot100</a>
         		</li>
       		
 		</ul>
@@ -323,7 +338,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#494-target-sum"><span class="toc-number">1.</span> <span class="toc-text">494. target-sum</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -464,6 +479,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Leetcode、hot100</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hot100</a>
               </li>
             
             <div class="clearfix"></div>
