@@ -6,22 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://shigh626.github.io">
-  <title>34 | 并发安全字典sync.Map （上） | stone&#39;s blog</title>
+  <title>Archives | stone&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="author： 郝林 time： 2021-07-02     在前面，我几乎已经把 Go 语言自带的同步工具全盘托出了。你是否已经听懂了会用了呢？ 无论怎样，我都希望你能够多多练习、多多使用。它们和 Go 语言独有的并发编程方式并不冲突，相反，配合起来使用，绝对能达到“一加一大于二”的效果。 当然了，至于怎样配合就是一门学问了。我在前面已经讲了不少的方法和技巧，不过，更多的东西可能就需要你在实践">
-<meta property="og:type" content="article">
-<meta property="og:title" content="34 | 并发安全字典sync.Map （上）">
-<meta property="og:url" content="https://shigh626.github.io/2021/07/02/golang%2034-%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8%E5%AD%97%E5%85%B8sync-Map-%EF%BC%88%E4%B8%8A%EF%BC%89/index.html">
+  <meta name="description" content="这都被你发现了">
+<meta property="og:type" content="website">
+<meta property="og:title" content="stone&#39;s blog">
+<meta property="og:url" content="https://shigh626.github.io/archives/page/4/index.html">
 <meta property="og:site_name" content="stone&#39;s blog">
-<meta property="og:description" content="author： 郝林 time： 2021-07-02     在前面，我几乎已经把 Go 语言自带的同步工具全盘托出了。你是否已经听懂了会用了呢？ 无论怎样，我都希望你能够多多练习、多多使用。它们和 Go 语言独有的并发编程方式并不冲突，相反，配合起来使用，绝对能达到“一加一大于二”的效果。 当然了，至于怎样配合就是一门学问了。我在前面已经讲了不少的方法和技巧，不过，更多的东西可能就需要你在实践">
+<meta property="og:description" content="这都被你发现了">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://shigh626.github.io/2021/07/02/golang%2034-%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8%E5%AD%97%E5%85%B8sync-Map-%EF%BC%88%E4%B8%8A%EF%BC%89/edb8e8c857c26b85273eb83d58b68d02.jpg">
-<meta property="article:published_time" content="2021-07-02T02:10:34.000Z">
-<meta property="article:modified_time" content="2021-08-06T18:09:58.550Z">
 <meta property="article:author" content="stone">
-<meta property="article:tag" content="Golang">
+<meta property="article:tag" content="java,golang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://shigh626.github.io/2021/07/02/golang%2034-%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8%E5%AD%97%E5%85%B8sync-Map-%EF%BC%88%E4%B8%8A%EF%BC%89/edb8e8c857c26b85273eb83d58b68d02.jpg">
   
     <link rel="alternative" href="/atom.xml" title="stone&#39;s blog" type="application/atom+xml">
   
@@ -163,234 +159,433 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-golang 34-并发安全字典sync-Map-（上）" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      34 | 并发安全字典sync.Map （上）
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/06/14/java%20javaSE/" class="archive-article-date">
+  	<time datetime="2021-06-13T18:11:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-14</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/06/14/java%20javaSE/">Java基础</a>
     </h1>
   
 
-        
-        <a href="/2021/07/02/golang%2034-%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8%E5%AD%97%E5%85%B8sync-Map-%EF%BC%88%E4%B8%8A%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2021-07-02T02:10:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><code>author</code>： 郝林</p>
-<p><code>time</code>： 2021-07-02</p>
-<img src="/2021/07/02/golang%2034-%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8%E5%AD%97%E5%85%B8sync-Map-%EF%BC%88%E4%B8%8A%EF%BC%89/edb8e8c857c26b85273eb83d58b68d02.jpg" alt="img">
-
-
-
-<p>在前面，我几乎已经把 Go 语言自带的同步工具全盘托出了。你是否已经听懂了会用了呢？</p>
-<p>无论怎样，我都希望你能够多多练习、多多使用。它们和 Go 语言独有的并发编程方式并不冲突，相反，配合起来使用，绝对能达到“一加一大于二”的效果。</p>
-<p>当然了，至于怎样配合就是一门学问了。我在前面已经讲了不少的方法和技巧，不过，更多的东西可能就需要你在实践中逐渐领悟和总结了。</p>
-<p>我们今天再来讲一个并发安全的高级数据结构：sync.Map。众所周知，Go 语言自带的字典类型map并不是并发安全的。</p>
-<span id="more"></span>
-
-<h2 id="前导知识：并发安全字典诞生史"><a href="#前导知识：并发安全字典诞生史" class="headerlink" title="前导知识：并发安全字典诞生史"></a>前导知识：并发安全字典诞生史</h2><p>换句话说，在同一时间段内，让不同 goroutine 中的代码，对同一个字典进行读写操作是不安全的。字典值本身可能会因这些操作而产生混乱，相关的程序也可能会因此发生不可预知的问题。</p>
-<p>在sync.Map出现之前，我们如果要实现并发安全的字典，就只能自行构建。不过，这其实也不是什么麻烦事，使用 sync.Mutex或sync.RWMutex，再加上原生的map就可以轻松地做到。</p>
-<p>GitHub 网站上已经有很多库提供了类似的数据结构。我在《Go 并发编程实战》的第 2 版中也提供了一个比较完整的并发安全字典的实现。它的性能比同类的数据结构还要好一些，因为它在很大程度上有效地避免了对锁的依赖。</p>
-<p>尽管已经有了不少的参考实现，Go 语言爱好者们还是希望 Go 语言官方能够发布一个标准的并发安全字典。</p>
-<p>经过大家多年的建议和吐槽，Go 语言官方终于在 2017 年发布的 Go 1.9 中，正式加入了并发安全的字典类型sync.Map。</p>
-<p>这个字典类型提供了一些常用的键值存取操作方法，并保证了这些操作的并发安全。同时，它的存、取、删等操作都可以基本保证在常数时间内执行完毕。换句话说，它们的算法复杂度与map类型一样都是O(1)的。</p>
-<p>在有些时候，与单纯使用原生map和互斥锁的方案相比，使用sync.Map可以显著地减少锁的争用。sync.Map本身虽然也用到了锁，但是，它其实在尽可能地避免使用锁。</p>
-<p>我们都知道，使用锁就意味着要把一些并发的操作强制串行化。这往往会降低程序的性能，尤其是在计算机拥有多个 CPU 核心的情况下。</p>
-<p>因此，我们常说，能用原子操作就不要用锁，不过这很有局限性，毕竟原子只能对一些基本的数据类型提供支持。</p>
-<p>无论在何种场景下使用sync.Map，我们都需要注意，与原生map明显不同，它只是 Go 语言标准库中的一员，而不是语言层面的东西。也正因为这一点，Go 语言的编译器并不会对它的键和值，进行特殊的类型检查。</p>
-<p>如果你看过sync.Map的文档或者实际使用过它，那么就一定会知道，它所有的方法涉及的键和值的类型都是interface{}，也就是空接口，这意味着可以包罗万象。所以，我们必须在程序中自行保证它的键类型和值类型的正确性。</p>
-<p>好了，现在第一个问题来了。<strong>今天的问题是：并发安全字典对键的类型有要求吗？</strong></p>
-<p>这道题的典型回答是：有要求。键的实际类型不能是函数类型、字典类型和切片类型。</p>
-<p><strong>解析一下这个问题。</strong> 我们都知道，Go 语言的原生字典的键类型不能是函数类型、字典类型和切片类型。</p>
-<p>由于并发安全字典内部使用的存储介质正是原生字典，又因为它使用的原生字典键类型也是可以包罗万象的interface{}；所以，我们绝对不能带着任何实际类型为函数类型、字典类型或切片类型的键值去操作并发安全字典。</p>
-<p>由于这些键值的实际类型只有在程序运行期间才能够确定，所以 Go 语言编译器是无法在编译期对它们进行检查的，不正确的键值实际类型肯定会引发 panic。</p>
-<p>因此，我们在这里首先要做的一件事就是：一定不要违反上述规则。我们应该在每次操作并发安全字典的时候，都去显式地检查键值的实际类型。无论是存、取还是删，都应该如此。</p>
-<p>当然，更好的做法是，把针对同一个并发安全字典的这几种操作都集中起来，然后统一地编写检查代码。除此之外，把并发安全字典封装在一个结构体类型中，往往是一个很好的选择。</p>
-<p>总之，我们必须保证键的类型是可比较的（或者说可判等的）。如果你实在拿不准，那么可以先通过调用reflect.TypeOf函数得到一个键值对应的反射类型值（即：reflect.Type类型的值），然后再调用这个值的Comparable方法，得到确切的判断结果。</p>
-<h2 id="知识扩展"><a href="#知识扩展" class="headerlink" title="知识扩展"></a>知识扩展</h2><h2 id="问题-1：怎样保证并发安全字典中的键和值的类型正确性？（方案一）"><a href="#问题-1：怎样保证并发安全字典中的键和值的类型正确性？（方案一）" class="headerlink" title="问题 1：怎样保证并发安全字典中的键和值的类型正确性？（方案一）"></a>问题 1：怎样保证并发安全字典中的键和值的类型正确性？（方案一）</h2><p>简单地说，可以使用类型断言表达式或者反射操作来保证它们的类型正确性。</p>
-<p>为了进一步明确并发安全字典中键值的实际类型，这里大致有两种方案可选。</p>
-<p><strong>第一种方案是，让并发安全字典只能存储某个特定类型的键。</strong></p>
-<p>比如，指定这里的键只能是int类型的，或者只能是字符串，又或是某类结构体。一旦完全确定了键的类型，你就可以在进行存、取、删操作的时候，使用类型断言表达式去对键的类型做检查了。</p>
-<p>一般情况下，这种检查并不繁琐。而且，你要是把并发安全字典封装在一个结构体类型里面，那就更加方便了。你这时完全可以让 Go 语言编译器帮助你做类型检查。请看下面的代码：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> IntStrMap <span class="keyword">struct</span> &#123;</span><br><span class="line">    m sync.Map</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(iMap *IntStrMap)</span> <span class="title">Delete</span><span class="params">(key <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">    iMap.m.Delete(key)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(iMap *IntStrMap)</span> <span class="title">Load</span><span class="params">(key <span class="keyword">int</span>)</span> <span class="params">(value <span class="keyword">string</span>, ok <span class="keyword">bool</span>)</span></span> &#123;</span><br><span class="line">    v, ok := iMap.m.Load(key)</span><br><span class="line">    <span class="keyword">if</span> v != <span class="literal">nil</span> &#123;</span><br><span class="line">		 value = v.(<span class="keyword">string</span>)</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(iMap *IntStrMap)</span> <span class="title">LoadOrStore</span><span class="params">(key <span class="keyword">int</span>, value <span class="keyword">string</span>)</span> <span class="params">(actual <span class="keyword">string</span>, loaded <span class="keyword">bool</span>)</span></span> &#123;</span><br><span class="line">    a, loaded := iMap.m.LoadOrStore(key, value)</span><br><span class="line">    actual = a.(<span class="keyword">string</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(iMap *IntStrMap)</span> <span class="title">Range</span><span class="params">(f <span class="keyword">func</span>(key <span class="keyword">int</span>, value <span class="keyword">string</span>)</span> <span class="title">bool</span>)</span> &#123;</span><br><span class="line">    f1 := <span class="function"><span class="keyword">func</span><span class="params">(key, value <span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">        <span class="keyword">return</span> f(key.(<span class="keyword">int</span>), value.(<span class="keyword">string</span>))</span><br><span class="line">    &#125;</span><br><span class="line">    iMap.m.Range(f1)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(iMap *IntStrMap)</span> <span class="title">Store</span><span class="params">(key <span class="keyword">int</span>, value <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">    iMap.m.Store(key, value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如上所示，我编写了一个名为IntStrMap的结构体类型，它代表了键类型为int、值类型为string的并发安全字典。在这个结构体类型中，只有一个sync.Map类型的字段m。并且，这个类型拥有的所有方法，都与sync.Map类型的方法非常类似。</p>
-<p>两者对应的方法名称完全一致，方法签名也非常相似，只不过，与键和值相关的那些参数和结果的类型不同而已。在IntStrMap类型的方法签名中，明确了键的类型为int，且值的类型为string。</p>
-<p>显然，这些方法在接受键和值的时候，就不用再做类型检查了。另外，这些方法在从m中取出键和值的时候，完全不用担心它们的类型会不正确，因为它的正确性在当初存入的时候，就已经由 Go 语言编译器保证了。</p>
-<p>稍微总结一下。第一种方案适用于我们可以完全确定键和值的具体类型的情况。在这种情况下，我们可以利用 Go 语言编译器去做类型检查，并用类型断言表达式作为辅助，就像IntStrMap那样。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我们今天讨论的是sync.Map类型，它是一种并发安全的字典。它提供了一些常用的键、值存取操作方法，并保证了这些操作的并发安全。同时，它还保证了存、取、删等操作的常数级执行时间。</p>
-<p>与原生的字典相同，并发安全字典对键的类型也是有要求的。它们同样不能是函数类型、字典类型和切片类型。</p>
-<p>另外，由于并发安全字典提供的方法涉及的键和值的类型都是interface{}，所以我们在调用这些方法的时候，往往还需要对键和值的实际类型进行检查。</p>
-<p>这里大致有两个方案。我们今天主要提到了第一种方案，这是在编码时就完全确定键和值的类型，然后利用 Go 语言的编译器帮我们做检查。</p>
-<p>在下一次的文章中，我们会提到另外一种方案，并对比这两种方案的优劣。除此之外，我会继续探讨并发安全字典的相关问题。</p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://shigh626.github.io/2021/07/02/golang%2034-%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8%E5%AD%97%E5%85%B8sync-Map-%EF%BC%88%E4%B8%8A%EF%BC%89/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
   
-<nav id="article-nav">
-  
-    <a href="/2021/07/02/golang%2035-%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8%E5%AD%97%E5%85%B8sync-Map-%EF%BC%88%E4%B8%8B%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          35 | 并发安全字典sync.Map （下）
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2021/07/02/golang%2026-sync-Mutex%E4%B8%8Esync-RWMutex/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">26 | sync.Mutex与sync.RWMutex</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/06/14/hello-world/" class="archive-article-date">
+  	<time datetime="2021-06-13T17:10:58.259Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-14</time>
+</a>
         </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E5%AF%BC%E7%9F%A5%E8%AF%86%EF%BC%9A%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8%E5%AD%97%E5%85%B8%E8%AF%9E%E7%94%9F%E5%8F%B2"><span class="toc-number">1.</span> <span class="toc-text">前导知识：并发安全字典诞生史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E6%89%A9%E5%B1%95"><span class="toc-number">2.</span> <span class="toc-text">知识扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98-1%EF%BC%9A%E6%80%8E%E6%A0%B7%E4%BF%9D%E8%AF%81%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8%E5%AD%97%E5%85%B8%E4%B8%AD%E7%9A%84%E9%94%AE%E5%92%8C%E5%80%BC%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%AD%A3%E7%A1%AE%E6%80%A7%EF%BC%9F%EF%BC%88%E6%96%B9%E6%A1%88%E4%B8%80%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">问题 1：怎样保证并发安全字典中的键和值的类型正确性？（方案一）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/06/14/hello-world/">Hello Everyone</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Life</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+
         </div>
-        
-    </div>
-</aside>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/05/20/leetcode-739-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" class="archive-article-date">
+  	<time datetime="2021-05-19T17:13:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/05/20/leetcode-739-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/">leetcode 739-每日温度</a>
+    </h1>
+  
 
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hot100</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
+          
 
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/05/20/leetcode-647-%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/" class="archive-article-date">
+  	<time datetime="2021-05-19T17:04:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/05/20/leetcode-647-%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/">leetcode 647-回文子串</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hot100</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/05/20/leetcode-621-%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2021-05-19T17:02:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/05/20/leetcode-621-%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%99%A8/">leetcode 621-任务调度器</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hot100</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/05/20/leetcode-581-%E6%9C%80%E7%9F%AD%E6%97%A0%E5%BA%8F%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84/" class="archive-article-date">
+  	<time datetime="2021-05-19T16:58:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/05/20/leetcode-581-%E6%9C%80%E7%9F%AD%E6%97%A0%E5%BA%8F%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84/">leetcode 581-最短无序连续子数组</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hot100</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/05/20/leetcode-560-%E5%92%8C%E4%B8%BAK%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" class="archive-article-date">
+  	<time datetime="2021-05-19T16:56:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/05/20/leetcode-560-%E5%92%8C%E4%B8%BAK%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/">leetcode 560-和为K的子数组</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hot100</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/05/20/leetcode-494-%E7%9B%AE%E6%A0%87%E5%92%8C/" class="archive-article-date">
+  	<time datetime="2021-05-19T16:49:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/05/20/leetcode-494-%E7%9B%AE%E6%A0%87%E5%92%8C/">leetcode 494-目标和</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hot100</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/05/20/leetcode-146-LRU%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" class="archive-article-date">
+  	<time datetime="2021-05-19T16:14:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/05/20/leetcode-146-LRU%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/">leetcode 146-LRU缓存机制</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hot100</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/05/20/leetcode-001-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" class="archive-article-date">
+  	<time datetime="2021-05-19T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/05/20/leetcode-001-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">两数之和</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
   
   
+    </div></section>
   
 
-  
-
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/5/">Next &amp;raquo;</a>
+    </nav>
   
 
 
@@ -414,8 +609,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
