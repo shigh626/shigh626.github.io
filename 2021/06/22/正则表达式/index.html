@@ -16,7 +16,7 @@
 <meta property="og:description" content="正则表达式就是由普通字符（例如字符 a 到  z  ） 以及特殊字符（称为元字符）组成的文字模式。该模式描述在查找文字主体时待匹配的一个或多个字符串。正则表达式作为一个模板，将某个字符模式与所搜索的字 符串进行匹配。 本文详细地列出了能在正则表达式中使用，以匹配文本的各种字符。当你需要解释一个现有的正则表达式时，可以作为一个快捷的参考。更多详 细内容 正则学习网站： （1）Test RegEx (">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-06-21T16:47:01.000Z">
-<meta property="article:modified_time" content="2021-06-21T17:34:14.551Z">
+<meta property="article:modified_time" content="2021-06-21T17:39:04.920Z">
 <meta property="article:author" content="stone">
 <meta property="article:tag" content="开发者">
 <meta name="twitter:card" content="summary">
@@ -337,9 +337,9 @@
 <td>输入字符串为： 1A BB SA 1 C匹配一个数字或一个 A 到 Z 的 字母，接着是任意单词字符的正则表达式为：（ ?:/d|[A-Z]/w ）它将产生 3 次匹配：每 1 次 匹配＝ 1A ； 每2 次匹配＝ BB; 每 3 次 匹配＝ SA但是没有组被捕获</td>
 </tr>
 <tr>
-<td>（ ?<name> ）</td>
+<td>（ ?<name>）</name></td>
 <td>此选项组合括号内模式所匹配的字符，并用尖括号中指定 的 值为组命名。在正则表达式中，可以使用名称进行反向引用，而不必使用编号。即使不设置ExplicitCapture 选 项，它也是一个捕获组。这意味着反向引用可以利用组内匹配的字符，或者通过Group 类访问</td>
-<td>输入字符串为： Characters in Sienfeld included Jerry Seinfeld,Elaine Benes,Cosno Kramer and George Costanza 能 够匹配它们的姓名，并在一个组 llastName 中捕获姓的正则表达式为： /b[A-Z][a-z]+(?<lastName>[A-Z][a-z]+)/b它产生了 4 次匹配： First Match=Jerry Seinfeld; Second Match=Elaine Benes; Third Match=Cosmo Kramer; Fourth Match=George Costanza每一次匹配都对应了一个 lastName 组：第 1 次匹配： lastName group=Seinfeld第 2 次匹配： lastName group=Benes第 3 次匹配： lastName group=Kramer第 4 次匹配： lastName group=Costanza不管是否设置了选项 ExplictCapture ，组 都将被捕获</td>
+<td>输入字符串为： Characters in Sienfeld included Jerry Seinfeld,Elaine Benes,Cosno Kramer and George Costanza 能 够匹配它们的姓名，并在一个组 llastName 中捕获姓的正则表达式为： /b[A-Z][a-z]+(?<lastName>[A-Z][a-z]+)/b它产生了 4 次匹配： First Match=Jerry Seinfeld; Second Match=Elaine Benes; Third Match=Cosmo Kramer; Fourth Match=George Costanza每一次匹配都对应了一个 lastName 组：第 1 次匹配： lastName group=Seinfeld第 2 次匹配： lastName group=Benes第 3 次匹配： lastName group=Kramer第 4 次匹配： lastName group=Costanza不管是否设置了选项 ExplictCapture ，组 都将被捕获</lastName></td>
 </tr>
 <tr>
 <td>（ ?= ）</td>
@@ -352,7 +352,7 @@
 <td>/d{3}(?![A-Z]) 要匹配的输入字符串为： 123A 456 789 111C将产生如下匹配：456789</td>
 </tr>
 <tr>
-<td>（ ?&lt;= ）</td>
+<td>（ ?&lt;=）</td>
 <td>反向正声明。声明的左侧必须为括号内的指定模式。此模式不构成最终匹配的一部分</td>
 <td>正则表达式 (?&lt;=New)([A-Z][a-z]+) 要 匹配的输入字符串为： The following states,New Mexico,West Virginia,Washington, New England它将产生如下匹配：MexicoEngland</td>
 </tr>
@@ -400,7 +400,7 @@
 </tr>
 <tr>
 <td>${name}</td>
-<td>替换被一个 (?<name>) 组匹配的最 后子串</td>
+<td>替换被一个 (?<name>) 组匹配的最 后子串</name></td>
 </tr>
 <tr>
 <td>$$</td>
