@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://shigh626.github.io">
   <title>leetcode 146-LRU缓存机制 | stone&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这都被你发现了">
+  <meta name="description" content="难度中等 运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制 。实现 LRUCache 类： LRUCache(int capacity) 以正整数作为容量 capacity 初始化 LRU 缓存int get(int key) 如果关键字 key 存在于缓存中，则返回关键字的值，否则返回 -1 。void put(int key, int value) 如果关键字已经存">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode 146-LRU缓存机制">
 <meta property="og:url" content="https://shigh626.github.io/2021/05/20/leetcode-146-LRU%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="stone&#39;s blog">
-<meta property="og:description" content="这都被你发现了">
+<meta property="og:description" content="难度中等 运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制 。实现 LRUCache 类： LRUCache(int capacity) 以正整数作为容量 capacity 初始化 LRU 缓存int get(int key) 如果关键字 key 存在于缓存中，则返回关键字的值，否则返回 -1 。void put(int key, int value) 如果关键字已经存">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-19T16:14:06.000Z">
-<meta property="article:modified_time" content="2021-08-06T19:26:32.868Z">
+<meta property="article:modified_time" content="2021-08-07T04:29:59.051Z">
 <meta property="article:author" content="stone">
 <meta property="article:tag" content="Leetcode">
-<meta property="article:tag" content="hot100">
+<meta property="article:tag" content="HOT100">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="stone&#39;s blog" type="application/atom+xml">
@@ -182,7 +182,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>难度中等</p>
+<p>运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制 。<br>实现 LRUCache 类：</p>
+<p>LRUCache(int capacity) 以正整数作为容量 capacity 初始化 LRU 缓存<br>int get(int key) 如果关键字 key 存在于缓存中，则返回关键字的值，否则返回 -1 。<br>void put(int key, int value) 如果关键字已经存在，则变更其数据值；如果关键字不存在，则插入该组「关键字-值」。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间。</p>
+<p>进阶：你是否可以在 O(1) 时间复杂度内完成这两种操作？</p>
+  <span id="more"></span>
+
+<h6 id="146-lru-cache"><a href="#146-lru-cache" class="headerlink" title="146. lru-cache"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lru-cache/"><em>146. lru-cache</em></a></h6><p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入</span><br><span class="line">[&quot;LRUCache&quot;, &quot;put&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;get&quot;]</span><br><span class="line">[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]</span><br><span class="line">输出</span><br><span class="line">[null, null, null, 1, null, -1, null, -1, 3, 4]</span><br></pre></td></tr></table></figure>
+
+<p>解释<br>LRUCache lRUCache = new LRUCache(2);<br>lRUCache.put(1, 1);  // 缓存是 {1=1}<br>lRUCache.put(2, 2);  // 缓存是 {1=1, 2=2}<br>lRUCache.get(1);      // 返回 1<br>lRUCache.put(3, 3); // 该操作会使得关键字 2 作废，缓存是 {1=1, 3=3}<br>lRUCache.get(2);      // 返回 -1 (未找到)<br>lRUCache.put(4, 4); // 该操作会使得关键字 1 作废，缓存是 {4=4, 3=3}<br>lRUCache.get(1);     // 返回 -1 (未找到)<br>lRUCache.get(3);     // 返回 3<br>lRUCache.get(4);     // 返回 4</p>
+<p>提示：</p>
+<p>1 &lt;= capacity &lt;= 3000<br>0 &lt;= key &lt;= 10000<br>0 &lt;= value &lt;= 105<br>最多调用 2 * 105 次 get 和 put</p>
+<p>Java版：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>Golang版：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> LRUCache <span class="keyword">struct</span> &#123;</span><br><span class="line">	hash <span class="keyword">map</span>[<span class="keyword">int</span>]*Node</span><br><span class="line">	list *DoubleLinkedList</span><br><span class="line">	<span class="built_in">cap</span>  <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Node <span class="keyword">struct</span> &#123;</span><br><span class="line">	key  <span class="keyword">int</span></span><br><span class="line">	val  <span class="keyword">int</span></span><br><span class="line">	prev *Node</span><br><span class="line">	next *Node</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> DoubleLinkedList <span class="keyword">struct</span> &#123;</span><br><span class="line">	head *Node</span><br><span class="line">	tail *Node</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewNode</span><span class="params">(key <span class="keyword">int</span>, val <span class="keyword">int</span>)</span> *<span class="title">Node</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;Node&#123;key: key, val: val&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewDoubleLinkedList</span><span class="params">()</span> *<span class="title">DoubleLinkedList</span></span> &#123;</span><br><span class="line">	head := NewNode(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">	tail := NewNode(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">	head.next = tail</span><br><span class="line">	tail.prev = head</span><br><span class="line">	<span class="keyword">return</span> &amp;DoubleLinkedList&#123;head: head, tail: tail&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">(capacity <span class="keyword">int</span>)</span> <span class="title">LRUCache</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> LRUCache&#123;</span><br><span class="line">		hash: <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>]*Node, capacity),</span><br><span class="line">		list: NewDoubleLinkedList(),</span><br><span class="line">		<span class="built_in">cap</span>:  capacity,</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *LRUCache)</span> <span class="title">Get</span><span class="params">(key <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> node, has := this.hash[key]; !has &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		this.Put(key, node.val)</span><br><span class="line">		<span class="keyword">return</span> node.val</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *LRUCache)</span> <span class="title">Put</span><span class="params">(key <span class="keyword">int</span>, value <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	newNode := NewNode(key, value)</span><br><span class="line">	<span class="keyword">if</span> node, has := this.hash[key]; has &#123; </span><br><span class="line">        <span class="comment">//如果原来的链表里面已经有了这个key</span></span><br><span class="line">		del := this.list.Delete(node)</span><br><span class="line">		<span class="built_in">delete</span>(this.hash, del)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123; </span><br><span class="line">        <span class="comment">//如果原来的链表里面没有这个key</span></span><br><span class="line">		<span class="comment">// 首先判断链表当前使用的长度（等价map容量）是否达到最大值，如果是，则删除lru</span></span><br><span class="line">		<span class="keyword">if</span> this.<span class="built_in">cap</span> == <span class="built_in">len</span>(this.hash) &#123;</span><br><span class="line">			last := this.list.DeleteLast()</span><br><span class="line">			<span class="built_in">delete</span>(this.hash, last)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 插入最近使用的key</span></span><br><span class="line">	this.list.AddFirst(newNode)</span><br><span class="line">	this.hash[key] = newNode</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *DoubleLinkedList)</span> <span class="title">AddFirst</span><span class="params">(node *Node)</span></span> &#123;</span><br><span class="line">	node.next = this.head.next</span><br><span class="line">	node.prev = this.head</span><br><span class="line">	this.head.next.prev = node</span><br><span class="line">	this.head.next = node</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *DoubleLinkedList)</span> <span class="title">Delete</span><span class="params">(node *Node)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	node.next.prev = node.prev</span><br><span class="line">	node.prev.next = node.next</span><br><span class="line">	<span class="keyword">return</span> node.key</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *DoubleLinkedList)</span> <span class="title">DeleteLast</span><span class="params">()</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> this.head.next == this.tail &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> this.Delete(this.tail.prev)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -220,7 +242,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hot100</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HOT100</a>
         		</li>
       		
 		</ul>
@@ -301,7 +323,7 @@
   
   
     <a href="/2021/05/20/leetcode-001-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">两数之和</div>
+      <div class="article-nav-title">leetcode 1-两数之和</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -328,7 +350,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#146-lru-cache"><span class="toc-number">1.</span> <span class="toc-text">146. lru-cache</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -469,6 +491,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">HOT100</a>
               </li>
             
             <div class="clearfix"></div>
