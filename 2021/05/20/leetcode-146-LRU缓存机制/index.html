@@ -15,8 +15,8 @@
 <meta property="og:site_name" content="stone&#39;s blog">
 <meta property="og:description" content="难度中等 运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制 。实现 LRUCache 类： LRUCache(int capacity) 以正整数作为容量 capacity 初始化 LRU 缓存int get(int key) 如果关键字 key 存在于缓存中，则返回关键字的值，否则返回 -1 。void put(int key, int value) 如果关键字已经存">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-05-19T16:14:06.000Z">
-<meta property="article:modified_time" content="2021-08-07T04:29:59.051Z">
+<meta property="article:published_time" content="2021-05-19T17:04:06.000Z">
+<meta property="article:modified_time" content="2021-08-07T07:56:17.112Z">
 <meta property="article:author" content="stone">
 <meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="HOT100">
@@ -175,7 +175,7 @@
 
         
         <a href="/2021/05/20/leetcode-146-LRU%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" class="archive-article-date">
-  	<time datetime="2021-05-19T16:14:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
+  	<time datetime="2021-05-19T17:04:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
 </a>
         
       </header>
@@ -188,12 +188,16 @@
 <p>进阶：你是否可以在 O(1) 时间复杂度内完成这两种操作？</p>
   <span id="more"></span>
 
-<h6 id="146-lru-cache"><a href="#146-lru-cache" class="headerlink" title="146. lru-cache"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lru-cache/"><em>146. lru-cache</em></a></h6><p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入</span><br><span class="line">[&quot;LRUCache&quot;, &quot;put&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;get&quot;]</span><br><span class="line">[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]</span><br><span class="line">输出</span><br><span class="line">[null, null, null, 1, null, -1, null, -1, 3, 4]</span><br></pre></td></tr></table></figure>
+<h6 id="146-lru-cache"><a href="#146-lru-cache" class="headerlink" title="146. lru-cache"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lru-cache/"><em>146. lru-<strong>cache</strong></em></a></h6><p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">输入</span><br><span class="line">[&quot;LRUCache&quot;, &quot;put&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;get&quot;]</span><br><span class="line">[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]</span><br><span class="line">输出</span><br><span class="line">[null, null, null, 1, null, -1, null, -1, 3, 4]</span><br><span class="line">解释</span><br><span class="line">LRUCache lRUCache = new LRUCache(2);</span><br><span class="line">lRUCache.put(1, 1);  // 缓存是 &#123;1=1&#125;</span><br><span class="line">lRUCache.put(2, 2);  // 缓存是 &#123;1=1, 2=2&#125;</span><br><span class="line">lRUCache.get(1);      // 返回 1</span><br><span class="line">lRUCache.put(3, 3); // 该操作会使得关键字 2 作废，缓存是 &#123;1=1, 3=3&#125;</span><br><span class="line">lRUCache.get(2);      // 返回 -1 (未找到)</span><br><span class="line">lRUCache.put(4, 4); // 该操作会使得关键字 1 作废，缓存是 &#123;4=4, 3=3&#125;</span><br><span class="line">lRUCache.get(1);     // 返回 -1 (未找到)</span><br><span class="line">lRUCache.get(3);     // 返回 3</span><br><span class="line">lRUCache.get(4);     // 返回 4</span><br></pre></td></tr></table></figure>
 
-<p>解释<br>LRUCache lRUCache = new LRUCache(2);<br>lRUCache.put(1, 1);  // 缓存是 {1=1}<br>lRUCache.put(2, 2);  // 缓存是 {1=1, 2=2}<br>lRUCache.get(1);      // 返回 1<br>lRUCache.put(3, 3); // 该操作会使得关键字 2 作废，缓存是 {1=1, 3=3}<br>lRUCache.get(2);      // 返回 -1 (未找到)<br>lRUCache.put(4, 4); // 该操作会使得关键字 1 作废，缓存是 {4=4, 3=3}<br>lRUCache.get(1);     // 返回 -1 (未找到)<br>lRUCache.get(3);     // 返回 3<br>lRUCache.get(4);     // 返回 4</p>
-<p>提示：</p>
-<p>1 &lt;= capacity &lt;= 3000<br>0 &lt;= key &lt;= 10000<br>0 &lt;= value &lt;= 105<br>最多调用 2 * 105 次 get 和 put</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= capacity &lt;= 3000</code></li>
+<li><code>0 &lt;= key &lt;= 10000</code></li>
+<li><code>0 &lt;= value &lt;= 105</code></li>
+<li>最多调用 <code>2 * 105</code> 次 get 和 put</li>
+</ul>
 <p>Java版：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -483,10 +487,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hot100</a>
               </li>
              
               <li class="article-tag-list-item">

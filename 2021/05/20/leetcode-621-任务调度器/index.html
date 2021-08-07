@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://shigh626.github.io">
   <title>leetcode 621-任务调度器 | stone&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这都被你发现了">
+  <meta name="description" content="难度中等 给你一个用字符数组 tasks 表示的 CPU 需要执行的任务列表。其中每个字母表示一种不同种类的任务。任务可以以任意顺序执行，并且每个任务都可以在 1 个单位时间内执行完。在任何一个单位时间，CPU 可以完成一个任务，或者处于待命状态。 然而，两个 相同种类 的任务之间必须有长度为整数 n 的冷却时间，因此至少有连续 n 个单位时间内 CPU 在执行不同的任务，或者在待命状态。 你需要">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode 621-任务调度器">
 <meta property="og:url" content="https://shigh626.github.io/2021/05/20/leetcode-621-%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%99%A8/index.html">
 <meta property="og:site_name" content="stone&#39;s blog">
-<meta property="og:description" content="这都被你发现了">
+<meta property="og:description" content="难度中等 给你一个用字符数组 tasks 表示的 CPU 需要执行的任务列表。其中每个字母表示一种不同种类的任务。任务可以以任意顺序执行，并且每个任务都可以在 1 个单位时间内执行完。在任何一个单位时间，CPU 可以完成一个任务，或者处于待命状态。 然而，两个 相同种类 的任务之间必须有长度为整数 n 的冷却时间，因此至少有连续 n 个单位时间内 CPU 在执行不同的任务，或者在待命状态。 你需要">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-05-19T17:02:01.000Z">
-<meta property="article:modified_time" content="2021-08-06T19:32:51.645Z">
+<meta property="article:published_time" content="2021-05-19T22:02:01.000Z">
+<meta property="article:modified_time" content="2021-08-07T08:14:52.243Z">
 <meta property="article:author" content="stone">
 <meta property="article:tag" content="Leetcode">
-<meta property="article:tag" content="hot100">
+<meta property="article:tag" content="HOT100">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="stone&#39;s blog" type="application/atom+xml">
@@ -175,14 +175,45 @@
 
         
         <a href="/2021/05/20/leetcode-621-%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2021-05-19T17:02:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
+  	<time datetime="2021-05-19T22:02:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>难度中等</p>
+<p>给你一个用字符数组 tasks 表示的 CPU 需要执行的任务列表。其中每个字母表示一种不同种类的任务。任务可以以任意顺序执行，并且每个任务都可以在 1 个单位时间内执行完。在任何一个单位时间，CPU 可以完成一个任务，或者处于待命状态。</p>
+<p>然而，两个 相同种类 的任务之间必须有长度为整数 n 的冷却时间，因此至少有连续 n 个单位时间内 CPU 在执行不同的任务，或者在待命状态。</p>
+<p>你需要计算完成所有任务所需要的 最短时间 。</p>
+ <span id="more"></span>
+
+<h6 id="621-task-scheduler"><a href="#621-task-scheduler" class="headerlink" title="621.task-scheduler"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/task-scheduler/"><em>621.task-scheduler</em></a></h6><p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：tasks = [&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;], n = 2</span><br><span class="line">输出：8</span><br><span class="line">解释：A -&gt; B -&gt; (待命) -&gt; A -&gt; B -&gt; (待命) -&gt; A -&gt; B</span><br><span class="line">在本示例中，两个相同类型任务之间必须间隔长度为 n = 2 的冷却时间，而执行一个任务只需要一个单位时间，所以中间出现了（待命）状态。 </span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入：tasks = [&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;], n = 0</span><br><span class="line">输出：6</span><br><span class="line">解释：在这种情况下，任何大小为 6 的排列都可以满足要求，因为 n = 0</span><br><span class="line">[&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;]</span><br><span class="line">[&quot;A&quot;,&quot;B&quot;,&quot;A&quot;,&quot;B&quot;,&quot;A&quot;,&quot;B&quot;]</span><br><span class="line">[&quot;B&quot;,&quot;B&quot;,&quot;B&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;]</span><br><span class="line">...</span><br><span class="line">诸如此类</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：tasks = [&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,&quot;E&quot;,&quot;F&quot;,&quot;G&quot;], n = 2</span><br><span class="line">输出：16</span><br><span class="line">解释：一种可能的解决方案是：</span><br><span class="line">A -&gt; B -&gt; C -&gt; A -&gt; D -&gt; E -&gt; A -&gt; F -&gt; G -&gt; A -&gt; (待命) -&gt; (待命) -&gt; A -&gt; (待命) -&gt; (待命) -&gt; A</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= task.length &lt;= 104</code></li>
+<li><code>tasks[i] </code>是大写英文字母</li>
+<li>n 的取值范围为<code> [0, 100]</code></li>
+</ul>
+<p>Java版：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>Golang版：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">leastInterval</span><span class="params">(tasks []<span class="keyword">byte</span>, n <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	hash := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">byte</span>]<span class="keyword">int</span>)</span><br><span class="line">	<span class="keyword">var</span> max <span class="keyword">int</span>  	 <span class="comment">//max代表最多的那个元素的个数</span></span><br><span class="line">	<span class="keyword">var</span> same <span class="keyword">int</span> 	 <span class="comment">//same 代表与max相同的元素的种类</span></span><br><span class="line">	<span class="keyword">var</span> maxparm <span class="keyword">byte</span> <span class="comment">//maxparm代表最多的那个元素的种类</span></span><br><span class="line">	<span class="keyword">for</span> _, task := <span class="keyword">range</span> tasks &#123;</span><br><span class="line">		<span class="keyword">if</span> count, has := hash[task]; has &#123;</span><br><span class="line">			hash[task] = count + <span class="number">1</span></span><br><span class="line">			<span class="keyword">if</span> max &lt; hash[task] &#123;</span><br><span class="line">				max = hash[task]</span><br><span class="line">				maxparm = task</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			hash[task] = <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> k, v := <span class="keyword">range</span> hash &#123;</span><br><span class="line">		<span class="keyword">if</span> k != maxparm &amp;&amp; v == max&#123;</span><br><span class="line">			same += <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	minANS := max*(n+<span class="number">1</span>) - n</span><br><span class="line">    <span class="keyword">return</span> mathMax(<span class="built_in">len</span>(tasks),minANS + same)</span><br><span class="line">    </span><br><span class="line">	<span class="comment">// if same == 0 &amp;&amp; minANS &gt;= len(tasks)&#123;</span></span><br><span class="line">	<span class="comment">// 	return minANS</span></span><br><span class="line">	<span class="comment">// &#125;else if len(tasks)-same &lt; minANS&#123;</span></span><br><span class="line">	<span class="comment">// 	return minANS + same</span></span><br><span class="line">	<span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">// return len(tasks)</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">mathMax</span><span class="params">(a,b <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> a &gt; b &#123;</span><br><span class="line">		<span class="keyword">return</span> a</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -220,7 +251,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hot100</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HOT100</a>
         		</li>
       		
 		</ul>
@@ -328,7 +359,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#621-task-scheduler"><span class="toc-number">1.</span> <span class="toc-text">621.task-scheduler</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -461,10 +492,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hot100</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://shigh626.github.io">
   <title>leetcode 560-和为K的子数组 | stone&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这都被你发现了">
+  <meta name="description" content="难度中等 给定一个整数数组和一个整数 k，你需要找到该数组中和为 k 的连续的子数组的个数。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode 560-和为K的子数组">
 <meta property="og:url" content="https://shigh626.github.io/2021/05/20/leetcode-560-%E5%92%8C%E4%B8%BAK%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/index.html">
 <meta property="og:site_name" content="stone&#39;s blog">
-<meta property="og:description" content="这都被你发现了">
+<meta property="og:description" content="难度中等 给定一个整数数组和一个整数 k，你需要找到该数组中和为 k 的连续的子数组的个数。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-05-19T16:56:00.000Z">
-<meta property="article:modified_time" content="2021-08-06T19:25:40.220Z">
+<meta property="article:published_time" content="2021-05-19T21:06:00.000Z">
+<meta property="article:modified_time" content="2021-08-07T08:16:15.781Z">
 <meta property="article:author" content="stone">
 <meta property="article:tag" content="Leetcode">
-<meta property="article:tag" content="hot100">
+<meta property="article:tag" content="HOT100">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="stone&#39;s blog" type="application/atom+xml">
@@ -175,14 +175,38 @@
 
         
         <a href="/2021/05/20/leetcode-560-%E5%92%8C%E4%B8%BAK%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" class="archive-article-date">
-  	<time datetime="2021-05-19T16:56:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
+  	<time datetime="2021-05-19T21:06:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>难度中等</p>
+<p>给定一个整数数组和一个整数 k，你需要找到该数组中和为 k 的连续的子数组的个数。</p>
+ <span id="more"></span>
+
+<h6 id="560-subarray-sum-equals-k"><a href="#560-subarray-sum-equals-k" class="headerlink" title="560. subarray-sum-equals-k"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/subarray-sum-equals-k/"><em>560. subarray-sum-equals-k</em></a></h6><p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入:nums = [1,1,1], k = 2</span><br><span class="line">输出: 2 , [1,1] 与 [1,1] 为两种不同的情况。</span><br></pre></td></tr></table></figure>
+
+<p><strong>说明 :</strong></p>
+<ul>
+<li><p>数组的长度为 [1, 20,000]。</p>
+</li>
+<li><p>数组中元素的范围是<code> [-1000, 1000]</code> ，且整数 <strong>k</strong> 的范围是<code> [-1e7, 1e7]</code>。</p>
+</li>
+</ul>
+<p>Java版：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>Golang版：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">subarraySum</span><span class="params">(nums []<span class="keyword">int</span>, k <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="comment">// map[前缀和]出现的次数</span></span><br><span class="line">	hash := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">int</span>) </span><br><span class="line">	hash[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">	<span class="keyword">var</span> pre, count <span class="keyword">int</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(nums); i++ &#123;</span><br><span class="line">		pre += nums[i]</span><br><span class="line">		<span class="keyword">if</span> val, has := hash[pre-k]; has &#123;</span><br><span class="line">			count += val</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> _, has := hash[pre]; has &#123;</span><br><span class="line">			hash[pre] += <span class="number">1</span></span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			hash[pre] = <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> count</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -220,7 +244,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hot100</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HOT100</a>
         		</li>
       		
 		</ul>
@@ -328,7 +352,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#560-subarray-sum-equals-k"><span class="toc-number">1.</span> <span class="toc-text">560. subarray-sum-equals-k</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -461,10 +485,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hot100</a>
               </li>
              
               <li class="article-tag-list-item">
