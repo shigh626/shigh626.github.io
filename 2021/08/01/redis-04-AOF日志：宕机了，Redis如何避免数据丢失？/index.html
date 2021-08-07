@@ -11,7 +11,7 @@
   <meta name="description" content="author： 郝林 time： 2021-08-01 ![img](redis 04-AOF日志：宕机了，Redis如何避免数据丢失？&#x2F;2b921a9643d3ayy5bceda6bc15c91af3.jpg) 如果有人问你：“你会把 Redis 用在什么业务场景下？”我想你大概率会说：“我会把它当作缓存使用，因为它把后端数据库中的数据存储在内存中，然后直接从内存中读取数据，响应速度会非常快。”">
 <meta property="og:type" content="article">
 <meta property="og:title" content="04 | AOF日志：宕机了，Redis如何避免数据丢失？">
-<meta property="og:url" content="https://shigh626.github.io/2021/08/01/redis%2004-AOF%E6%97%A5%E5%BF%97%EF%BC%9A%E5%AE%95%E6%9C%BA%E4%BA%86%EF%BC%8CRedis%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1%EF%BC%9F/index.html">
+<meta property="og:url" content="https://shigh626.github.io/2021/08/01/redis-04-AOF%E6%97%A5%E5%BF%97%EF%BC%9A%E5%AE%95%E6%9C%BA%E4%BA%86%EF%BC%8CRedis%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1%EF%BC%9F/index.html">
 <meta property="og:site_name" content="stone&#39;s blog">
 <meta property="og:description" content="author： 郝林 time： 2021-08-01 ![img](redis 04-AOF日志：宕机了，Redis如何避免数据丢失？&#x2F;2b921a9643d3ayy5bceda6bc15c91af3.jpg) 如果有人问你：“你会把 Redis 用在什么业务场景下？”我想你大概率会说：“我会把它当作缓存使用，因为它把后端数据库中的数据存储在内存中，然后直接从内存中读取数据，响应速度会非常快。”">
 <meta property="og:locale" content="en_US">
@@ -161,7 +161,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-redis 04-AOF日志：宕机了，Redis如何避免数据丢失？" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-redis-04-AOF日志：宕机了，Redis如何避免数据丢失？" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -173,7 +173,7 @@
   
 
         
-        <a href="/2021/08/01/redis%2004-AOF%E6%97%A5%E5%BF%97%EF%BC%9A%E5%AE%95%E6%9C%BA%E4%BA%86%EF%BC%8CRedis%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1%EF%BC%9F/" class="archive-article-date">
+        <a href="/2021/08/01/redis-04-AOF%E6%97%A5%E5%BF%97%EF%BC%9A%E5%AE%95%E6%9C%BA%E4%BA%86%EF%BC%8CRedis%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1%EF%BC%9F/" class="archive-article-date">
   	<time datetime="2021-07-31T20:54:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-01</time>
 </a>
         
@@ -345,7 +345,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://shigh626.github.io/2021/08/01/redis%2004-AOF%E6%97%A5%E5%BF%97%EF%BC%9A%E5%AE%95%E6%9C%BA%E4%BA%86%EF%BC%8CRedis%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1%EF%BC%9F/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://shigh626.github.io/2021/08/01/redis-04-AOF%E6%97%A5%E5%BF%97%EF%BC%9A%E5%AE%95%E6%9C%BA%E4%BA%86%EF%BC%8CRedis%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1%EF%BC%9F/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -359,7 +359,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/08/01/redis%2011-%E4%B8%87%E9%87%91%E6%B2%B9%E7%9A%84String%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%A5%BD%E7%94%A8%E4%BA%86%EF%BC%9F/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/08/01/redis-11-%E4%B8%87%E9%87%91%E6%B2%B9%E7%9A%84String%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%A5%BD%E7%94%A8%E4%BA%86%EF%BC%9F/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -369,7 +369,7 @@
     </a>
   
   
-    <a href="/2021/08/01/redis%2003-%E9%AB%98%E6%80%A7%E8%83%BDIO%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8D%95%E7%BA%BF%E7%A8%8BRedis%E8%83%BD%E9%82%A3%E4%B9%88%E5%BF%AB%EF%BC%9F/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2021/08/01/redis-03-%E9%AB%98%E6%80%A7%E8%83%BDIO%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8D%95%E7%BA%BF%E7%A8%8BRedis%E8%83%BD%E9%82%A3%E4%B9%88%E5%BF%AB%EF%BC%9F/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">03 | 高性能IO模型：为什么单线程Redis能那么快？</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -534,6 +534,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hot100</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
