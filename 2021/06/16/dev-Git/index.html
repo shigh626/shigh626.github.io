@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://shigh626.github.io">
-  <title>正则表达式 | stone&#39;s blog</title>
+  <title>初识Git | stone&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="正则表达式就是由普通字符（例如字符 a 到  z  ） 以及特殊字符（称为元字符）组成的文字模式。该模式描述在查找文字主体时待匹配的一个或多个字符串。正则表达式作为一个模板，将某个字符模式与所搜索的字 符串进行匹配。 本文详细地列出了能在正则表达式中使用，以匹配文本的各种字符。当你需要解释一个现有的正则表达式时，可以作为一个快捷的参考。更多详 细内容 正则学习网站： （1）Test RegEx (">
+  <meta name="description" content="Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。 Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。 Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="正则表达式">
-<meta property="og:url" content="https://shigh626.github.io/2021/06/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
+<meta property="og:title" content="初识Git">
+<meta property="og:url" content="https://shigh626.github.io/2021/06/16/dev-Git/index.html">
 <meta property="og:site_name" content="stone&#39;s blog">
-<meta property="og:description" content="正则表达式就是由普通字符（例如字符 a 到  z  ） 以及特殊字符（称为元字符）组成的文字模式。该模式描述在查找文字主体时待匹配的一个或多个字符串。正则表达式作为一个模板，将某个字符模式与所搜索的字 符串进行匹配。 本文详细地列出了能在正则表达式中使用，以匹配文本的各种字符。当你需要解释一个现有的正则表达式时，可以作为一个快捷的参考。更多详 细内容 正则学习网站： （1）Test RegEx (">
+<meta property="og:description" content="Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。 Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。 Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-06-21T16:47:01.000Z">
-<meta property="article:modified_time" content="2021-06-21T17:39:04.920Z">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2015/02/f7246b600c338744a9591cd7530fd9f9d62aa0f8.png">
+<meta property="article:published_time" content="2021-06-15T17:33:53.000Z">
+<meta property="article:modified_time" content="2021-08-08T09:27:22.554Z">
 <meta property="article:author" content="stone">
 <meta property="article:tag" content="开发者">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.runoob.com/wp-content/uploads/2015/02/f7246b600c338744a9591cd7530fd9f9d62aa0f8.png">
   
     <link rel="alternative" href="/atom.xml" title="stone&#39;s blog" type="application/atom+xml">
   
@@ -161,434 +163,73 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-正则表达式" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-dev-Git" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      正则表达式
+      初识Git
     </h1>
   
 
         
-        <a href="/2021/06/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-06-21T16:47:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-22</time>
+        <a href="/2021/06/16/dev-Git/" class="archive-article-date">
+  	<time datetime="2021-06-15T17:33:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>正则表达式就是由普通字符（例如字符 a 到  z  ） 以及特殊字符（称为元字符）组成的文字模式。该模式描述在查找文字主体时待匹配的一个或多个字符串。正则表达式作为一个模板，将某个字符模式与所搜索的字 符串进行匹配。</p>
-<p>本文详细地列出了能在正则表达式中使用，以匹配文本的各种字符。当你需要解释一个现有的正则表达式时，可以作为一个快捷的参考。更多详 细内容</p>
-<p>正则学习网站：</p>
-<p>（1）<a target="_blank" rel="noopener" href="https://regexr-cn.com/">Test RegEx (regexr-cn.com)</a></p>
-<p>（2）<a target="_blank" rel="noopener" href="https://www.codejiaonang.com/#/course/regex_chapter1/0/0">编程胶囊 (codejiaonang.com)</a></p>
+        <p><img src="https://www.runoob.com/wp-content/uploads/2015/02/f7246b600c338744a9591cd7530fd9f9d62aa0f8.png" alt="Git 教程"></p>
+<p>Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。</p>
+<p>Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。</p>
+<p>Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。</p>
 <span id="more"></span>
 
-<h1 id="一-匹配字符"><a href="#一-匹配字符" class="headerlink" title="一 .    匹配字符"></a>一 .    匹配字符</h1><table>
-<thead>
-<tr>
-<th><strong>字符类</strong></th>
-<th><strong>匹配的字符</strong></th>
-<th><strong>举  例</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>/d</td>
-<td>从０ - ９的任一数字</td>
-<td>/d/d 匹配 72, 但不匹 配 aa 或 7a</td>
-</tr>
-<tr>
-<td>/D</td>
-<td>任一非数字字符</td>
-<td>/D/D/D 匹配 abc, 但 不匹配 123</td>
-</tr>
-<tr>
-<td>/w</td>
-<td>任一单词字符，包括 A-Z,a-z,0-9 和下划线</td>
-<td>/w/w/w/w 匹配 Ab-2 ， 但不匹配 ∑£$ %* 或 Ab_@</td>
-</tr>
-<tr>
-<td>/W</td>
-<td>任一非单词字符</td>
-<td>/W 匹配＠，但不匹配 a</td>
-</tr>
-<tr>
-<td>/s</td>
-<td>任一空白字符，包括制表符，换行符，回车符，换页符和垂直制表符</td>
-<td>匹配在 HTML,XML 和其他标准定义中的所有传统空 白字符</td>
-</tr>
-<tr>
-<td>/S</td>
-<td>任一非空白字符</td>
-<td>空白字符以外的任意字符 , 如A%&g3; 等</td>
-</tr>
-<tr>
-<td>.</td>
-<td>任一字符</td>
-<td>匹配除换行符以外的任意字符除非设置了 MultiLine 先 项</td>
-</tr>
-<tr>
-<td>[…]</td>
-<td>括号中的任一字符</td>
-<td>[abc] 将匹配一个单字符 ,a,b 或 c.[a-z] 将匹配从 a 到 z 的 任一字符</td>
-</tr>
-<tr>
-<td>[ ^ …]</td>
-<td>不在括号中的任一字符</td>
-<td>[ ^ abc] 将匹配一个 a 、 b 、 c 之 外的单字符 , 可以 a,b 或 A 、 B 、C[a-z] 将匹配不属于 a-z 的 任一字符, 但可以匹配所有的大写字母</td>
-</tr>
-</tbody></table>
-<h1 id="二-重复字符"><a href="#二-重复字符" class="headerlink" title="二 .    重复字符"></a>二 .    重复字符</h1><table>
-<thead>
-<tr>
-<th><strong>重复字符</strong></th>
-<th><strong>含  义</strong></th>
-<th><strong>举  例</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>｛ n ｝</td>
-<td>匹配前面的字符 n 次</td>
-<td>x{2} 匹配 xx, 但不匹 配 x 或 xxx</td>
-</tr>
-<tr>
-<td>｛ n, ｝</td>
-<td>匹配前面的字符至少 n 次</td>
-<td>x{2} 匹配 2 个或更多的 x, 如xxx,xxx..</td>
-</tr>
-<tr>
-<td>｛ n,m ｝</td>
-<td>匹配前面的字符至少 n 次 , 至 多 m次。如果 n 为 0 ， 此参数为可选参数</td>
-<td>x{2,4} 匹配 xx,xxx,xxxx, 但 不匹配xxxxx</td>
-</tr>
-<tr>
-<td>?</td>
-<td>匹配前面的字符 0 次或 1 次， 实质上也是可选的</td>
-<td>x? 匹配 x 或零个 x</td>
-</tr>
-<tr>
-<td>+</td>
-<td>匹配前面的字符 0 次或多次</td>
-<td>x+ 匹配 x 或 xx 或 大于 0 的任意多个 x</td>
-</tr>
-<tr>
-<td>*</td>
-<td>匹配前面的字符 0 次或更多次</td>
-<td>x* 匹配 0,1 或更多个 x</td>
-</tr>
-</tbody></table>
-<h1 id="三-定位字符"><a href="#三-定位字符" class="headerlink" title="三 .    定位字符"></a>三 .    定位字符</h1><table>
-<thead>
-<tr>
-<th><strong>定位字符</strong></th>
-<th><strong>描  述</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>^</td>
-<td>随后的模式必须位于字符串的开始位置，如果是一个多行字符串，则必须位于行首。对于多行文本（包含回车符的一 个字符串）来说，需要设置多行标志</td>
-</tr>
-<tr>
-<td>$</td>
-<td>前面的模式必须位于字符串的未端，如果是一个多行字符串，必须位于行尾</td>
-</tr>
-<tr>
-<td>/A</td>
-<td>前面的模式必须位于字符串的开始位置，忽略多行标志</td>
-</tr>
-<tr>
-<td>/z</td>
-<td>前面的模式必须位于字符串的未端，忽略多行标志</td>
-</tr>
-<tr>
-<td>/Z</td>
-<td>前面的模式必须位于字符串的未端，或者位于一个换行符前</td>
-</tr>
-<tr>
-<td>/b</td>
-<td>匹配一个单词边界，也就是一个单词字符和非单词字符中间的点。要记住一个单词字符是 [a-zA-Z0-9] 中 的一个字符。位于一个单词的词首</td>
-</tr>
-<tr>
-<td>/B</td>
-<td>匹配一个非单词字符边界位置，不是一个单词的词首</td>
-</tr>
-</tbody></table>
-<p>注：定位字符可以应用于字符或组合，放在字符串的左端或右端</p>
-<h1 id="四-分组字符"><a href="#四-分组字符" class="headerlink" title="四 .    分组字符"></a>四 .    分组字符</h1><table>
-<thead>
-<tr>
-<th><strong>分组字符</strong></th>
-<th><strong>定  义</strong></th>
-<th><strong>举  例</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>（）</td>
-<td>此字符可以组合括号内模式所匹配的字符， 它是一个捕 获组，也就是说模式匹配的字符作为最终设置了 ExplicitCapture 选项――默认状态下字 符不是匹配的一部分</td>
-<td>输入字符串为： ABC1DEF2XY匹配 3 个从 A 到 Z 的 字符和 1 个数字的正则表达式：（ [A-Z]{3}/d ）将产生两次匹配： Match 1=ABC1;Match 2=DEF2每次匹配对应一个组： Match1 的第一个组＝ABC;Match2 的 第 1 个组＝ DEF有了反向引用，就可以通过它在正则表达式中的编号以及 C# 和 类Group,GroupCollection 来访问组。如果设置了 ExplicitCapture 选 项，就不能使用组所捕获的内容</td>
-</tr>
-<tr>
-<td>（ ?: ）</td>
-<td>此字符可以组合括号内模式所匹配的字符， 它是一个非 捕获组，这意味着模式所的字符将不作为一个组来捕获，但它构成了最终匹配结果的一部分。它基本上与上面的组类型相同，但设定了选项ExplicitCapture</td>
-<td>输入字符串为： 1A BB SA 1 C匹配一个数字或一个 A 到 Z 的 字母，接着是任意单词字符的正则表达式为：（ ?:/d|[A-Z]/w ）它将产生 3 次匹配：每 1 次 匹配＝ 1A ； 每2 次匹配＝ BB; 每 3 次 匹配＝ SA但是没有组被捕获</td>
-</tr>
-<tr>
-<td>（ ?<name>）</name></td>
-<td>此选项组合括号内模式所匹配的字符，并用尖括号中指定 的 值为组命名。在正则表达式中，可以使用名称进行反向引用，而不必使用编号。即使不设置ExplicitCapture 选 项，它也是一个捕获组。这意味着反向引用可以利用组内匹配的字符，或者通过Group 类访问</td>
-<td>输入字符串为： Characters in Sienfeld included Jerry Seinfeld,Elaine Benes,Cosno Kramer and George Costanza 能 够匹配它们的姓名，并在一个组 llastName 中捕获姓的正则表达式为： /b[A-Z][a-z]+(?<lastName>[A-Z][a-z]+)/b它产生了 4 次匹配： First Match=Jerry Seinfeld; Second Match=Elaine Benes; Third Match=Cosmo Kramer; Fourth Match=George Costanza每一次匹配都对应了一个 lastName 组：第 1 次匹配： lastName group=Seinfeld第 2 次匹配： lastName group=Benes第 3 次匹配： lastName group=Kramer第 4 次匹配： lastName group=Costanza不管是否设置了选项 ExplictCapture ，组 都将被捕获</lastName></td>
-</tr>
-<tr>
-<td>（ ?= ）</td>
-<td>正声明。声明的右侧必须是括号中指定的模式。此模式不构成最终匹配的一部分</td>
-<td>正则表达式 /S+(?=.NET) 要匹配的输入字符串 为： The languages were Java,C#.NET,VB.NET,C,Jscript.NET,Pascal将产生如下匹配：〕C#VBJScript</td>
-</tr>
-<tr>
-<td>（ ?! ）</td>
-<td>负声明。它规定模式不能紧临着声明的右侧。此模式不构成最终匹配的一部分</td>
-<td>/d{3}(?![A-Z]) 要匹配的输入字符串为： 123A 456 789 111C将产生如下匹配：456789</td>
-</tr>
-<tr>
-<td>（ ?&lt;=）</td>
-<td>反向正声明。声明的左侧必须为括号内的指定模式。此模式不构成最终匹配的一部分</td>
-<td>正则表达式 (?&lt;=New)([A-Z][a-z]+) 要 匹配的输入字符串为： The following states,New Mexico,West Virginia,Washington, New England它将产生如下匹配：MexicoEngland</td>
-</tr>
-<tr>
-<td>（ ?&lt;! ）</td>
-<td>反向正声明。声明的左侧必须不能是括号内的指定模式。此模式不构成最终匹配的一部分</td>
-<td>正则表达式 (?&lt;!1)/d{2}([A-Z]) 要 匹配的输入字符串如下： 123A 456F 789C 111A它将实现如下匹配：56F89C</td>
-</tr>
-<tr>
-<td>（ ?&gt; ）</td>
-<td>非回溯组。防止 Regex 引擎回溯并且防止实现一次匹 配</td>
-<td>假设要匹配所有以“ ing ”结尾的单词。输入字符串如 下： He was very trusing正则表达式为： .<em>ing它将实现一次匹配――单词 trusting 。“ . ” 匹配任意字符，当然也匹配“ ing ”。所以，Regex 引 擎回溯一位并在第 2 个“ t ”停止，然后匹配 指定的模式“ ing ”。但是，如果禁用回溯操作： (?&gt;.</em>)ing它将实现 0 次匹配。“ . ” 能匹配所有的字符，包括“ ing ”――不能匹配，从而匹配失败</td>
-</tr>
-</tbody></table>
-<h1 id="五-决策字符"><a href="#五-决策字符" class="headerlink" title="五 .    决策字符"></a>五 .    决策字符</h1><table>
-<thead>
-<tr>
-<th><strong>字  符</strong></th>
-<th><strong>描  述</strong></th>
-<th><strong>举  例</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>（ ?(regex)yes_regex|no_regex）</td>
-<td>如果表达式 regex 匹配，那么将试图匹配表达式 yes 。 否则匹配表达式no 。正则表达式 no 是可先 参数。注意，作出决策的模式宽度为 0. 这意味着表达式 yes 或 no 将从与 regex 表达式相同的位置开始匹配</td>
-<td>正则表达式 (?(/d)dA|A-Z)B)要匹配的输 入字符串为： 1A CB 3A 5C 3B它实现的匹配是：1ACB3A</td>
-</tr>
-<tr>
-<td>（ ?(group name or number)yes_regex|no_regex）</td>
-<td>如果组中的正则表达式实现了匹配，那么试图匹配 yes 正 则表达式。否则，试图匹配正则表达式 no 。 no 是 可先的参数</td>
-<td>正则表达式 (/d7)?-(?(1)/d/d[A-Z]|[A-Z][A-Z] 要匹配的输 入字符串为：77-77A 69-AA 57-B它实现的匹配为：77-77A－ AA</td>
-</tr>
-</tbody></table>
-<p>注：上面表中列出的字符强迫处理器执行一次 if-else 决策</p>
-<h1 id="六-替换字符"><a href="#六-替换字符" class="headerlink" title="六 .    替换字符"></a>六 .    替换字符</h1><table>
-<thead>
-<tr>
-<th><strong>字  符</strong></th>
-<th><strong>描  述</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>$group</td>
-<td>用 group 指定的组号替换</td>
-</tr>
-<tr>
-<td>${name}</td>
-<td>替换被一个 (?<name>) 组匹配的最 后子串</name></td>
-</tr>
-<tr>
-<td>$$</td>
-<td>替换一个字符 $</td>
-</tr>
-<tr>
-<td>$&amp;</td>
-<td>替换整个的匹配</td>
-</tr>
-<tr>
-<td>$ ^</td>
-<td>替换输入字符串匹配之前的所有文本</td>
-</tr>
-<tr>
-<td>$’</td>
-<td>替换输入字符串匹配之后的所有文本</td>
-</tr>
-<tr>
-<td>$+</td>
-<td>替换最后捕获的组</td>
-</tr>
-<tr>
-<td>$_</td>
-<td>替换整个的输入字符串</td>
-</tr>
-</tbody></table>
-<p>注：以上为常用替换字符，不全</p>
-<h1 id="七-转义序列"><a href="#七-转义序列" class="headerlink" title="七 .    转义序列"></a>七 .    转义序列</h1><table>
-<thead>
-<tr>
-<th><strong>字  符</strong></th>
-<th><strong>描  述</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>//</td>
-<td>匹配字符“ / ”</td>
-</tr>
-<tr>
-<td>/.</td>
-<td>匹配字符“ . ”</td>
-</tr>
-<tr>
-<td>/*</td>
-<td>匹配字符“ * ”</td>
-</tr>
-<tr>
-<td>/+</td>
-<td>匹配字符“ + ”</td>
-</tr>
-<tr>
-<td>/?</td>
-<td>匹配字符“ ? ”</td>
-</tr>
-<tr>
-<td>/|</td>
-<td>匹配字符“ | ”</td>
-</tr>
-<tr>
-<td>/(</td>
-<td>匹配字符“ ( ”</td>
-</tr>
-<tr>
-<td>/)</td>
-<td>匹配字符“ ) ”</td>
-</tr>
-<tr>
-<td>/{</td>
-<td>匹配字符“ { ”</td>
-</tr>
-<tr>
-<td>/}</td>
-<td>匹配字符“ } ”</td>
-</tr>
-<tr>
-<td>/ ^</td>
-<td>匹配字符“ ^ ”</td>
-</tr>
-<tr>
-<td>/$</td>
-<td>匹配字符“ $ ”</td>
-</tr>
-<tr>
-<td>/n</td>
-<td>匹配换行符</td>
-</tr>
-<tr>
-<td>/r</td>
-<td>匹配回车符</td>
-</tr>
-<tr>
-<td>/t</td>
-<td>匹配制表符</td>
-</tr>
-<tr>
-<td>/v</td>
-<td>匹配垂直制表符</td>
-</tr>
-<tr>
-<td>/f</td>
-<td>匹配换面符</td>
-</tr>
-<tr>
-<td>/nnn</td>
-<td>匹配一个 8 进数字， nnn 指 定的 ASCII 字符。如 /103 匹配大写的 C</td>
-</tr>
-<tr>
-<td>/xnn</td>
-<td>匹配一个 16 进数字， nn 指 定的 ASCII 字符。如 /x43 匹配大写的 C</td>
-</tr>
-<tr>
-<td>/unnnn</td>
-<td>匹配由 4 位 16 进 数字（由 nnnn 表示）指定的 Unicode 字 符</td>
-</tr>
-<tr>
-<td>/cV</td>
-<td>匹配一个控制字符，如 /cV 匹配 Ctrl-V</td>
-</tr>
-</tbody></table>
-<h1 id="八-选项标志"><a href="#八-选项标志" class="headerlink" title="八 .    选项标志"></a>八 .    选项标志</h1><table>
-<thead>
-<tr>
-<th><strong>选项标志</strong></th>
-<th><strong>名  称</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>I</td>
-<td>IgnoreCase</td>
-</tr>
-<tr>
-<td>M</td>
-<td>Multiline</td>
-</tr>
-<tr>
-<td>N</td>
-<td>ExplicitCapture</td>
-</tr>
-<tr>
-<td>S</td>
-<td>SingleLine</td>
-</tr>
-<tr>
-<td>X</td>
-<td>IgnorePatternWhitespace</td>
-</tr>
-</tbody></table>
-<p><strong>注：选项本身的信作含义如下表所示：</strong></p>
-<table>
-<thead>
-<tr>
-<th><strong>标  志</strong></th>
-<th><strong>名  称</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>IgnoreCase</td>
-<td>使模式匹配不区分大小写。默认的选项是匹配区分大小写</td>
-</tr>
-<tr>
-<td>RightToLeft</td>
-<td>从右到左搜索输入字符串。默认是从左到右以符合英语等的阅读习惯，但不符合阿拉伯语或希伯来语的阅读习惯</td>
-</tr>
-<tr>
-<td>None</td>
-<td>不设置标志。这是默认选项</td>
-</tr>
-<tr>
-<td>Multiline</td>
-<td>指定 ^ 和$ 可以 匹 配行首和行尾，以及字符串的开始和结尾。这意味着可以匹配每个用换行符分隔的行。但是，字符“ .” 仍然不匹配换行符</td>
-</tr>
-<tr>
-<td>SingleLine</td>
-<td>规定特殊字符“ . ” 匹 配任意的字符，包括换行符。默认情况下，特殊字符“ . ”不匹配换行符。通常与 MultiLine 选 项一起使用</td>
-</tr>
-<tr>
-<td>ECMAScript</td>
-<td>ECMA(European Coputer Manufacturer’s Association, 欧 洲计算机生产商协会 ) 已经定义了正则表达式应该如何实现，而且已经在 ECMAScript 规 范中实现，这是一个基于标准的JavaScript 。这个选项只能与 IgnoreCase 和 MultiLine 标 志一起使用。与其它任何标志一起使用， ECMAScript 都将产生异常</td>
-</tr>
-<tr>
-<td>IgnorePatternWhitespace</td>
-<td>此选项从使用的正则表达式模式中删除所有非转义空白字符。它使表达式能跨越多行文本，但必须确保对模式中所有 的空白进行转义。如果设置了此选项，还可以使用“ # ”字符来注释下则表达式</td>
-</tr>
-<tr>
-<td>Complied</td>
-<td>它把正则表达式编译为更接近机器代码的代码。这样速度快，但不允许对它进行任何修改</td>
-</tr>
-</tbody></table>
+<h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 既然git是多人协同的工具，别人要看到你提交代码的同时当然也得知道你是谁。</span><br><span class="line"># 那么第一步的配置当然是报上你的名字以及你的联系方式邮箱，可以通过以下的方式去进行配置。</span><br><span class="line">git config --global user.name &quot;Your Name&quot;</span><br><span class="line">git config --global user.email &quot;email@example.com&quot;</span><br><span class="line"></span><br><span class="line"># 如果要涉及推送到远程仓库的推送，你需要把你的ssh公钥挂到所在的远程服务器上。</span><br><span class="line"># 不然没有权限push代码，公钥的生成可以使用以下命令,然后一直按enter就好了，最后把公钥放到你的服务器上面。</span><br><span class="line">ssh-keygen -t rsa -C &quot;email@example.com&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="工作区"><a href="#工作区" class="headerlink" title="工作区"></a>工作区</h2><p>​        工作区就是我们平常代码存放的所在的目录，如何在代码上的修改，都会首先在工作区看到。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">1.创建版本库（init）</span><br><span class="line"># 直接在你需要代码管理的目录新建git版本库</span><br><span class="line">git init</span><br><span class="line"></span><br><span class="line">2.克隆远程项目（clone）</span><br><span class="line"># 然而事实如果在实际工作中，我们并不会经常创建版本库项目，而是拉取别人的项目进行协同开发。</span><br><span class="line"># 后面的参数为项目的ssh链接</span><br><span class="line">git clone &quot;coder@example.git&quot; </span><br><span class="line"></span><br><span class="line">3.查看提交情况（status）</span><br><span class="line"># 想知道当前提交了文件没有？或者提交了哪些文件，或是否是最新分支</span><br><span class="line">git status</span><br><span class="line"></span><br><span class="line">4.撤销工作区文件的修改（checkout）</span><br><span class="line"># 感觉自己搞砸了代码文件，想还原全部修改的文件（不能撤销新增文件）</span><br><span class="line">git checkout .</span><br><span class="line"># 其实checkout的作用远不止如此，更多是签出（移动到）到其他分支或者其他提交节点，后面还会有介绍</span><br><span class="line"></span><br><span class="line">5.清除新增的文件（clean）</span><br><span class="line"># 和上面的命令可以做到完全撤销全部修改</span><br><span class="line">git clean -df</span><br></pre></td></tr></table></figure>
+
+<h2 id="暂存区"><a href="#暂存区" class="headerlink" title="暂存区"></a>暂存区</h2><p>　　缓冲区的作用类似于商场的购物车，我们的代码文件就像商场的商品，我们只会放入我们想要的商品（想提交的代码文件）到购物车（缓冲区），期间我们可能还会对购物车里的商品进行筛选，或者新增商品，最后再把全部购物车里面的商品一次性地拿去结账（全部缓冲区文件提交到版本库）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1.提交文件到缓冲区（add）</span><br><span class="line"># 提交一个文件</span><br><span class="line">git add filename</span><br><span class="line"># 提交全部文件</span><br><span class="line">git add --all</span><br><span class="line"></span><br><span class="line">2.撤销缓冲区的修改（reset）</span><br><span class="line"># 不小心把不想提交的文件add到缓冲区</span><br><span class="line"># 可以使用下面的命令还原缓冲区</span><br><span class="line">git reset HEAD</span><br><span class="line"></span><br><span class="line">3.对比工作区的文件和缓冲区文件（diff）</span><br><span class="line">git diff &lt;文件名&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="版本库"><a href="#版本库" class="headerlink" title="版本库"></a>版本库</h2><p>　　版本库会记录git提交的历史记录，其重要作用不容置疑！我们可以通过版本库查看历史提交的信息（包括提交人，提交日期，提交的文件的内容），回滚代码，比对不同版本库的文件的不同。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1.把缓冲区的修改提交到版本库（commit）</span><br><span class="line"># 养成良好的代码习惯，后面信息提示最好还是要写上的</span><br><span class="line">git commit -m &quot;提交的信息提示&quot;</span><br><span class="line"></span><br><span class="line">2.查看版本库提交记录（log）</span><br><span class="line"># 你可能想查看最近的全部版本库更新情况</span><br><span class="line">git log</span><br><span class="line"># 或者你只想查看某个分支的提交记录</span><br><span class="line">git log BranchName</span><br><span class="line"># 某个文件被修改了，想查看该文件的修改历史或文件夹下的文件修改</span><br><span class="line">git log filename</span><br><span class="line">git log dir</span><br><span class="line"># 查看的日志可能会很多，你可以按q退出日志的查看</span><br><span class="line"></span><br><span class="line">3.版本回滚（checkout）</span><br><span class="line"># 可能你觉得当前这个版本有点问题，想回到以前的版本</span><br><span class="line"># 通过上面的git log可以查看历史提交版本库的哈希码，也就是该版本库的唯一标示</span><br><span class="line">git checkout &lt;哈希码&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><p>　　分支是git里面很重要的一个概念，在协同开发中，往往包含很多个分支，每个开发中的不同的功能的代码可以提交到不同的分支上，这样各个功能之间的开发互不影响，整个系统开发完成之后再去进行分支之间的合并，这样就可以拥有全部分支的功能。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1.创建新的分支（branch）</span><br><span class="line"># 注意新的分支在刚刚创建出来的时候代码内容和原来所在的分支是一样的</span><br><span class="line"># 创建新的分支</span><br><span class="line">git branch &lt;分支名&gt;</span><br><span class="line"># 创建新的分支并转到该分支（更常用）</span><br><span class="line">checkout -b &lt;分支名&gt;</span><br><span class="line"></span><br><span class="line">2.列出所有分支</span><br><span class="line">git branch</span><br><span class="line"></span><br><span class="line">3.切换分支（checkout）</span><br><span class="line">git checkout &lt;分支名&gt;</span><br><span class="line"></span><br><span class="line">4.删除分支</span><br><span class="line"># 如果分支已经被合并了或者没有测试的价值，可以考虑删除该分支（仅仅少点分支看着顺眼）</span><br><span class="line">git branch -D &lt;分支名&gt;</span><br><span class="line"></span><br><span class="line">5.合并分支（merge）</span><br><span class="line"># 分支最重要的作用！</span><br><span class="line"># 这个命令是当前分支合并参数里的分支（合并之后当前分支还是原来的分支，例当前是branch1，合并branch2之后变成还是处于branch1）</span><br><span class="line"># 合并最麻烦的事情就是可能会产生冲突，具体解决冲突的方法可以参考百度，这里不累赘。</span><br><span class="line">git merge &lt;被合并的分支&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="远程版本库"><a href="#远程版本库" class="headerlink" title="远程版本库"></a>远程版本库</h2><p>　　远程仓库的可以让你的代码同步到远程服务器，达到备份效果，更重要的是让更多人在网上看到你的代码，从而拉取下来进行协同开发。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">1.关联远程仓库（remote）</span><br><span class="line"># 如果你在本地新建版本库，然后又想推到远程主机就需要进行关联</span><br><span class="line"># 如果是clone下载下来的项目则不需要进行关联</span><br><span class="line">git remote add &lt;仓库名&gt; &lt;远程主机地址&gt;</span><br><span class="line"></span><br><span class="line">2.拉取远程版本库（fetch）</span><br><span class="line"># 一段时间后，你的小伙伴可能已经更新了</span><br><span class="line"># 这时候你需要定期拉取一下远程版本库去去查看别人的提交情况</span><br><span class="line"># 默认拉取全部分支</span><br><span class="line"># 注意一旦你的版本库</span><br><span class="line"># 注意的是拉取不会更新你的代码，更新的代码是本地的origin/branch（版本库）</span><br><span class="line">git fetch</span><br><span class="line"># 你也可以指定某个远程主机的某个分支</span><br><span class="line">git fetch &lt;主机&gt; &lt;分支名&gt;</span><br><span class="line"></span><br><span class="line">3.更新本地版本库（pull）</span><br><span class="line"># 更新远程版本库代码到本地</span><br><span class="line"># 默认更新当前关联主机的当前分支的代码</span><br><span class="line">git pull </span><br><span class="line"># 指定对应的主机和对应的分支</span><br><span class="line">git pull &lt;主机名&gt; &lt;分支名&gt;</span><br><span class="line"># 其实更严谨做法是先拉取下来，然后查看提交的信息和文件再考虑合并，而不是一下子就更新。</span><br><span class="line"># 或者先提交自己分支的代码再合并，不然拉取别人代码很可能出坑了，这时候你还可以还原代码。</span><br><span class="line"></span><br><span class="line">4.代码推送到远程服务器（push）</span><br><span class="line"># 把本地代码推送到远程服务器，如果当前版本落后于远程分支，</span><br><span class="line"># 那么会提示你先合并代码之后再提交</span><br><span class="line"># 默认推送本地分支到默认的主机</span><br><span class="line"># 如果本地分支在远程仓库不存在，那么远程仓库会新建一个对应的分支</span><br><span class="line">git push </span><br><span class="line"># 推送本地分支到远程仓库的其他分支</span><br><span class="line">git push &lt;主机名&gt; &lt;本地分支名&gt;:&lt;远程分支&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h2><ul>
+<li><code>HEAD</code>指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令<code>git reset --hard commit_id</code>。</li>
+<li>穿梭前，用<code>git log</code>可以查看提交历史，以便确定要回退到哪个版本。</li>
+<li>要重返未来，用<code>git reflog</code>查看命令历史，以便确定要回到未来的哪个版本。</li>
+</ul>
+<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><p>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令<code>git checkout -- file</code>。</p>
+<p>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令<code>git reset HEAD &lt;file&gt;</code>，就回到了场景1，第二步按场景1操作。</p>
+<p>场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600/897013573512192">版本回退</a>一节，不过前提是没有推送到远程库。</p>
+<h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><h4 id="情况一："><a href="#情况一：" class="headerlink" title="情况一："></a>情况一：</h4><p>另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -- test.txt</span><br></pre></td></tr></table></figure>
+
+<p><code>git checkout</code>其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</p>
+<h4 id="情况二："><a href="#情况二：" class="headerlink" title="情况二："></a>情况二：</h4><p>一般情况下，你通常直接在文件管理器中把没用的文件删了，或者用<code>rm</code>命令删了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rm test.txt</span><br></pre></td></tr></table></figure>
+
+<p>这个时候，Git知道你删除了文件，因此，工作区和版本库就不一致了，<code>git status</code>命令会立刻告诉你哪些文件被删除了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add/rm &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	deleted:    test.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>现在你有两个选择，一是确实要从版本库中删除该文件，那就用命令<code>git rm</code>删掉，并且<code>git commit</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git rm test.txt</span><br><span class="line">rm &#x27;test.txt&#x27;</span><br><span class="line"></span><br><span class="line">$ git commit -m &quot;remove test.txt&quot;</span><br><span class="line">[master d46f35e] remove test.txt</span><br><span class="line"> 1 file changed, 1 deletion(-)</span><br><span class="line"> delete mode 100644 test.txt</span><br></pre></td></tr></table></figure>
+
+<p>现在，文件就从版本库中被删除了。</p>
 
       
 
@@ -679,7 +320,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://shigh626.github.io/2021/06/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://shigh626.github.io/2021/06/16/dev-Git/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -693,18 +334,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/07/02/golang-%E4%B8%89%E5%8D%81%E5%85%AD%E8%AE%B2-26-sync-Mutex%E4%B8%8Esync-RWMutex/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/06/22/dev-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          26 | sync.Mutex与sync.RWMutex
+          正则表达式
         
       </div>
     </a>
   
   
-    <a href="/2021/06/16/Git1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">初识Git</div>
+    <a href="/2021/06/16/Linux1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">初识Linux</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -731,7 +372,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-%E5%8C%B9%E9%85%8D%E5%AD%97%E7%AC%A6"><span class="toc-number">1.</span> <span class="toc-text">一 .    匹配字符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6"><span class="toc-number">2.</span> <span class="toc-text">二 .    重复字符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89-%E5%AE%9A%E4%BD%8D%E5%AD%97%E7%AC%A6"><span class="toc-number">3.</span> <span class="toc-text">三 .    定位字符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B-%E5%88%86%E7%BB%84%E5%AD%97%E7%AC%A6"><span class="toc-number">4.</span> <span class="toc-text">四 .    分组字符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94-%E5%86%B3%E7%AD%96%E5%AD%97%E7%AC%A6"><span class="toc-number">5.</span> <span class="toc-text">五 .    决策字符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD-%E6%9B%BF%E6%8D%A2%E5%AD%97%E7%AC%A6"><span class="toc-number">6.</span> <span class="toc-text">六 .    替换字符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83-%E8%BD%AC%E4%B9%89%E5%BA%8F%E5%88%97"><span class="toc-number">7.</span> <span class="toc-text">七 .    转义序列</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB-%E9%80%89%E9%A1%B9%E6%A0%87%E5%BF%97"><span class="toc-number">8.</span> <span class="toc-text">八 .    选项标志</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">基本配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA"><span class="toc-number">2.</span> <span class="toc-text">工作区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9A%82%E5%AD%98%E5%8C%BA"><span class="toc-number">3.</span> <span class="toc-text">暂存区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E5%BA%93"><span class="toc-number">4.</span> <span class="toc-text">版本库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">分支管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E7%89%88%E6%9C%AC%E5%BA%93"><span class="toc-number">6.</span> <span class="toc-text">远程版本库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80"><span class="toc-number">7.</span> <span class="toc-text">版本回退</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9"><span class="toc-number">8.</span> <span class="toc-text">撤销修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="toc-number">9.</span> <span class="toc-text">删除文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E5%86%B5%E4%B8%80%EF%BC%9A"><span class="toc-number">9.0.1.</span> <span class="toc-text">情况一：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E5%86%B5%E4%BA%8C%EF%BC%9A"><span class="toc-number">9.0.2.</span> <span class="toc-text">情况二：</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
