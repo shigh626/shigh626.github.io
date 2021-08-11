@@ -161,6 +161,104 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-golang-note-02-goroutine" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/12/golang-note-02-goroutine/">golang note 02 goroutine</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/12/golang-note-02-goroutine/" class="archive-article-date">
+  	<time datetime="2021-08-11T17:33:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="GoLang-GPM模型"><a href="#GoLang-GPM模型" class="headerlink" title="GoLang GPM模型"></a>GoLang GPM模型</h1><h3 id="Goroutine-amp-Scheduler"><a href="#Goroutine-amp-Scheduler" class="headerlink" title="Goroutine &amp; Scheduler"></a>Goroutine &amp; Scheduler</h3><p>goroutine 是什么？通常 goroutine 会被当做 coroutine（协程）的 golang 实现，但实际上，goroutine 并非传统意义上的协程，现在主流的线程模型分三种：内核级线程模型、用户级线程模型和两级线程模型（也称混合型线程模型），传统的协程库属于<strong>用户级线程模型</strong>，而 goroutine 和它的 Go Scheduler 在底层实现上其实是属于<strong>两级线程模型</strong>。</p>
+<h2 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h2><table>
+<thead>
+<tr>
+<th align="left">优/缺点</th>
+<th align="left">内核级</th>
+<th align="left">用户级</th>
+<th align="left">混合型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">优点</td>
+<td align="left">简单，真正并行</td>
+<td align="left">创建成本低</td>
+<td align="left">all</td>
+</tr>
+<tr>
+<td align="left">缺点</td>
+<td align="left">成本高</td>
+<td align="left">并发性能不完全</td>
+<td align="left">\</td>
+</tr>
+</tbody></table>
+        
+          <a class="article-more-a" href="/2021/08/12/golang-note-02-goroutine/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/12/golang-note-02-goroutine/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-redis-11-万金油的String，为什么不好用了？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -735,6 +833,89 @@
 
 
   
+    <article id="post-note-003-计算机存储术语" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/26/note-003-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E6%9C%AF%E8%AF%AD/">计算机存储术语</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/26/note-003-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E6%9C%AF%E8%AF%AD/" class="archive-article-date">
+  	<time datetime="2021-06-25T17:34:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="计算机存储术语-扇区，磁盘块，页"><a href="#计算机存储术语-扇区，磁盘块，页" class="headerlink" title="计算机存储术语: 扇区，磁盘块，页"></a>计算机存储术语: 扇区，磁盘块，页</h1><ul>
+<li><p><a href="https://link.zhihu.com/?target=http://www.hellokang.net/os/storage-term.html%23%E6%89%87%E5%8C%BA%EF%BC%8Csector">扇区，sector</a></p>
+</li>
+<li><p><a href="https://link.zhihu.com/?target=http://www.hellokang.net/os/storage-term.html%23%E7%A3%81%E7%9B%98%E5%9D%97%EF%BC%8Cio-block">磁盘块，IO Block</a></p>
+</li>
+<li><p><a href="https://link.zhihu.com/?target=http://www.hellokang.net/os/storage-term.html%23%E9%A1%B5%EF%BC%8Cpage">页，page</a></p>
+</li>
+<li><p><a href="https://link.zhihu.com/?target=http://www.hellokang.net/os/storage-term.html%23%E5%91%BD%E4%BB%A4%E7%B4%A2%E5%BC%95">命令索引</a></p></li></ul>
+        
+          <a class="article-more-a" href="/2021/06/26/note-003-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E6%9C%AF%E8%AF%AD/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/26/note-003-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E6%9C%AF%E8%AF%AD/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-dev-正则表达式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -786,164 +967,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/06/22/dev-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-dev-Git" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/16/dev-Git/">初识Git</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/16/dev-Git/" class="archive-article-date">
-  	<time datetime="2021-06-15T17:33:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://www.runoob.com/wp-content/uploads/2015/02/f7246b600c338744a9591cd7530fd9f9d62aa0f8.png" alt="Git 教程"></p>
-<p>Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。</p>
-<p>Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。</p>
-<p>Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。</p>
-        
-          <a class="article-more-a" href="/2021/06/16/dev-Git/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">开发者</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/16/dev-Git/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/16/Linux1/">初识Linux</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/16/Linux1/" class="archive-article-date">
-  	<time datetime="2021-06-15T17:33:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://www.runoob.com/wp-content/uploads/2014/06/linux.jpg" alt="linux"></p>
-<p>Linux 内核最初只是由芬兰人林纳斯·托瓦兹（Linus Torvalds）在赫尔辛基大学上学时出于个人爱好而编写的。</p>
-<p>Linux 是一套免费使用和自由传播的类 Unix 操作系统，是一个基于 POSIX（可移植操作系统接口） 和 UNIX 的多用户、多任务、支持多线程和多 CPU 的操作系统。</p>
-<p>Linux 能运行主要的 UNIX 工具软件、应用程序和网络协议。它支持 32 位和 64 位硬件。Linux 继承了 Unix 以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。</p>
-        
-          <a class="article-more-a" href="/2021/06/16/Linux1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">开发者</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/16/Linux1/">展开全文 >></a>
         </p>
       
 
