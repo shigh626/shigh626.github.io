@@ -6,20 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://shigh626.github.io">
-  <title>Go 1.9 sync.Map揭秘 | stone&#39;s blog</title>
+  <title>Go-note-GPM模型 | stone&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="author： stone time： 2021-04-20 00:13:14 在Go 1.6之前， 内置的map类型是部分goroutine安全的，并发的读没有问题，并发的写可能有问题。自go 1.6之后， 并发地读写map会报错，这在一些知名的开源库中都存在这个问题，所以go 1.9之前的解决方案是额外绑定一个锁，封装成一个新的struct或者单独使用锁都可以。 本文带你深入到sync.Map">
+  <meta name="description" content="author： stone time： 2021-04-20 00:13:14 Goroutine &amp; Schedulergoroutine 是什么？通常 goroutine 会被当做 coroutine（协程）的 golang 实现，但实际上，goroutine 并非传统意义上的协程，现在主流的线程模型分三种：内核级线程模型、用户级线程模型和两级线程模型（也称混合型线程模型），传统的协程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Go 1.9 sync.Map揭秘">
-<meta property="og:url" content="https://shigh626.github.io/2021/04/20/Go-1-9-sync-Map%E6%8F%AD%E7%A7%98/index.html">
+<meta property="og:title" content="Go-note-GPM模型">
+<meta property="og:url" content="https://shigh626.github.io/2021/04/20/golang-note-02-goroutine/index.html">
 <meta property="og:site_name" content="stone&#39;s blog">
-<meta property="og:description" content="author： stone time： 2021-04-20 00:13:14 在Go 1.6之前， 内置的map类型是部分goroutine安全的，并发的读没有问题，并发的写可能有问题。自go 1.6之后， 并发地读写map会报错，这在一些知名的开源库中都存在这个问题，所以go 1.9之前的解决方案是额外绑定一个锁，封装成一个新的struct或者单独使用锁都可以。 本文带你深入到sync.Map">
+<meta property="og:description" content="author： stone time： 2021-04-20 00:13:14 Goroutine &amp; Schedulergoroutine 是什么？通常 goroutine 会被当做 coroutine（协程）的 golang 实现，但实际上，goroutine 并非传统意义上的协程，现在主流的线程模型分三种：内核级线程模型、用户级线程模型和两级线程模型（也称混合型线程模型），传统的协程">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-04-19T16:13:14.000Z">
-<meta property="article:modified_time" content="2021-08-06T14:53:22.107Z">
+<meta property="og:image" content="https://shigh626.github.io/2021/04/20/golang-note-02-goroutine/6301972-6d4e7c2716e24495.png">
+<meta property="og:image" content="https://shigh626.github.io/2021/04/20/golang-note-02-goroutine/8b8252a559167b28d6bf63f549cf2f3e.png">
+<meta property="og:image" content="https://shigh626.github.io/2021/04/20/golang-note-02-goroutine/5265187-295178adacd3d2e8-1628703740626.png">
+<meta property="og:image" content="https://shigh626.github.io/2021/04/20/golang-note-02-goroutine/5265187-34f934574fd86b35.png">
+<meta property="og:image" content="https://shigh626.github.io/2021/04/20/golang-note-02-goroutine/5265187-6709bcbcf47bacca.png">
+<meta property="article:published_time" content="2021-04-19T17:33:07.000Z">
+<meta property="article:modified_time" content="2021-08-11T17:56:31.226Z">
 <meta property="article:author" content="stone">
 <meta property="article:tag" content="Golang">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shigh626.github.io/2021/04/20/golang-note-02-goroutine/6301972-6d4e7c2716e24495.png">
   
     <link rel="alternative" href="/atom.xml" title="stone&#39;s blog" type="application/atom+xml">
   
@@ -161,20 +167,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Go-1-9-sync-Map揭秘" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-golang-note-02-goroutine" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Go 1.9 sync.Map揭秘
+      Go-note-GPM模型
     </h1>
   
 
         
-        <a href="/2021/04/20/Go-1-9-sync-Map%E6%8F%AD%E7%A7%98/" class="archive-article-date">
-  	<time datetime="2021-04-19T16:13:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-20</time>
+        <a href="/2021/04/20/golang-note-02-goroutine/" class="archive-article-date">
+  	<time datetime="2021-04-19T17:33:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-20</time>
 </a>
         
       </header>
@@ -183,116 +189,83 @@
       
         <p><code>author</code>： stone</p>
 <p><code>time</code>： 2021-04-20 00:13:14</p>
-<p>在Go 1.6之前， 内置的map类型是部分goroutine安全的，并发的读没有问题，并发的写可能有问题。自go 1.6之后， 并发地读写map会报错，这在一些知名的开源库中都存在这个问题，所以go 1.9之前的解决方案是额外绑定一个锁，封装成一个新的struct或者单独使用锁都可以。</p>
-<p>本文带你深入到<code>sync.Map</code>的具体实现中，看看为了增加一个功能，代码是如何变的复杂的,以及作者在实现<code>sync.Map</code>的一些思想。</p>
+<h3 id="Goroutine-amp-Scheduler"><a href="#Goroutine-amp-Scheduler" class="headerlink" title="Goroutine &amp; Scheduler"></a>Goroutine &amp; Scheduler</h3><p>goroutine 是什么？通常 goroutine 会被当做 coroutine（协程）的 golang 实现，但实际上，goroutine 并非传统意义上的协程，现在主流的线程模型分三种：内核级线程模型、用户级线程模型和两级线程模型（也称混合型线程模型），传统的协程库属于<strong>用户级线程模型</strong>，而 goroutine 和它的 Go Scheduler 在底层实现上其实是属于<strong>两级线程模型</strong>。</p>
+<h2 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h2><table>
+<thead>
+<tr>
+<th align="left">优/缺点</th>
+<th align="left">内核级</th>
+<th align="left">用户级</th>
+<th align="left">混合型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">优点</td>
+<td align="left">简单，真正并行</td>
+<td align="left">创建成本低</td>
+<td align="left">all</td>
+</tr>
+<tr>
+<td align="left">缺点</td>
+<td align="left">成本高</td>
+<td align="left">并发性能不完全</td>
+<td align="left">\</td>
+</tr>
+</tbody></table>
 <span id="more"></span>
 
-<ol>
-<li>有并发问题的map</li>
-<li>Go 1.9之前的解决方案</li>
-<li>sync.Map<ol>
-<li>Load</li>
-<li>Store</li>
-<li>Delete</li>
-<li>Range</li>
-</ol>
-</li>
-<li>sync.Map的性能</li>
-<li>其它</li>
-</ol>
-<h3 id="有并发问题的map"><a href="#有并发问题的map" class="headerlink" title="有并发问题的map"></a>有并发问题的map</h3><p>官方的<a target="_blank" rel="noopener" href="https://golang.org/doc/faq#atomic_maps">faq</a>已经提到内建的<code>map</code>不是线程(goroutine)安全的。</p>
-<p>首先，让我们看一段并发读写的代码,下列程序中一个goroutine一直读，一个goroutine一只写同一个键值，即即使读写的键不相同，而且map也没有”扩容”等操作，代码还是会报错。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">int</span>)</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			_ = m[<span class="number">1</span>]</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			m[<span class="number">2</span>] = <span class="number">2</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">select</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="内核级线程模型"><a href="#内核级线程模型" class="headerlink" title="内核级线程模型"></a>内核级线程模型</h3><p><strong>N:1模型，N个用户空间线程在1个内核空间线程上运行。优势是上下文切换非常快但是无法利用多核系统的优点。</strong></p>
+<p>用户线程与内核线程 KSE 是一对一（1 : 1）的映射模型，也就是每一个用户线程绑定一个实际的内核线程，而线程的调度则完全交付给<strong>操作系统内核去做，应用程序对线程的创建、终止以及同步都基于内核提供的系统调用来完成</strong>，大部分编程语言的线程库(比如 Java 的 java.lang.Thread、C++11 的 std::thread 等等)都是对操作系统的线程（内核级线程）的一层封装，创建出来的每个线程与一个独立的 KSE 静态绑定，因此其调度完全由操作系统内核调度器去做，也就是说，一个进程里创建出来的多个线程每一个都绑定一个 KSE。</p>
+<h3 id="用户级线程模型"><a href="#用户级线程模型" class="headerlink" title="用户级线程模型"></a>用户级线程模型</h3><p><strong>1:1模型，1个内核空间线程运行一个用户空间线程。这种充分利用了多核系统的优势但是上下文切换非常慢，因为每一次调度都会在用户态和内核态之间切换。（POSIX线程模型(pthread)，Java）。</strong></p>
+<p>用户线程与内核线程 KSE 是多对一（N : 1）的映射模型，多个用户线程的一般从属于单个进程并且多线程的调度是由用户自己的线程库来完成，线程的创建、销毁以及多线程之间的协调等操作都是由用户自己的线程库来负责而无须借助系统调用来实现。一个进程中所有创建的线程都只和同一个 KSE 在运行时动态绑定，也就是说，<strong>操作系统只知道用户进程而对其中的线程是无感知的</strong>，内核的所有调度都是基于用户进程。这种实现方式相比内核级线程可以做的很轻量级，对系统资源的消耗会小很多，因此可以创建的线程数量与上下文切换所花费的代价也会小得多。但该模型有个原罪：并不能做到真正意义上的并发，假设在某个用户进程上的某个用户线程因为一个阻塞调用（比如 I/O 阻塞）而被 CPU 给中断（抢占式调度）了，那么该进程内的所有线程都被阻塞（因为单个用户进程内的线程自调度是没有 CPU 时钟中断的，从而没有轮转调度），整个进程被挂起。即便是多 CPU 的机器，也无济于事，因为在用户级线程模型下，一个 CPU 关联运行的是整个用户进程，进程内的子线程绑定到 CPU 执行是由用户进程调度的，内部线程对 CPU 是不可见的，此时可以理解为 CPU 的调度单位是用户进程。所以很多的协程库会把自己一些阻塞的操作重新封装为完全的非阻塞形式，然后在以前要阻塞的点上，主动让出自己，并通过某种方式通知或唤醒其他待执行的用户线程在该 KSE 上运行，从而避免了内核调度器由于 KSE 阻塞而做上下文切换，这样整个进程也不会被阻塞了。</p>
+<h3 id="两级线程模型"><a href="#两级线程模型" class="headerlink" title="两级线程模型"></a>两级线程模型</h3><p><strong>M:N模型， 每个用户线程对应多个内核空间线程，同时也可以一个内核空间线程对应多个用户空间线程。Go打算采用这种模型，使用任意个内核模型管理任意个goroutine。这样结合了以上两种模型的优点，但缺点就是调度的复杂性。</strong></p>
+<p>用户线程与内核 KSE 是多对多（N : M）的映射模型：首先，区别于用户级线程模型，两级线程模型中的一个进程可以与多个内核线程 KSE 关联，也就是说一个进程内的多个线程可以分别绑定一个自己的 KSE，这点和内核级线程模型相似；其次，又区别于内核级线程模型，它的进程里的线程并不与 KSE 唯一绑定，而是可以多个用户线程映射到同一个 KSE，当某个 KSE 因为其绑定的线程的阻塞操作被内核调度出 CPU 时，其关联的进程中其余用户线程可以重新与其他 KSE 绑定运行。<strong>即用户调度器实现用户线程到 KSE 的『调度』，内核调度器实现 KSE 到 CPU 上的『调度』</strong>。</p>
+<img src="/2021/04/20/golang-note-02-goroutine/6301972-6d4e7c2716e24495.png" alt="img" style="zoom:150%;">
 
-<p>错误信息是: <code>fatal error: concurrent map read and map write</code>。</p>
-<p>如果你查看Go的源代码: <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/runtime/hashmap_fast.go#L118">hashmap_fast.go#L118</a>,会看到读的时候会检查<code>hashWriting</code>标志， 如果有这个标志，就会报并发错误。</p>
-<p>写的时候会设置这个标志: <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/runtime/hashmap.go#L542">hashmap.go#L542</a></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h.flags |= hashWriting</span><br></pre></td></tr></table></figure>
+<h2 id="G-P-M-模型概述"><a href="#G-P-M-模型概述" class="headerlink" title="G-P-M 模型概述"></a>G-P-M 模型概述</h2><p>在 Go 语言中，每一个 goroutine 是一个独立的执行单元，相较于每个 OS 线程固定分配 2M 内存的模式，goroutine 的栈采取了<strong>动态扩容</strong>方式， 初始时仅为<strong>2KB</strong>，随着任务执行按需增长，最大可达 1GB（64 位机器最大是 1G，32 位机器最大是 256M），且完全由 golang 自己的调度器 Go Scheduler 来调度。此外，GC 还会周期性地将不再使用的内存回收，收缩栈空间。 因此，Go 程序可以同时并发成千上万个 goroutine 是得益于它强劲的调度器和高效的内存模型。</p>
+<h3 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h3><img src="/2021/04/20/golang-note-02-goroutine/8b8252a559167b28d6bf63f549cf2f3e.png" alt="img">
 
-<p><a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/runtime/hashmap.go#L628">hashmap.go#L628</a>设置完之后会取消这个标记。</p>
-<p>当然，代码中还有好几处并发读写的检查， 比如写的时候也会检查是不是有并发的写，删除键的时候类似写，遍历的时候并发读写问题等。</p>
-<p>有时候，map的并发问题不是那么容易被发现, 你可以利用<code>-race</code>参数来检查。</p>
-<h3 id="Go-1-9之前的解决方案"><a href="#Go-1-9之前的解决方案" class="headerlink" title="Go 1.9之前的解决方案"></a>Go 1.9之前的解决方案</h3><p>但是，很多时候，我们会并发地使用map对象，尤其是在一定规模的项目中，map总会保存goroutine共享的数据。在Go官方blog的<a target="_blank" rel="noopener" href="https://blog.golang.org/go-maps-in-action">Go maps in action</a>一文中，提供了一种简便的解决方案。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> counter = <span class="keyword">struct</span>&#123;</span><br><span class="line">    sync.RWMutex</span><br><span class="line">    m <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span></span><br><span class="line">&#125;&#123;m: <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>)&#125;</span><br></pre></td></tr></table></figure>
-
-<p>它使用嵌入struct为map增加一个读写锁。</p>
-<p>读数据的时候很方便的加锁：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">counter.RLock()</span><br><span class="line">n := counter.m[<span class="string">&quot;some_key&quot;</span>]</span><br><span class="line">counter.RUnlock()</span><br><span class="line">fmt.Println(<span class="string">&quot;some_key:&quot;</span>, n)</span><br></pre></td></tr></table></figure>
-
-<p>写数据的时候:</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">counter.Lock()</span><br><span class="line">counter.m[<span class="string">&quot;some_key&quot;</span>]++</span><br><span class="line">counter.Unlock()</span><br></pre></td></tr></table></figure>
-
-<h3 id="sync-Map"><a href="#sync-Map" class="headerlink" title="sync.Map"></a>sync.Map</h3><p>可以说，上面的解决方案相当简洁，并且利用读写锁而不是<code>Mutex</code>可以进一步减少读写的时候因为锁带来的性能。</p>
-<p>但是，它在一些场景下也有问题，如果熟悉Java的同学，可以对比一下java的<code>ConcurrentHashMap</code>的实现，在map的数据非常大的情况下，一把锁会导致大并发的客户端共争一把锁，Java的解决方案是<code>shard</code>, 内部使用多个锁，每个区间共享一把锁，这样减少了数据共享一把锁带来的性能影响，<a target="_blank" rel="noopener" href="https://github.com/orcaman">orcaman</a>提供了这个思路的一个实现： <a target="_blank" rel="noopener" href="https://github.com/orcaman/concurrent-map">concurrent-map</a>，他也询问了Go相关的开发人员是否在Go中也实现这种<a target="_blank" rel="noopener" href="https://github.com/golang/go/issues/20360">方案</a>，由于实现的复杂性，答案是<code>Yes, we considered it.</code>,但是除非有特别的性能提升和应用场景，否则没有进一步的开发消息。</p>
-<p>那么，在Go 1.9中<code>sync.Map</code>是怎么实现的呢？它是如何解决并发提升性能的呢？</p>
-<p><code>sync.Map</code>的实现有几个优化点，这里先列出来，我们后面慢慢分析。</p>
-<ol>
-<li>空间换时间。 通过冗余的两个数据结构(read、dirty),实现加锁对性能的影响。</li>
-<li>使用只读数据(read)，避免读写冲突。</li>
-<li>动态调整，miss次数多了之后，将dirty数据提升为read。</li>
-<li>double-checking。</li>
-<li>延迟删除。 删除一个键值只是打标记，只有在提升dirty的时候才清理删除的数据。</li>
-<li>优先从read读取、更新、删除，因为对read的读取不需要锁。</li>
-</ol>
-<p>下面我们介绍<code>sync.Map</code>的重点代码，以便理解它的实现思想。</p>
-<p>首先，我们看一下<code>sync.Map</code>的数据结构：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Map <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="comment">// 当涉及到dirty数据的操作的时候，需要使用这个锁</span></span><br><span class="line">	mu Mutex</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 一个只读的数据结构，因为只读，所以不会有读写冲突。所以从这个数据中读取总是安全的。</span></span><br><span class="line">	<span class="comment">// 实际上，实际也会更新这个数据的entries,如果entry是未删除的(unexpunged), 并不需要加锁。如果entry已经被删除了，需要加锁，以便更新dirty数据。</span></span><br><span class="line">	read atomic.Value <span class="comment">// readOnly</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// dirty数据包含当前的map包含的entries,它包含最新的entries(包括read中未删除的数据,虽有冗余，但是提升dirty字段为read的时候非常快，不用一个一个的复制，而是直接将这个数据结构作为read字段的一部分),有些数据还可能没有移动到read字段中。</span></span><br><span class="line">	<span class="comment">// 对于dirty的操作需要加锁，因为对它的操作可能会有读写竞争。</span></span><br><span class="line">	<span class="comment">// 当dirty为空的时候，比如初始化或者刚提升完，下一次的写操作会复制read字段中未删除的数据到这个数据中。</span></span><br><span class="line">	dirty <span class="keyword">map</span>[<span class="keyword">interface</span>&#123;&#125;]*entry</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 当从Map中读取entry的时候，如果read中不包含这个entry,会尝试从dirty中读取，这个时候会将misses加一，</span></span><br><span class="line">	<span class="comment">// 当misses累积到 dirty的长度的时候， 就会将dirty提升为read,避免从dirty中miss太多次。因为操作dirty需要加锁。</span></span><br><span class="line">	misses <span class="keyword">int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>它的数据结构很简单，值包含四个字段：<code>read</code>、<code>mu</code>、<code>dirty</code>、<code>misses</code>。</p>
-<p>它使用了冗余的数据结构<code>read</code>、<code>dirty</code>。<code>dirty</code>中会包含<code>read</code>中为删除的entries，新增加的entries会加入到<code>dirty</code>中。</p>
-<p><code>read</code>的数据结构是：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> readOnly <span class="keyword">struct</span> &#123;</span><br><span class="line">	m       <span class="keyword">map</span>[<span class="keyword">interface</span>&#123;&#125;]*entry</span><br><span class="line">	amended <span class="keyword">bool</span> <span class="comment">// 如果Map.dirty有些数据不在中的时候，这个值为true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>amended</code>指明<code>Map.dirty</code>中有<code>readOnly.m</code>未包含的数据，所以如果从<code>Map.read</code>找不到数据的话，还要进一步到<code>Map.dirty</code>中查找。</p>
-<p>对Map.read的修改是通过原子操作进行的。</p>
-<p>虽然<code>read</code>和<code>dirty</code>有冗余数据，但这些数据是通过指针指向同一个数据，所以尽管Map的value会很大，但是冗余的空间占用还是有限的。</p>
-<p><code>readOnly.m</code>和<code>Map.dirty</code>存储的值类型是<code>*entry</code>,它包含一个指针p, 指向用户存储的value值。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> entry <span class="keyword">struct</span> &#123;</span><br><span class="line">	p unsafe.Pointer <span class="comment">// *interface&#123;&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>p有三种值：</p>
+<p>GPM</p>
 <ul>
-<li>nil: entry已被删除了，并且m.dirty为nil</li>
-<li>expunged: entry已被删除了，并且m.dirty不为nil，而且这个entry不存在于m.dirty中</li>
-<li>其它： entry是一个正常的值</li>
+<li>G: 表示 Goroutine，每个 Goroutine 对应一个 G 结构体，G 存储 Goroutine 的运行堆栈、状态以及任务函数，可重用。G 并非执行体，每个 G 需要绑定到 P 才能被调度执行。</li>
+<li>P: Processor，表示逻辑处理器， 对 G 来说，P 相当于 CPU 核，G 只有绑定到 P(在 P 的 local runq 中)才能被调度。对 M 来说，P 提供了相关的执行环境(Context)，如内存分配状态(mcache)，任务队列(G)等，P 的数量决定了系统内最大可并行的 G 的数量（前提：物理 CPU 核数 &gt;= P 的数量），P 的数量由用户设置的 GOMAXPROCS 决定，但是不论 GOMAXPROCS 设置为多大，P 的数量最大为 256。</li>
+<li>M: Machine，OS 线程抽象，代表着真正执行计算的资源，在绑定有效的 P 后，进入 schedule 循环；而 schedule 循环的机制大致是从 Global 队列、P 的 Local 队列以及 wait 队列中获取 G，切换到 G 的执行栈上并执行 G 的函数，调用 goexit 做清理工作并回到 M，如此反复。M 并不保留 G 状态，这是 G 可以跨 M 调度的基础，M 的数量是不定的，由 Go Runtime 调整，为了防止创建过多 OS 线程导致系统调度不过来，目前默认最大限制为 10000 个。</li>
+<li>每个 P 维护一个 G 的本地队列；</li>
+<li>当一个 G 被创建出来，或者变为可执行状态时，就把他放到 P 的本地可执行队列中，如果满了则放入Global；</li>
+<li>当一个 G 在 M 里执行结束后，P 会从队列中把该 G 取出；如果此时 P 的队列为空，即没有其他 G 可以执行， M 就随机选择另外一个 P，从其可执行的 G 队列中取走一半。</li>
 </ul>
-<p>以上是<code>sync.Map</code>的数据结构，下面我们重点看看<code>Load</code>、<code>Store</code>、<code>Delete</code>、<code>Range</code>这四个方法，其它辅助方法可以参考这四个方法来理解。</p>
-<h4 id="Load"><a href="#Load" class="headerlink" title="Load"></a>Load</h4><p>加载方法，也就是提供一个键<code>key</code>,查找对应的值<code>value</code>,如果不存在，通过<code>ok</code>反映：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *Map)</span> <span class="title">Load</span><span class="params">(key <span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(value <span class="keyword">interface</span>&#123;&#125;, ok <span class="keyword">bool</span>)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 1.首先从m.read中得到只读readOnly,从它的map中查找，不需要加锁</span></span><br><span class="line">	read, _ := m.read.Load().(readOnly)</span><br><span class="line">	e, ok := read.m[key]</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 2. 如果没找到，并且m.dirty中有新数据，需要从m.dirty查找，这个时候需要加锁</span></span><br><span class="line">	<span class="keyword">if</span> !ok &amp;&amp; read.amended &#123;</span><br><span class="line">		m.mu.Lock()</span><br><span class="line">		<span class="comment">// 双检查，避免加锁的时候m.dirty提升为m.read,这个时候m.read可能被替换了。</span></span><br><span class="line">		read, _ = m.read.Load().(readOnly)</span><br><span class="line">		e, ok = read.m[key]</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 如果m.read中还是不存在，并且m.dirty中有新数据</span></span><br><span class="line">		<span class="keyword">if</span> !ok &amp;&amp; read.amended &#123;</span><br><span class="line">			<span class="comment">// 从m.dirty查找</span></span><br><span class="line">			e, ok = m.dirty[key]</span><br><span class="line">			<span class="comment">// 不管m.dirty中存不存在，都将misses计数加一</span></span><br><span class="line">			<span class="comment">// missLocked()中满足条件后就会提升m.dirty</span></span><br><span class="line">			m.missLocked()</span><br><span class="line">		&#125;</span><br><span class="line">		m.mu.Unlock()</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> !ok &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, <span class="literal">false</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> e.load()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="调度过程"><a href="#调度过程" class="headerlink" title="调度过程"></a>调度过程</h3><p>当通过 go 关键字创建一个新的 goroutine 的时候，它会<strong>优先</strong>被放入 P 的本地队列。为了运行 goroutine，M 需要持有（绑定）一个 P，接着 M 会启动一个 OS 线程，循环从 P 的本地队列里取出一个 goroutine 并执行。执行调度算法：当 M 执行完了当前 P 的 Local 队列里的所有 G 后，P 也不会就这么在那划水啥都不干，它会先尝试从 Global 队列寻找 G 来执行，如果 Global 队列为空，它会随机挑选另外一个 P，从它的队列里中拿走一半的 G 到自己的队列中执行。</p>
+<h2 id="阻塞"><a href="#阻塞" class="headerlink" title="阻塞"></a>阻塞</h2><p>Go runtime 会在下面的 goroutine 被阻塞的情况下运行另外一个 goroutine：</p>
+<ul>
+<li>blocking syscall (for example opening a file)</li>
+<li>network input</li>
+<li>channel operations</li>
+<li>primitives in the sync package</li>
+</ul>
+<p>这四种场景又可归类为两种类型：</p>
+<h3 id="用户态阻塞-唤醒"><a href="#用户态阻塞-唤醒" class="headerlink" title="用户态阻塞/唤醒"></a>用户态阻塞/唤醒</h3><p>当 goroutine 因为 channel 操作阻塞时，对应的 G 会被放置到某个 wait 队列(如 channel 的 waitq)，该 G 的状态由<code>_Gruning</code> 变为 <code>_Gwaitting</code> ，而 M 会跳过该 G 尝试获取并执行下一个 G，如果此时没有 runnable 的 G 供 M 运行，那么 M 将解绑 P，并进入 sleep 状态；当阻塞的 G 被另一端的 G2 唤醒时（比如 channel 的可读/写通知），G 被标记为 runnable，尝试加入 G2 所在 P 的 runnext，然后再是 P 的 Local 队列和 Global 队列。</p>
+<h3 id="系统调用阻塞"><a href="#系统调用阻塞" class="headerlink" title="系统调用阻塞"></a>系统调用阻塞</h3><p>当 G 被阻塞在某个系统调用上时，此时 G 会阻塞在 <code>_Gsyscall</code> 状态，M 也处于 block on syscall 状态，此时的 M 可被抢占调度：执行该 G 的 M 会与 P 解绑，而 P 则尝试与其它空闲的 M 绑定，继续执行其它 G。如果没有其它空闲的 M，但 P 的 Local 队列中仍然有 G 需要执行，则创建一个新的 M；当系统调用完成后，G 会重新尝试获取一个空闲的 P 进入它的 Local 队列恢复执行，如果没有空闲的 P，G 会被标记为 runnable 加入到 Global 队列。</p>
+<h2 id="Golang的调度器实现"><a href="#Golang的调度器实现" class="headerlink" title="Golang的调度器实现"></a>Golang的调度器实现</h2><p>Go的调度器使用了三种结构：M，P ，G。另外有个负责调度的Goroutine，根据一定的算法对P进行调度，M和P是<code>N:M</code>的关系。</p>
+<ul>
+<li>M代表内核线程，类似于标准的POSIX线程，M代表machine。</li>
+<li>P代表processor，表示调度的上下文。可以把它看作是一个局部的调度器，让Go代码跑在一个单独的线程上。这是让Go从一个N:1调度器映射到一个M:N调度器的关键。</li>
+<li>G代表goroutine，它拥有自己的栈，程序计数器（instruction counter）和一些关于goroutine调度的信息（如正在阻塞的channel）。</li>
+</ul>
+<img src="/2021/04/20/golang-note-02-goroutine/5265187-295178adacd3d2e8-1628703740626.png" alt="img" style="zoom:67%;">
 
-<p>这里有两个值得关注的地方。一个是首先从<code>m.read</code>中加载，不存在的情况下，并且<code>m.dirty</code>中有新数据，加锁，然后从<code>m.dirty</code>中加载。</p>
-<p>二是这里使用了双检查的处理，因为在下面的两个语句中，这两行语句并不是一个原子操作。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> !ok &amp;&amp; read.amended &#123;</span><br><span class="line">    m.mu.Lock()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上图所示，每个线程运行了一个goroutine，所以必须得维持一个上下文P。</p>
+<p>上下文的数量由启动时环境变量$GOMAXPROCS或者是由runtime的方法GOMAXPROCS()决定（默认值为1）。这意味着在程序执行的任意时刻都只有$GOMAXPROCS个goroutine在同时运行。</p>
+<p>灰色的goroutine没有在运行，等待被调度。它们被维护在一个队列（runqueues）里。当一个go语句执行，就将一个新的goroutine添加到队列尾；当运行当前goroutine到调度点时，就从队列中弹出一个新的goroutine。</p>
+<p>每一个context拥有一个局部的runqueue。之前版本的Go调度器只有一个全局的带有互斥锁的runqueue，这样线程经常被阻塞等待其它线程解锁，在多核机器上性能表现及其差。</p>
+<p>之所以要维护多个context，是因为当一个OS线程被阻塞时，我们可以把contex移到其它的线程中去。</p>
+<img src="/2021/04/20/golang-note-02-goroutine/5265187-34f934574fd86b35.png" alt="img" style="zoom:67%;">
 
-<p>虽然第一句执行的时候条件满足，但是在加锁之前，<code>m.dirty</code>可能被提升为<code>m.read</code>,所以加锁后还得再检查<code>m.read</code>，后续的方法中都使用了这个方法。</p>
-<p>双检查的技术Java程序员非常熟悉了，单例模式的实现之一就是利用双检查的技术。</p>
-<p>可以看到，如果我们查询的键值正好存在于<code>m.read</code>中，无须加锁，直接返回，理论上性能优异。即使不存在于<code>m.read</code>中，经过<code>miss</code>几次之后，<code>m.dirty</code>会被提升为<code>m.read</code>，又会从<code>m.read</code>中查找。所以对于更新／增加较少，加载存在的key很多的case,性能基本和无锁的map类似。</p>
-<p>下面看看<code>m.dirty</code>是如何被提升的。 <code>missLocked</code>方法中可能会将<code>m.dirty</code>提升。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *Map)</span> <span class="title">missLocked</span><span class="params">()</span></span> &#123;</span><br><span class="line">	m.misses++</span><br><span class="line">	<span class="keyword">if</span> m.misses &lt; <span class="built_in">len</span>(m.dirty) &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	m.read.Store(readOnly&#123;m: m.dirty&#125;)</span><br><span class="line">	m.dirty = <span class="literal">nil</span></span><br><span class="line">	m.misses = <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上图所示，当一个内核线程M0要被阻塞时，P将会去M1上继续运行。Go的调度器保证了拥有足够的线程跑所有的contexts。因为还有在执行的goroutine，M0会暂时挂起。当syscall返回时，M0会尝试获取一个context来运行G0。一般情况下，它会从其它内核线程偷一个过来。如果没有偷到，它会把G0放到一个全局的runqueue内，将自己放回线程池，进入睡眠状态。</p>
+<p>当contexts运行完所有的本地runqueue时，它会从全局runqueue拉取goroutine。contexts也会周期性检查全局runqueue是否存在goroutine，以防止全局runqueue中的goroutine饿死。</p>
+<p>这就是为什么Go程序多线程运行的原因，即使GOMAXPROCS只有1。</p>
+<img src="/2021/04/20/golang-note-02-goroutine/5265187-6709bcbcf47bacca.png" alt="img" style="zoom:67%;">
 
-<p>上面的最后三行代码就是提升<code>m.dirty</code>的，很简单的将<code>m.dirty</code>作为<code>readOnly</code>的<code>m</code>字段，原子更新<code>m.read</code>。提升后<code>m.dirty</code>、<code>m.misses</code>重置， 并且<code>m.read.amended</code>为false。</p>
-<h4 id="Store"><a href="#Store" class="headerlink" title="Store"></a>Store</h4><p>这个方法是更新或者新增一个entry。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *Map)</span> <span class="title">Store</span><span class="params">(key, value <span class="keyword">interface</span>&#123;&#125;)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 如果m.read存在这个键，并且这个entry没有被标记删除，尝试直接存储。</span></span><br><span class="line">	<span class="comment">// 因为m.dirty也指向这个entry,所以m.dirty也保持最新的entry。</span></span><br><span class="line">	read, _ := m.read.Load().(readOnly)</span><br><span class="line">	<span class="keyword">if</span> e, ok := read.m[key]; ok &amp;&amp; e.tryStore(&amp;value) &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 如果`m.read`不存在或者已经被标记删除</span></span><br><span class="line">	m.mu.Lock()</span><br><span class="line">	read, _ = m.read.Load().(readOnly)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> e, ok := read.m[key]; ok &#123;</span><br><span class="line">		<span class="keyword">if</span> e.unexpungeLocked() &#123; <span class="comment">//标记成未被删除</span></span><br><span class="line">			m.dirty[key] = e 			 <span class="comment">//m.dirty中不存在这个键，所以加如m.dirty</span></span><br><span class="line">		&#125;</span><br><span class="line">		e.storeLocked(&amp;value)    <span class="comment">//更新</span></span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> e, ok := m.dirty[key]; ok &#123; <span class="comment">// m.dirty存在这个键，更新</span></span><br><span class="line">		e.storeLocked(&amp;value)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123; <span class="comment">//新键值</span></span><br><span class="line">		<span class="keyword">if</span> !read.amended &#123; <span class="comment">//m.dirty中没有新的数据，往m.dirty中增加第一个新键</span></span><br><span class="line">			m.dirtyLocked()  <span class="comment">//从m.read中复制未删除的数据</span></span><br><span class="line">			m.read.Store(readOnly&#123;m: read.m, amended: <span class="literal">true</span>&#125;)</span><br><span class="line">		&#125;</span><br><span class="line">		m.dirty[key] = newEntry(value) <span class="comment">//将这个entry加入到m.dirty中</span></span><br><span class="line">	&#125;</span><br><span class="line">	m.mu.Unlock()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *Map)</span> <span class="title">dirtyLocked</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> m.dirty != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	read, _ := m.read.Load().(readOnly)</span><br><span class="line">	m.dirty = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">interface</span>&#123;&#125;]*entry, <span class="built_in">len</span>(read.m))</span><br><span class="line">	<span class="keyword">for</span> k, e := <span class="keyword">range</span> read.m &#123;</span><br><span class="line">		<span class="keyword">if</span> !e.tryExpungeLocked() &#123;</span><br><span class="line">			m.dirty[k] = e</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *entry)</span> <span class="title">tryExpungeLocked</span><span class="params">()</span> <span class="params">(isExpunged <span class="keyword">bool</span>)</span></span> &#123;</span><br><span class="line">	p := atomic.LoadPointer(&amp;e.p)</span><br><span class="line">	<span class="keyword">for</span> p == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="comment">// 将已经删除标记为nil的数据标记为expunged</span></span><br><span class="line">		<span class="keyword">if</span> atomic.CompareAndSwapPointer(&amp;e.p, <span class="literal">nil</span>, expunged) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">		&#125;</span><br><span class="line">		p = atomic.LoadPointer(&amp;e.p)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> p == expunged</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>你可以看到，以上操作都是先从操作<code>m.read</code>开始的，不满足条件再加锁，然后操作<code>m.dirty</code>。</p>
-<p><code>Store</code>可能会在某种情况下(初始化或者m.dirty刚被提升后)从<code>m.read</code>中复制数据，如果这个时候<code>m.read</code>中数据量非常大，可能会影响性能。</p>
-<h4 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h4><p>删除一个键值。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *Map)</span> <span class="title">Delete</span><span class="params">(key <span class="keyword">interface</span>&#123;&#125;)</span></span> &#123;</span><br><span class="line">	read, _ := m.read.Load().(readOnly)</span><br><span class="line">	e, ok := read.m[key]</span><br><span class="line">	<span class="keyword">if</span> !ok &amp;&amp; read.amended &#123;</span><br><span class="line">		m.mu.Lock()</span><br><span class="line">		read, _ = m.read.Load().(readOnly)</span><br><span class="line">		e, ok = read.m[key]</span><br><span class="line">		<span class="keyword">if</span> !ok &amp;&amp; read.amended &#123;</span><br><span class="line">			<span class="built_in">delete</span>(m.dirty, key)</span><br><span class="line">		&#125;</span><br><span class="line">		m.mu.Unlock()</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> ok &#123;</span><br><span class="line">		e.<span class="built_in">delete</span>()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>同样，删除操作还是从<code>m.read</code>中开始， 如果这个entry不存在于<code>m.read</code>中，并且<code>m.dirty</code>中有新数据，则加锁尝试从<code>m.dirty</code>中删除。</p>
-<p>注意，还是要双检查的。 从<code>m.dirty</code>中直接删除即可，就当它没存在过，但是如果是从<code>m.read</code>中删除，并不会直接删除，而是打标记：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *entry)</span> <span class="title">delete</span><span class="params">()</span> <span class="params">(hadValue <span class="keyword">bool</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		p := atomic.LoadPointer(&amp;e.p)</span><br><span class="line">		<span class="comment">// 已标记为删除</span></span><br><span class="line">		<span class="keyword">if</span> p == <span class="literal">nil</span> || p == expunged &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 原子操作，e.p标记为nil</span></span><br><span class="line">		<span class="keyword">if</span> atomic.CompareAndSwapPointer(&amp;e.p, p, <span class="literal">nil</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="Range"><a href="#Range" class="headerlink" title="Range"></a>Range</h4><p>因为<code>for ... range map</code>是内建的语言特性，所以没有办法使用<code>for range</code>遍历<code>sync.Map</code>, 但是可以使用它的<code>Range</code>方法，通过回调的方式遍历。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *Map)</span> <span class="title">Range</span><span class="params">(f <span class="keyword">func</span>(key, value <span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">bool</span>)</span> &#123;</span><br><span class="line">	read, _ := m.read.Load().(readOnly)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 如果m.dirty中有新数据，则提升m.dirty,然后在遍历</span></span><br><span class="line">	<span class="keyword">if</span> read.amended &#123;</span><br><span class="line">		<span class="comment">//提升m.dirty</span></span><br><span class="line">		m.mu.Lock()</span><br><span class="line">		read, _ = m.read.Load().(readOnly) <span class="comment">//双检查</span></span><br><span class="line">		<span class="keyword">if</span> read.amended &#123;</span><br><span class="line">			read = readOnly&#123;m: m.dirty&#125;</span><br><span class="line">			m.read.Store(read)</span><br><span class="line">			m.dirty = <span class="literal">nil</span></span><br><span class="line">			m.misses = <span class="number">0</span></span><br><span class="line">		&#125;</span><br><span class="line">		m.mu.Unlock()</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 遍历, for range是安全的</span></span><br><span class="line">	<span class="keyword">for</span> k, e := <span class="keyword">range</span> read.m &#123;</span><br><span class="line">		v, ok := e.load()</span><br><span class="line">		<span class="keyword">if</span> !ok &#123;</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> !f(k, v) &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Range方法调用前可能会做一个<code>m.dirty</code>的提升，不过提升<code>m.dirty</code>不是一个耗时的操作。</p>
-<h3 id="sync-Map的性能"><a href="#sync-Map的性能" class="headerlink" title="sync.Map的性能"></a>sync.Map的性能</h3><p>Go 1.9源代码中提供了性能的测试： <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/sync/map_bench_test.go">map_bench_test.go</a>、<a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/sync/map_reference_test.go">map_reference_test.go</a></p>
-<p>我也基于这些代码修改了一下，得到下面的测试数据，相比较以前的解决方案，性能多少回有些提升，如果你特别关注性能，可以考虑<code>sync.Map</code>。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">BenchmarkHitAll/*sync.RWMutexMap-4   	20000000	        83.8 ns/op</span><br><span class="line">BenchmarkHitAll/*sync.Map-4          	30000000	        59.9 ns/op</span><br><span class="line">BenchmarkHitAll_WithoutPrompting/*sync.RWMutexMap-4         	20000000	        96.9 ns/op</span><br><span class="line">BenchmarkHitAll_WithoutPrompting/*sync.Map-4                	20000000	        64.1 ns/op</span><br><span class="line">BenchmarkHitNone/*sync.RWMutexMap-4                         	20000000	        79.1 ns/op</span><br><span class="line">BenchmarkHitNone/*sync.Map-4                                	30000000	        43.3 ns/op</span><br><span class="line">BenchmarkHit_WithoutPrompting/*sync.RWMutexMap-4            	20000000	        81.5 ns/op</span><br><span class="line">BenchmarkHit_WithoutPrompting/*sync.Map-4                   	30000000	        44.0 ns/op</span><br><span class="line">BenchmarkUpdate/*sync.RWMutexMap-4                          	 5000000	       328 ns/op</span><br><span class="line">BenchmarkUpdate/*sync.Map-4                                 	10000000	       146 ns/op</span><br><span class="line">BenchmarkUpdate_WithoutPrompting/*sync.RWMutexMap-4         	 5000000	       336 ns/op</span><br><span class="line">BenchmarkUpdate_WithoutPrompting/*sync.Map-4                	 5000000	       324 ns/op</span><br><span class="line">BenchmarkDelete/*sync.RWMutexMap-4                          	10000000	       155 ns/op</span><br><span class="line">BenchmarkDelete/*sync.Map-4                                 	30000000	        55.0 ns/op</span><br><span class="line">BenchmarkDelete_WithoutPrompting/*sync.RWMutexMap-4         	10000000	       173 ns/op</span><br><span class="line">BenchmarkDelete_WithoutPrompting/*sync.Map-4                	10000000	       147 ns/op</span><br></pre></td></tr></table></figure>
-
-<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p><code>sync.Map</code>没有<code>Len</code>方法，并且目前没有迹象要加上，所以如果想得到当前Map中有效的entries的数量，需要使用<code>Range</code>方法遍历一次。</p>
-<p><code>LoadOrStore</code>方法如果提供的key存在，则返回已存在的值(Load)，否则保存提供的键值(Store)。</p>
-<hr>
+<p>另外一种情况就是某个context的goroutine运行完了，全局runqueue也没有了goroutine，而其它context还有大量goroutine需要运行。这时候就需要从其它的地方获取goroutine。如图所示，context会尝试从其它context的runqueue里面偷一半的goroutine。这样就能确保所有的线程都能以最大负荷运行</p>
 
       
 
@@ -383,7 +356,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://shigh626.github.io/2021/04/20/Go-1-9-sync-Map%E6%8F%AD%E7%A7%98/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://shigh626.github.io/2021/04/20/golang-note-02-goroutine/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -407,8 +380,8 @@
     </a>
   
   
-    <a href="/2021/04/10/golang-19-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8Bnet-http%E5%8C%85/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Go语言基础之net/http包</div>
+    <a href="/2021/04/20/golang-note-00-syncMap%E6%8F%AD%E7%A7%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Go-note-sync.Map揭秘</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -435,7 +408,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98%E7%9A%84map"><span class="toc-number">1.</span> <span class="toc-text">有并发问题的map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-1-9%E4%B9%8B%E5%89%8D%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text">Go 1.9之前的解决方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sync-Map"><span class="toc-number">3.</span> <span class="toc-text">sync.Map</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Load"><span class="toc-number">3.1.</span> <span class="toc-text">Load</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Store"><span class="toc-number">3.2.</span> <span class="toc-text">Store</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Delete"><span class="toc-number">3.3.</span> <span class="toc-text">Delete</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Range"><span class="toc-number">3.4.</span> <span class="toc-text">Range</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sync-Map%E7%9A%84%E6%80%A7%E8%83%BD"><span class="toc-number">4.</span> <span class="toc-text">sync.Map的性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E5%AE%83"><span class="toc-number">5.</span> <span class="toc-text">其它</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Goroutine-amp-Scheduler"><span class="toc-number">1.</span> <span class="toc-text">Goroutine &amp; Scheduler</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number"></span> <span class="toc-text">线程模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E7%BA%A7%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">内核级线程模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%BA%A7%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">用户级线程模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E7%BA%A7%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">两级线程模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#G-P-M-%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0"><span class="toc-number"></span> <span class="toc-text">G-P-M 模型概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">调度算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">调度过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%BB%E5%A1%9E"><span class="toc-number"></span> <span class="toc-text">阻塞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E6%80%81%E9%98%BB%E5%A1%9E-%E5%94%A4%E9%86%92"><span class="toc-number">1.</span> <span class="toc-text">用户态阻塞&#x2F;唤醒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E9%98%BB%E5%A1%9E"><span class="toc-number">2.</span> <span class="toc-text">系统调用阻塞</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Golang%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A8%E5%AE%9E%E7%8E%B0"><span class="toc-number"></span> <span class="toc-text">Golang的调度器实现</span></a>
                     </div>
                 </span>
             </div>
