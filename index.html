@@ -818,33 +818,32 @@
 
 
   
-    <article id="post-dev-正则表达式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-note-002-Golang实现RPC调用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/22/dev-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+      <a class="article-title" href="/2021/06/26/note-002-Golang%E5%AE%9E%E7%8E%B0RPC%E8%B0%83%E7%94%A8/">初识RPC-Golang实现RPC调用</a>
     </h1>
   
 
         
-        <a href="/2021/06/22/dev-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-06-21T16:47:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-22</time>
+        <a href="/2021/06/26/note-002-Golang%E5%AE%9E%E7%8E%B0RPC%E8%B0%83%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2021-06-25T16:00:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>正则表达式就是由普通字符（例如字符 a 到  z  ） 以及特殊字符（称为元字符）组成的文字模式。该模式描述在查找文字主体时待匹配的一个或多个字符串。正则表达式作为一个模板，将某个字符模式与所搜索的字 符串进行匹配。</p>
-<p>本文详细地列出了能在正则表达式中使用，以匹配文本的各种字符。当你需要解释一个现有的正则表达式时，可以作为一个快捷的参考。更多详 细内容</p>
-<p>正则学习网站：</p>
-<p>（1）<a target="_blank" rel="noopener" href="https://regexr-cn.com/">Test RegEx (regexr-cn.com)</a></p>
-<p>（2）<a target="_blank" rel="noopener" href="https://www.codejiaonang.com/#/course/regex_chapter1/0/0">编程胶囊 (codejiaonang.com)</a></p>
+        <h2 id="什么是RPC"><a href="#什么是RPC" class="headerlink" title="什么是RPC"></a>什么是RPC</h2><blockquote>
+<p>在分布式计算<strong>，远程过程调用</strong>（英语：Remote Procedure Call，缩写为 RPC）是一个计算机通信协议。该协议允许运行于一台计算机的程序调用另一个地址空间（通常为一个开放网络的一台计算机）的子程序，而程序员就像调用本地程序一样，无需额外地为这个交互作用编程（无需关注细节）。RPC 是一种服务器-客户端（ Client/Server ）模式，经典实现是一个通过 <strong>发送请求-接受回应</strong> 进行信息交互的系统。</p>
+</blockquote>
+<p>在这里引用一下维基百科对于 RPC 的解释， 可以针对与 HTTP 协议来比较分析，RPC 更适合于公司中大、中型项目分布式调用场景。</p>
         
-          <a class="article-more-a" href="/2021/06/22/dev-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#more">more >></a>
+          <a class="article-more-a" href="/2021/06/26/note-002-Golang%E5%AE%9E%E7%8E%B0RPC%E8%B0%83%E7%94%A8/#more">more >></a>
         
       
 
@@ -858,7 +857,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">开发者</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RPC</a>
         		</li>
       		
 		</ul>
@@ -868,7 +871,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/22/dev-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/26/note-002-Golang%E5%AE%9E%E7%8E%B0RPC%E8%B0%83%E7%94%A8/">展开全文 >></a>
         </p>
       
 
@@ -898,32 +901,29 @@
 
 
   
-    <article id="post-dev-Git" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-note-001-RPC调用与HTTP调用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/16/dev-Git/">初识Git</a>
+      <a class="article-title" href="/2021/06/26/note-001-RPC%E8%B0%83%E7%94%A8%E4%B8%8EHTTP%E8%B0%83%E7%94%A8/">初识RPC-RPC调用与HTTP调用</a>
     </h1>
   
 
         
-        <a href="/2021/06/16/dev-Git/" class="archive-article-date">
-  	<time datetime="2021-06-15T17:33:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-16</time>
+        <a href="/2021/06/26/note-001-RPC%E8%B0%83%E7%94%A8%E4%B8%8EHTTP%E8%B0%83%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2021-06-25T16:00:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://www.runoob.com/wp-content/uploads/2015/02/f7246b600c338744a9591cd7530fd9f9d62aa0f8.png" alt="Git 教程"></p>
-<p>Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。</p>
-<p>Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。</p>
-<p>Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。</p>
+        <p>很长时间以来都没有怎么好好搞清楚RPC（即Remote Procedure Call，远程过程调用）和HTTP调用的区别，不都是写一个服务然后在客户端调用么？这里请允许我迷之一笑~Naive！本文简单地介绍一下两种形式的C/S架构，先说一下他们最本质的区别，就是RPC主要是基于TCP/IP协议的，而HTTP服务主要是基于HTTP协议的，我们都知道HTTP协议是在传输层协议TCP之上的，所以效率来看的话，RPC当然是要更胜一筹啦！下面来具体说一说RPC服务和HTTP服务。</p>
         
-          <a class="article-more-a" href="/2021/06/16/dev-Git/#more">more >></a>
+          <a class="article-more-a" href="/2021/06/26/note-001-RPC%E8%B0%83%E7%94%A8%E4%B8%8EHTTP%E8%B0%83%E7%94%A8/#more">more >></a>
         
       
 
@@ -937,7 +937,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">开发者</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RPC</a>
         		</li>
       		
 		</ul>
@@ -947,7 +951,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/16/dev-Git/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/26/note-001-RPC%E8%B0%83%E7%94%A8%E4%B8%8EHTTP%E8%B0%83%E7%94%A8/">展开全文 >></a>
         </p>
       
 
@@ -979,7 +983,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1107,6 +1111,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
             
             <div class="clearfix"></div>
