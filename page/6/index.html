@@ -161,53 +161,33 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-golang-note-02-goroutine" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-leetcode-394-字符串解码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/20/golang-note-02-goroutine/">Go-note-GPM模型</a>
+      <a class="article-title" href="/2021/05/20/leetcode-394-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81/">leetcode-394-字符串解码</a>
     </h1>
   
 
         
-        <a href="/2021/04/20/golang-note-02-goroutine/" class="archive-article-date">
-  	<time datetime="2021-04-19T17:33:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-20</time>
+        <a href="/2021/05/20/leetcode-394-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81/" class="archive-article-date">
+  	<time datetime="2021-05-19T19:09:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><code>author</code>： stone</p>
-<p><code>time</code>： 2021-04-20 00:13:14</p>
-<h3 id="Goroutine-amp-Scheduler"><a href="#Goroutine-amp-Scheduler" class="headerlink" title="Goroutine &amp; Scheduler"></a>Goroutine &amp; Scheduler</h3><p>goroutine 是什么？通常 goroutine 会被当做 coroutine（协程）的 golang 实现，但实际上，goroutine 并非传统意义上的协程，现在主流的线程模型分三种：内核级线程模型、用户级线程模型和两级线程模型（也称混合型线程模型），传统的协程库属于<strong>用户级线程模型</strong>，而 goroutine 和它的 Go Scheduler 在底层实现上其实是属于<strong>两级线程模型</strong>。</p>
-<h2 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h2><table>
-<thead>
-<tr>
-<th align="left">优/缺点</th>
-<th align="left">内核级</th>
-<th align="left">用户级</th>
-<th align="left">混合型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">优点</td>
-<td align="left">简单，真正并行</td>
-<td align="left">创建成本低</td>
-<td align="left">all</td>
-</tr>
-<tr>
-<td align="left">缺点</td>
-<td align="left">成本高</td>
-<td align="left">并发性能不完全</td>
-<td align="left">\</td>
-</tr>
-</tbody></table>
+        <p>难度中等</p>
+<p>给定一个经过编码的字符串，返回它解码后的字符串。</p>
+<p>编码规则为: <code>k[encoded_string]</code>，表示其中方括号内部的 <em>encoded_string</em> 正好重复 <em>k</em> 次。注意 <em>k</em> 保证为正整数。</p>
+<p>你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。</p>
+<p>此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 <em>k</em> ，例如不会出现像 <code>3a</code> 或 <code>2[4]</code> 的输入。</p>
         
-          <a class="article-more-a" href="/2021/04/20/golang-note-02-goroutine/#more">more >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-394-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81/#more">more >></a>
         
       
 
@@ -221,7 +201,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HOT100</a>
         		</li>
       		
 		</ul>
@@ -231,7 +215,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/20/golang-note-02-goroutine/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-394-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81/">展开全文 >></a>
         </p>
       
 
@@ -261,32 +245,30 @@
 
 
   
-    <article id="post-golang-note-00-syncMap揭秘" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-leetcode-347-前-K-个高频元素" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/20/golang-note-00-syncMap%E6%8F%AD%E7%A7%98/">Go-note-sync.Map揭秘</a>
+      <a class="article-title" href="/2021/05/20/leetcode-347-%E5%89%8D-K-%E4%B8%AA%E9%AB%98%E9%A2%91%E5%85%83%E7%B4%A0/">leetcode-347-前 K 个高频元素</a>
     </h1>
   
 
         
-        <a href="/2021/04/20/golang-note-00-syncMap%E6%8F%AD%E7%A7%98/" class="archive-article-date">
-  	<time datetime="2021-04-19T16:13:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-20</time>
+        <a href="/2021/05/20/leetcode-347-%E5%89%8D-K-%E4%B8%AA%E9%AB%98%E9%A2%91%E5%85%83%E7%B4%A0/" class="archive-article-date">
+  	<time datetime="2021-05-19T19:04:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><code>author</code>： stone</p>
-<p><code>time</code>： 2021-04-20 00:13:14</p>
-<p>在Go 1.6之前， 内置的map类型是部分goroutine安全的，并发的读没有问题，并发的写可能有问题。自go 1.6之后， 并发地读写map会报错，这在一些知名的开源库中都存在这个问题，所以go 1.9之前的解决方案是额外绑定一个锁，封装成一个新的struct或者单独使用锁都可以。</p>
-<p>本文带你深入到<code>sync.Map</code>的具体实现中，看看为了增加一个功能，代码是如何变的复杂的,以及作者在实现<code>sync.Map</code>的一些思想。</p>
+        <p>难度中等</p>
+<p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code> ，请你返回其中出现频率前 <code>k</code> 高的元素。你可以按 <strong>任意顺序</strong> 返回答案。</p>
         
-          <a class="article-more-a" href="/2021/04/20/golang-note-00-syncMap%E6%8F%AD%E7%A7%98/#more">more >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-347-%E5%89%8D-K-%E4%B8%AA%E9%AB%98%E9%A2%91%E5%85%83%E7%B4%A0/#more">more >></a>
         
       
 
@@ -300,7 +282,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HOT100</a>
         		</li>
       		
 		</ul>
@@ -310,7 +296,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/20/golang-note-00-syncMap%E6%8F%AD%E7%A7%98/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-347-%E5%89%8D-K-%E4%B8%AA%E9%AB%98%E9%A2%91%E5%85%83%E7%B4%A0/">展开全文 >></a>
         </p>
       
 
@@ -340,29 +326,32 @@
 
 
   
-    <article id="post-golang-19-Go语言基础之net-http包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-leetcode-239-滑动窗口最大值" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/10/golang-19-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8Bnet-http%E5%8C%85/">Go语言基础之net/http包</a>
+      <a class="article-title" href="/2021/05/20/leetcode-239-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC/">leetcode-239-滑动窗口最大值</a>
     </h1>
   
 
         
-        <a href="/2021/04/10/golang-19-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8Bnet-http%E5%8C%85/" class="archive-article-date">
-  	<time datetime="2021-04-10T02:35:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-10</time>
+        <a href="/2021/05/20/leetcode-239-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC/" class="archive-article-date">
+  	<time datetime="2021-05-19T18:03:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Go语言内置的<code>net/http</code>包十分的优秀，提供了HTTP客户端和服务端的实现。</p>
+        <p>难度困难</p>
+<p>给你一个整数数组 <code>nums</code>，有一个大小为 <code>k</code> 的滑动窗口从数组的最左侧移动到数组的最右侧。</p>
+<p>你只可以看到在滑动窗口内的 <code>k</code> 个数字。滑动窗口每次只向右移动一位。</p>
+<p>返回滑动窗口中的最大值。</p>
         
-          <a class="article-more-a" href="/2021/04/10/golang-19-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8Bnet-http%E5%8C%85/#more">more >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-239-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC/#more">more >></a>
         
       
 
@@ -376,7 +365,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HOT100</a>
         		</li>
       		
 		</ul>
@@ -386,7 +379,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/10/golang-19-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8Bnet-http%E5%8C%85/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-239-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC/">展开全文 >></a>
         </p>
       
 
@@ -416,29 +409,32 @@
 
 
   
-    <article id="post-golang-18-Go语言基础之time包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-leetcode-207-课程表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/09/golang-18-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8Btime%E5%8C%85/">Go语言基础之time包</a>
+      <a class="article-title" href="/2021/05/20/leetcode-207-%E8%AF%BE%E7%A8%8B%E8%A1%A8/">leetcode-207-课程表</a>
     </h1>
   
 
         
-        <a href="/2021/04/09/golang-18-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8Btime%E5%8C%85/" class="archive-article-date">
-  	<time datetime="2021-04-09T10:34:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-09</time>
+        <a href="/2021/05/20/leetcode-207-%E8%AF%BE%E7%A8%8B%E8%A1%A8/" class="archive-article-date">
+  	<time datetime="2021-05-19T18:00:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>时间和日期是我们编程中经常会用到的，本文主要介绍了Go语言内置的time包的基本用法。</p>
+        <p>难度中等</p>
+<p>你这个学期必须选修 numCourses 门课程，记为 0 到 numCourses - 1 。</p>
+<p>在选修某些课程之前需要一些先修课程。 先修课程按数组 prerequisites 给出，其中 prerequisites[i] = [ai, bi] ，表示如果要学习课程 ai 则 必须 先学习课程  bi 。</p>
+<p>例如，先修课程对 [0, 1] 表示：想要学习课程 0 ，你需要先完成课程 1 。<br>请你判断是否可能完成所有课程的学习？如果可以，返回 true ；否则，返回 false 。</p>
         
-          <a class="article-more-a" href="/2021/04/09/golang-18-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8Btime%E5%8C%85/#more">more >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-207-%E8%AF%BE%E7%A8%8B%E8%A1%A8/#more">more >></a>
         
       
 
@@ -452,7 +448,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HOT100</a>
         		</li>
       		
 		</ul>
@@ -462,7 +462,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/09/golang-18-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8Btime%E5%8C%85/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-207-%E8%AF%BE%E7%A8%8B%E8%A1%A8/">展开全文 >></a>
         </p>
       
 
@@ -492,29 +492,30 @@
 
 
   
-    <article id="post-golang-17-Go语言基础之fmt包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-leetcode-206-反转链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/09/golang-17-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8Bfmt%E5%8C%85/">Go语言基础之fmt包</a>
+      <a class="article-title" href="/2021/05/20/leetcode-206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">leetcode-206-反转链表</a>
     </h1>
   
 
         
-        <a href="/2021/04/09/golang-17-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8Bfmt%E5%8C%85/" class="archive-article-date">
-  	<time datetime="2021-04-09T02:34:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-09</time>
+        <a href="/2021/05/20/leetcode-206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" class="archive-article-date">
+  	<time datetime="2021-05-19T18:00:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>fmt标准库是我们在学习Go语言过程中接触最早最频繁的一个了，本文介绍了fmtb包的一些常用函数。</p>
+        <p>难度简单</p>
+<p>给你单链表的头节点 <code>head</code> ，请你反转链表，并返回反转后的链表。</p>
         
-          <a class="article-more-a" href="/2021/04/09/golang-17-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8Bfmt%E5%8C%85/#more">more >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/#more">more >></a>
         
       
 
@@ -528,7 +529,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HOT100</a>
         		</li>
       		
 		</ul>
@@ -538,7 +543,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/09/golang-17-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8Bfmt%E5%8C%85/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">展开全文 >></a>
         </p>
       
 
@@ -568,29 +573,32 @@
 
 
   
-    <article id="post-golang-16-Go语言基础之单元测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-leetcode-200-岛屿数量" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/08/golang-16-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">Go语言基础之单元测试</a>
+      <a class="article-title" href="/2021/05/20/leetcode-200-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/">leetcode-200-岛屿数量</a>
     </h1>
   
 
         
-        <a href="/2021/04/08/golang-16-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" class="archive-article-date">
-  	<time datetime="2021-04-08T10:59:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-08</time>
+        <a href="/2021/05/20/leetcode-200-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/" class="archive-article-date">
+  	<time datetime="2021-05-19T18:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>不写测试的开发不是好程序员。我个人非常崇尚TDD（Test Driven Development）的，然而可惜的是国内的程序员都不太关注测试这一部分。 这篇文章主要介绍下在Go语言中如何做单元测试和基准测试。</p>
+        <p>难度中等</p>
+<p>给你一个由 <code>&#39;1&#39;</code>（陆地）和 <code>&#39;0&#39;</code>（水）组成的的二维网格，请你计算网格中岛屿的数量。</p>
+<p>岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。</p>
+<p>此外，你可以假设该网格的四条边均被水包围。</p>
         
-          <a class="article-more-a" href="/2021/04/08/golang-16-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/#more">more >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-200-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/#more">more >></a>
         
       
 
@@ -604,7 +612,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HOT100</a>
         		</li>
       		
 		</ul>
@@ -614,7 +626,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/08/golang-16-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-200-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/">展开全文 >></a>
         </p>
       
 
@@ -644,29 +656,31 @@
 
 
   
-    <article id="post-golang-15-Go语言基础之网络编程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-leetcode-198-打家劫舍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/08/golang-15-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">Go语言基础之网络编程</a>
+      <a class="article-title" href="/2021/05/20/leetcode-198-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/">leetcode-198-打家劫舍</a>
     </h1>
   
 
         
-        <a href="/2021/04/08/golang-15-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2021-04-08T02:59:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-08</time>
+        <a href="/2021/05/20/leetcode-198-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/" class="archive-article-date">
+  	<time datetime="2021-05-19T17:09:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>现在我们几乎每天都在使用互联网，我们前面已经学习了如何编写Go语言程序，但是如何才能让我们的程序通过网络互相通信呢？本章我们就一起来学习下Go语言中的网络编程。 关于网络编程其实是一个很庞大的领域，本文只是简单的演示了如何使用net包进行TCP和UDP通信。如需了解更详细的网络编程请自行检索和阅读专业资料。</p>
+        <p>难度中等</p>
+<p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p>
+<p>给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</p>
         
-          <a class="article-more-a" href="/2021/04/08/golang-15-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/#more">more >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-198-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/#more">more >></a>
         
       
 
@@ -680,7 +694,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HOT100</a>
         		</li>
       		
 		</ul>
@@ -690,7 +708,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/08/golang-15-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-198-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/">展开全文 >></a>
         </p>
       
 
@@ -720,29 +738,32 @@
 
 
   
-    <article id="post-golang-14-Go语言基础之并发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-leetcode-146-LRU缓存机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/07/golang-14-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%B9%B6%E5%8F%91/">Go语言基础之并发</a>
+      <a class="article-title" href="/2021/05/20/leetcode-146-LRU%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/">leetcode 146-LRU缓存机制</a>
     </h1>
   
 
         
-        <a href="/2021/04/07/golang-14-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%B9%B6%E5%8F%91/" class="archive-article-date">
-  	<time datetime="2021-04-07T10:59:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-07</time>
+        <a href="/2021/05/20/leetcode-146-LRU%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" class="archive-article-date">
+  	<time datetime="2021-05-19T17:04:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>并发是编程里面一个非常重要的概念，Go语言在语言层面天生支持并发，这也是Go语言流行的一个很重要的原因。</p>
+        <p>难度中等</p>
+<p>运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制 。<br>实现 LRUCache 类：</p>
+<p>LRUCache(int capacity) 以正整数作为容量 capacity 初始化 LRU 缓存<br>int get(int key) 如果关键字 key 存在于缓存中，则返回关键字的值，否则返回 -1 。<br>void put(int key, int value) 如果关键字已经存在，则变更其数据值；如果关键字不存在，则插入该组「关键字-值」。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间。</p>
+<p>进阶：你是否可以在 O(1) 时间复杂度内完成这两种操作？</p>
         
-          <a class="article-more-a" href="/2021/04/07/golang-14-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%B9%B6%E5%8F%91/#more">more >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-146-LRU%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/#more">more >></a>
         
       
 
@@ -756,7 +777,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HOT100</a>
         		</li>
       		
 		</ul>
@@ -766,7 +791,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/07/golang-14-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%B9%B6%E5%8F%91/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-146-LRU%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/">展开全文 >></a>
         </p>
       
 
@@ -796,29 +821,34 @@
 
 
   
-    <article id="post-golang-13-Go语言基础之反射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-leetcode-141-环形链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/07/golang-13-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8F%8D%E5%B0%84/">Go语言基础之反射</a>
+      <a class="article-title" href="/2021/05/20/leetcode-141-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/">leetcode 141-环形链表</a>
     </h1>
   
 
         
-        <a href="/2021/04/07/golang-13-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8F%8D%E5%B0%84/" class="archive-article-date">
-  	<time datetime="2021-04-07T02:59:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-07</time>
+        <a href="/2021/05/20/leetcode-141-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/" class="archive-article-date">
+  	<time datetime="2021-05-19T17:04:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文介绍了Go语言反射的意义和基本使用。</p>
+        <p>难度简单</p>
+<p>给定一个链表，判断链表中是否有环。</p>
+<p>如果链表中有某个节点，可以通过连续跟踪 <code>next</code> 指针再次到达，则链表中存在环。 为了表示给定链表中的环，我们使用整数 <code>pos</code> 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 <code>pos</code> 是 <code>-1</code>，则在该链表中没有环。<strong>注意：<code>pos</code> 不作为参数进行传递</strong>，仅仅是为了标识链表的实际情况。</p>
+<p>如果链表中存在环，则返回 <code>true</code> 。 否则，返回 <code>false</code> 。</p>
+<p><strong>进阶：</strong></p>
+<p>你能用 **O(1)**（即，常量）内存解决此问题吗？</p>
         
-          <a class="article-more-a" href="/2021/04/07/golang-13-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8F%8D%E5%B0%84/#more">more >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-141-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/#more">more >></a>
         
       
 
@@ -832,7 +862,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HOT100</a>
         		</li>
       		
 		</ul>
@@ -842,7 +876,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/07/golang-13-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8F%8D%E5%B0%84/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-141-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/">展开全文 >></a>
         </p>
       
 
@@ -872,29 +906,33 @@
 
 
   
-    <article id="post-golang-12-Go语言基础之接口" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-leetcode-001-两数之和" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/06/golang-12-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%8E%A5%E5%8F%A3/">Go语言基础之接口</a>
+      <a class="article-title" href="/2021/05/20/leetcode-001-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">leetcode 1-两数之和</a>
     </h1>
   
 
         
-        <a href="/2021/04/06/golang-12-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%8E%A5%E5%8F%A3/" class="archive-article-date">
-  	<time datetime="2021-04-06T10:58:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-06</time>
+        <a href="/2021/05/20/leetcode-001-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" class="archive-article-date">
+  	<time datetime="2021-05-19T16:00:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>接口（interface）定义了一个对象的行为规范，只定义规范不实现，由具体的对象来实现规范的细节。</p>
+        <p>难度简单</p>
+<p>给定一个整数数组 <code>nums</code> 和一个整数目标值 <code>target</code>。</p>
+<p>请你在该数组中找出 <strong>和为目标值</strong> <em><code>target</code></em> 的那 <strong>两个</strong> 整数，并返回它们的数组下标。</p>
+<p>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。</p>
+<p>你可以按任意顺序返回答案。</p>
         
-          <a class="article-more-a" href="/2021/04/06/golang-12-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%8E%A5%E5%8F%A3/#more">more >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-001-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/#more">more >></a>
         
       
 
@@ -908,7 +946,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HOT100</a>
         		</li>
       		
 		</ul>
@@ -918,7 +960,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/06/golang-12-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%8E%A5%E5%8F%A3/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/05/20/leetcode-001-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">展开全文 >></a>
         </p>
       
 
@@ -950,7 +992,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1082,6 +1124,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Newcoder</a>
               </li>
             
             <div class="clearfix"></div>
