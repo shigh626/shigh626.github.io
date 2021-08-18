@@ -16,7 +16,7 @@
 <meta property="og:description" content="OJ在线编程常见输入输出练习 [编程题]字符串排序(3)  输入例子  123a,c,bbf,ddddnowcoder">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-08-18T11:54:12.000Z">
-<meta property="article:modified_time" content="2021-08-18T15:42:10.067Z">
+<meta property="article:modified_time" content="2021-08-18T15:52:52.847Z">
 <meta property="article:author" content="stone">
 <meta property="article:tag" content="Newcoder">
 <meta name="twitter:card" content="summary">
@@ -207,7 +207,7 @@
 
 
 
-<h5 id="Golang"><a href="#Golang" class="headerlink" title="Golang:"></a>Golang:</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    input := bufio.NewScanner(os.Stdin)</span><br><span class="line">    <span class="keyword">for</span> input.Scan() &#123;</span><br><span class="line">        str := strings.Split(input.Text(), <span class="string">&quot;,&quot;</span>) <span class="comment">// 字符串分割</span></span><br><span class="line">        sort.StringSlice.Sort(str) 				<span class="comment">// 字符串排序，这里借助了sort.StringSlice方法来实现</span></span><br><span class="line">        fmt.Println(strings.Join(str, <span class="string">&quot;,&quot;</span>)) 	<span class="comment">// 通过Join来连接， 也可以手动连接</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="Golang"><a href="#Golang" class="headerlink" title="Golang:"></a>Golang:</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    input := bufio.NewScanner(os.Stdin)</span><br><span class="line">    <span class="keyword">for</span> input.Scan() &#123;</span><br><span class="line">        str := strings.Split(input.Text(), <span class="string">&quot;,&quot;</span>) <span class="comment">// 字符串分割</span></span><br><span class="line">        sort.StringSlice.Sort(str)              <span class="comment">// 字符串排序，这里借助了sort.StringSlice方法来实现</span></span><br><span class="line">        fmt.Println(strings.Join(str, <span class="string">&quot;,&quot;</span>))     <span class="comment">// 通过Join来连接， 也可以手动连接</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
