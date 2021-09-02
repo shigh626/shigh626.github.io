@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://shigh626.github.io">
-  <title>stone&#39;s blog</title>
+  <title>深入理解MVC模式 | stone&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这都被你发现了">
-<meta property="og:type" content="website">
-<meta property="og:title" content="stone&#39;s blog">
-<meta property="og:url" content="https://shigh626.github.io/page/3/index.html">
+  <meta name="description" content="深入理解MVC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解MVC模式">
+<meta property="og:url" content="https://shigh626.github.io/2021/06/26/note-006-MVC%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="stone&#39;s blog">
-<meta property="og:description" content="这都被你发现了">
+<meta property="og:description" content="深入理解MVC">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://shigh626.github.io/2021/06/26/note-006-MVC%E6%A8%A1%E5%BC%8F/v2-30f72a70d6d84065d2147754bf2ad59f_1440w.jpg">
+<meta property="article:published_time" content="2021-06-25T20:34:52.000Z">
+<meta property="article:modified_time" content="2021-09-02T03:06:56.550Z">
 <meta property="article:author" content="stone">
-<meta property="article:tag" content="java,golang">
+<meta property="article:tag" content="随笔">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shigh626.github.io/2021/06/26/note-006-MVC%E6%A8%A1%E5%BC%8F/v2-30f72a70d6d84065d2147754bf2ad59f_1440w.jpg">
   
     <link rel="alternative" href="/atom.xml" title="stone&#39;s blog" type="application/atom+xml">
   
@@ -159,41 +163,91 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-note-004-post提交数据的四种格式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-note-006-MVC模式" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/26/note-004-post%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%A0%BC%E5%BC%8F/">四种常见的 POST 提交数据方式</a>
+    <h1 class="article-title" itemprop="name">
+      深入理解MVC模式
     </h1>
   
 
         
-        <a href="/2021/06/26/note-004-post%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%A0%BC%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-06-25T18:34:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-26</time>
+        <a href="/2021/06/26/note-006-MVC%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2021-06-25T20:34:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>文章目录</strong></p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://imququ.com/post/four-ways-to-post-data-in-http.html#toc-0">application/x-www-form-urlencoded</a></li>
-<li><a target="_blank" rel="noopener" href="https://imququ.com/post/four-ways-to-post-data-in-http.html#toc-1">multipart/form-data</a></li>
-<li><a target="_blank" rel="noopener" href="https://imququ.com/post/four-ways-to-post-data-in-http.html#toc-2">application/json</a></li>
-<li><a target="_blank" rel="noopener" href="https://imququ.com/post/four-ways-to-post-data-in-http.html#toc-3">text/xml</a></li>
-</ul>
-<p><a target="_blank" rel="noopener" href="http://www.ietf.org/rfc/rfc2616.txt">HTTP/1.1 协议</a>规定的 HTTP 请求方法有 OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE、CONNECT 这几种。其中 POST 一般用来向服务端提交数据，本文主要讨论 POST 提交数据的几种方式。</p>
-        
-          <a class="article-more-a" href="/2021/06/26/note-004-post%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%A0%BC%E5%BC%8F/#more">more >></a>
-        
+        <h1 id="深入理解MVC"><a href="#深入理解MVC" class="headerlink" title="深入理解MVC"></a>深入理解MVC</h1><img src="/2021/06/26/note-006-MVC%E6%A8%A1%E5%BC%8F/v2-30f72a70d6d84065d2147754bf2ad59f_1440w.jpg" alt="深入理解MVC" style="zoom: 33%;">
+
+<span id="more"></span>
+
+<p>MVC无人不知，可很多程序员对MVC的概念的理解似乎有误，换言之他们一直在错用MVC，尽管即使如此软件也能被写出来，然而软件内部代码的组织方式却是不科学的，这会影响到软件的可维护性、可移植性，代码的可重用性。</p>
+<p>MVC即Model、View、Controller即模型、视图、控制器。我在和同行讨论技术，阅读别人的代码时发现，很多程序员倾向于将软件的业务逻辑放在Controller里，将数据库访问操作的代码放在Model里。</p>
+<p>最终软件（网站）的代码结构是，View层是界面，Controller层是业务逻辑，Model层是数据库访问。</p>
+<p>不知道大家知不知道另外一种软件开发模式<strong>三层架构</strong>，它和MVC相似之处是也分为三层，分别是UI层表示用户界面，BLL层表示业务逻辑，DAL层表示数据访问。三层架构曾经红极一时，MVC大行其道之后它就销声匿迹了， 可现在看来， 它似乎只是改头换面， 装扮成MVC的样子，并且深受程序员们的欢迎，因为它的这种分层方式和前文描述的MVC如出一辙。</p>
+<p><strong>再说的直白点，很多程序员将MVC当成了三层架构在用，</strong>这看起来似乎没什么问题，毕竟三层架构也是一种和MVC齐名的架构模式。可问题在于用三成架构的思路写MVC，那么写出来的东西既不是三成架构也不是MVC，到是像一个什么都不是四不像。熟悉天龙八部的同学应该知道这样一段情节，吐蕃番僧鸠摩智强行用道家的小无相功为基础修炼少林的七十二绝技和易筋经最终导致走火入魔。其实用这个例子来形容现在一些程序员用三层架构的思想写MVC最恰当不过了，三层架构的核心思想是面向接口编程和各层之间的解耦和可替换性，MVC框架中没有这种概念，因为MVC要面对的问题本就不是三成架构要面对的问题，所以以MVC为基础写出来的三成架构是不会具备三层架构的核心要义的，换言之，这种代码是放弃了三层架构和MVC的精华，获得了它们的糟粕，是愚蠢的编码方式。</p>
+<p>我吐槽了这么多，对于吐槽的理由要是说不出个所以然来，估计要被人喷死，下面就来说说MVC本质原理和正确使用方式，当然，这里的MVC指的最纯粹MVC，适合各类软件，而不仅仅指Web框架中的变体MVC，然而万变不离其宗，文中所述的MVC思想同样适用于Web开发。</p>
+<p><strong>MVC要实现的目标是将软件用户界面和业务逻辑分离以使代码可扩展性、可复用性、可维护性、灵活性加强。</strong></p>
+<p>View层是界面，Model层是业务逻辑，Controller层用来调度View层和Model层，将用户界面和业务逻辑合理的组织在一起，起粘合剂的效果。所以Controller中的内容能少则少，这样才能提供最大的灵活性。</p>
+<p>比方说，有一个View会提交数据给Model进行处理以实现具体的行为，View通常不会直接提交数据给Model，它会先把数据提交给Controller，然后Controller再将数据转发给Model。假如此时程序业务逻辑的处理方式有变化，那么只需要在Controller中将原来的Model换成新实现的Model就可以了，<strong>控制器的作用就是这么简单， 用来将不同的View和不同的Model组织在一起，顺便替双方传递消息，仅此而已。</strong></p>
+<p>合理的使用MVC有很多好处，要一一道尽是一件异常困难的任务。在这里我们通过一个反面示例来侧面的证明正确使用MVC的好处与依据。</p>
+<p>如前文所言， 很多程序员偏爱于将业务逻辑放在Controller中，我极力反对这种做法，现在我就来证明这中做法的错误性。</p>
+<p>我们知道在写程序时，业务逻辑的重复使用是经常要面对的场景。 如果业务逻辑写在控制器中， 要重用它的唯一方法就是将它提升到父类之中，通过继承来达到代码复用的效果。但这么做会带来一个巨大的副作用，违背了一项重要的面向对象设计原则：接口隔离。</p>
+<p>什么是接口隔离，我在这里简单的讲述一下。通俗一点讲，接口隔离就是当一个类需要继承另一个类时， 如果被继承的类中有继承的类用不到的方法或者属性时，就不要去实现这个继承。如果真的情非得已必须要继承，那么也需要从被继承的类中再提取出一个只包含需要部分功能的新类型，最终去继承这个新类型才是正确的做法。 换句话说，实现继承的时候，不要去继承那些用不到的事物。</p>
+<p>回到之前的话题，通过继承父控制器的方式复用业务逻辑时，往往会出现为了重用一个方法而继承来一大堆用不到的方法，表面上看起来似乎没什么问题，但是这会使代码变的难以理解，<br>长此以往， 软件的代码会朝着不健康的方向发展。</p>
+<p>要知道，使用继承的条件是很苛刻的，我们学习面向对象变编程继承特性时，第一课就是只有满足IS-A（是一个）关系时才可以使用继承，<strong>如果仅仅是复用代码，并不是我们使用继承的理由。</strong>使用组合是复用代码提倡的方式，也就是所谓的HAS-A（有一个）的关系，相信每个程序员都听过“少用继承，多有组合”这句话，这句话是软件开发业的先驱们千锤百炼总结出来的，值得我们去遵循。</p>
+<p>各Model之间是可以相互调用的， Controller也可以无障碍的调用Model，因此将业务逻辑放在Model中可以灵活的使用组合的方式复用代码。</p>
+<p>而Controller之间是不可以相互调用的，要复用代码只能将代码提升至父类，通过继承实现，显然这种做法既不正确，也不灵活，因此完全不提倡。</p>
+<p>综上所述，仅仅只是代码复用这一点，也足以将“厚Controller，薄Model”这种不健康的MVC思想打入十八层地狱。</p>
+<p>现在我们大概知道了代码应该如何分布于MVC三层之间， 知其然，并且也知其所以然。接下来我们再从另一个角度深刻剖析MVC，脱它个精光，让它赤条条展示在我们眼前。</p>
+<p>众所周知，GoF总结过23个设计模式，这23个设计模式是某些特定的编程问题的特效药，这是业内公认的。</p>
+<p>MVC是一种模式，但却在GoF总结出来的这个23个设计模式之外，确切的说它不是一种设计模式，它是多种设计模式的组合，并不仅仅只是一个单独的一个模式。</p>
+<p><strong>组成MVC的三个模式分别是组合模式、策咯模式、观察者模式，MVC在软件开发中发挥的威力，最终离不开这三个模式的默契配合。</strong> 那些崇尚设计模式无用论的程序员，请了解只要你们使用MVC，就离不开设计模式。</p>
+<p><strong>注意，以下内容以这三个设计模式的知识为基础，如果对这三个设计模式没概念，或许会阅读困难。</strong></p>
+<p>先说组合模式在MVC中扮演什么样的角色。</p>
+<p>组合模式只在视图层活动， 视图层的实现用的就是组合模式，当然，这里指的实现是底层的实现，是由编程框架厂商做的事情，用不着普通程序员插手。</p>
+<p>组合模式的类层次结构是树状的， 而我们做Web时视图层是html页面，html的结构不正是树状的吗，这其实就是一个组合模式的应用，只是浏览器厂商已经把界面相关的工作帮我们做掉了，但它确确实实是我们应用MVC的其中一部分，只是我们感觉不到罢了，这也是我们觉得View是实现起来最简单最没有歧义的一层的原因。</p>
+<p>除网页以外的其他用户界面程序，如WPF、Android、<a href="https://link.zhihu.com/?target=http://ASP.NET">http://ASP.NET</a>等等都是使用树状结构来组织界面控件对象的，因为组合模式就是从界面设计的通用解决方案总提炼出来的。所以与其说MVC选择了组合模式，还不如说组合模式是必定会存在MVC中的，因为只要涉及到用户界面，组合模式就必定存。事实上即使不理解组合模式，也不影响程序员正确的使用MVC，组合模式本就存在于程序员接触不到的位置。</p>
+<p>然而，观察者模式和策略模式就显得比较重要，是实实在在MVC中接触的到的部分。</p>
+<p>观察者模式有两部分组成，被观察的对象和观察者，观察者也被称为监听者。<strong>对应到MVC中，Model是被观察的对象，View是观察者，Model层一旦发生变化，View层即被通知更新。</strong>View层和Model层互相之间是持有引用的。 我们在开发Web MVC程序时，因为视图层的html和Model层的业务逻辑之间隔了一个http，所以不能显示的进行关联，但是他们观察者和收听者的关系却没有改变。当View通过http提交数据给服务器，服务器上的Model接受到数据执行某些操作，再通过http响应将结果回送给View，View（浏览器）接受到数据更新界面，这不正是一个接受到通知并执行更新的行为吗，是观察者模式的另一种表现形式。</p>
+<p>但是，脱离Web，当通过代码去纯粹的表示一个MVC结构的时候，View和Model间无疑是观察者和被观察的关系，是以观察者模式为理论基础的。即使在Web中因为http壁垒的原因导致真正的实现有点走样，但是原理核心和思路哲学却是不变的。</p>
+<p>最后是策略模式。策略模式是View和Controller之间的关系，Controller是View的一个策略，Controller对于View是可替换的， View和Controller的关系是一对多，在实际的开发场景中，也经常会碰到一个View被多个Controller引用，这即使策咯模式的一种体现，只是不那么直观而已。</p>
+<p>总结一下，关于MVC各层之间关系所对应的设计模式</p>
+<p>View层，单独实现了组合模式</p>
+<p>Model层和View层，实现了观察者模式</p>
+<p>View层和Controller层，实现了策咯模式</p>
+<p><strong>MVC就是将这三个设计模式在一起用了，将这三个设计模式弄明白，MVC将毫无神秘感可言。如果不了解这三个设计模式去学习MVC，那不管怎么学总归是一知半解，用的时候也难免不会出想问题。</strong></p>
+<p>再次回到最前面讨论的业务逻辑应该放在Controller还是Model的问题上，从设计模式的角度讲，策略模式中的策略通常都很小很薄，不会包含太多的内容， Controller是一个策略， 自然不应该在里面放置过多的内容，否则要替换一个新的会相当麻烦，与此同时也会破坏View-Model的观察者模式，仿佛View-Controller之间即实现了策略模式又实现了观察者模式，这种混乱是罪恶的根源，是制造焦油坑让程序员陷入其中无法自拔的罪魁祸首。切忌，应当避免。</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -213,16 +267,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/26/note-004-post%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%A0%BC%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://shigh626.github.io/2021/06/26/note-006-MVC%E6%A8%A1%E5%BC%8F/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2021/07/02/golang-%E4%B8%89%E5%8D%81%E5%85%AD%E8%AE%B2-26-sync-Mutex%E4%B8%8Esync-RWMutex/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          26 | sync.Mutex与sync.RWMutex
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/06/26/note-005-http%E7%8A%B6%E6%80%81%E7%A0%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">http状态码</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -237,742 +359,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-note-003-计算机存储术语" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/26/note-003-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E6%9C%AF%E8%AF%AD/">计算机存储术语</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/26/note-003-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E6%9C%AF%E8%AF%AD/" class="archive-article-date">
-  	<time datetime="2021-06-25T17:34:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="计算机存储术语-扇区，磁盘块，页"><a href="#计算机存储术语-扇区，磁盘块，页" class="headerlink" title="计算机存储术语: 扇区，磁盘块，页"></a>计算机存储术语: 扇区，磁盘块，页</h1><ul>
-<li><p><a href="https://link.zhihu.com/?target=http://www.hellokang.net/os/storage-term.html%23%E6%89%87%E5%8C%BA%EF%BC%8Csector">扇区，sector</a></p>
-</li>
-<li><p><a href="https://link.zhihu.com/?target=http://www.hellokang.net/os/storage-term.html%23%E7%A3%81%E7%9B%98%E5%9D%97%EF%BC%8Cio-block">磁盘块，IO Block</a></p>
-</li>
-<li><p><a href="https://link.zhihu.com/?target=http://www.hellokang.net/os/storage-term.html%23%E9%A1%B5%EF%BC%8Cpage">页，page</a></p>
-</li>
-<li><p><a href="https://link.zhihu.com/?target=http://www.hellokang.net/os/storage-term.html%23%E5%91%BD%E4%BB%A4%E7%B4%A2%E5%BC%95">命令索引</a></p></li></ul>
-        
-          <a class="article-more-a" href="/2021/06/26/note-003-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E6%9C%AF%E8%AF%AD/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/26/note-003-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E6%9C%AF%E8%AF%AD/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC"><span class="toc-number">1.</span> <span class="toc-text">深入理解MVC</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-note-002-Golang实现RPC调用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/26/note-002-Golang%E5%AE%9E%E7%8E%B0RPC%E8%B0%83%E7%94%A8/">初识RPC-Golang实现RPC调用</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/26/note-002-Golang%E5%AE%9E%E7%8E%B0RPC%E8%B0%83%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2021-06-25T16:00:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="什么是RPC"><a href="#什么是RPC" class="headerlink" title="什么是RPC"></a>什么是RPC</h2><blockquote>
-<p>在分布式计算<strong>，远程过程调用</strong>（英语：Remote Procedure Call，缩写为 RPC）是一个计算机通信协议。该协议允许运行于一台计算机的程序调用另一个地址空间（通常为一个开放网络的一台计算机）的子程序，而程序员就像调用本地程序一样，无需额外地为这个交互作用编程（无需关注细节）。RPC 是一种服务器-客户端（ Client/Server ）模式，经典实现是一个通过 <strong>发送请求-接受回应</strong> 进行信息交互的系统。</p>
-</blockquote>
-<p>在这里引用一下维基百科对于 RPC 的解释， 可以针对与 HTTP 协议来比较分析，RPC 更适合于公司中大、中型项目分布式调用场景。</p>
-        
-          <a class="article-more-a" href="/2021/06/26/note-002-Golang%E5%AE%9E%E7%8E%B0RPC%E8%B0%83%E7%94%A8/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RPC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/26/note-002-Golang%E5%AE%9E%E7%8E%B0RPC%E8%B0%83%E7%94%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-note-001-RPC调用与HTTP调用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/26/note-001-RPC%E8%B0%83%E7%94%A8%E4%B8%8EHTTP%E8%B0%83%E7%94%A8/">初识RPC-RPC调用与HTTP调用</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/26/note-001-RPC%E8%B0%83%E7%94%A8%E4%B8%8EHTTP%E8%B0%83%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2021-06-25T16:00:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>很长时间以来都没有怎么好好搞清楚RPC（即Remote Procedure Call，远程过程调用）和HTTP调用的区别，不都是写一个服务然后在客户端调用么？这里请允许我迷之一笑~Naive！本文简单地介绍一下两种形式的C/S架构，先说一下他们最本质的区别，就是RPC主要是基于TCP/IP协议的，而HTTP服务主要是基于HTTP协议的，我们都知道HTTP协议是在传输层协议TCP之上的，所以效率来看的话，RPC当然是要更胜一筹啦！下面来具体说一说RPC服务和HTTP服务。</p>
-        
-          <a class="article-more-a" href="/2021/06/26/note-001-RPC%E8%B0%83%E7%94%A8%E4%B8%8EHTTP%E8%B0%83%E7%94%A8/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RPC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/26/note-001-RPC%E8%B0%83%E7%94%A8%E4%B8%8EHTTP%E8%B0%83%E7%94%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-note-000-Golang-ACM模式刷题输入输出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/26/note-000-Golang-ACM%E6%A8%A1%E5%BC%8F%E5%88%B7%E9%A2%98%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">Golang-ACM模式刷题-fmt.Scan</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/26/note-000-Golang-ACM%E6%A8%A1%E5%BC%8F%E5%88%B7%E9%A2%98%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" class="archive-article-date">
-  	<time datetime="2021-06-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在go语言中如果想获取用户输入，会用到Scan方法。scan在go语言中有很多中，今天介绍一下他们的使用方法和不同点。</p>
-<p>和print类似，scan也分为三大类：</p>
-<ul>
-<li><p>Scan、Scanf和Scanln: 从标准输入os.Stdin读取文本(从终端获取数据)</p>
-</li>
-<li><p>Fscan、Fscanf、Fscanln: 从指定的io.Reader接口读取文本(通用)</p>
-</li>
-<li><p>Sscan、Sscanf、Sscanln: 从一个参数字符串读取文本(从字符串string获取数据)</p></li></ul>
-        
-          <a class="article-more-a" href="/2021/06/26/note-000-Golang-ACM%E6%A8%A1%E5%BC%8F%E5%88%B7%E9%A2%98%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/26/note-000-Golang-ACM%E6%A8%A1%E5%BC%8F%E5%88%B7%E9%A2%98%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-dev-正则表达式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/22/dev-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/22/dev-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-06-21T16:47:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>正则表达式就是由普通字符（例如字符 a 到  z  ） 以及特殊字符（称为元字符）组成的文字模式。该模式描述在查找文字主体时待匹配的一个或多个字符串。正则表达式作为一个模板，将某个字符模式与所搜索的字 符串进行匹配。</p>
-<p>本文详细地列出了能在正则表达式中使用，以匹配文本的各种字符。当你需要解释一个现有的正则表达式时，可以作为一个快捷的参考。更多详 细内容</p>
-<p>正则学习网站：</p>
-<p>（1）<a target="_blank" rel="noopener" href="https://regexr-cn.com/">Test RegEx (regexr-cn.com)</a></p>
-<p>（2）<a target="_blank" rel="noopener" href="https://www.codejiaonang.com/#/course/regex_chapter1/0/0">编程胶囊 (codejiaonang.com)</a></p>
-        
-          <a class="article-more-a" href="/2021/06/22/dev-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">开发者</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/22/dev-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-dev-Git" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/16/dev-Git/">初识Git</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/16/dev-Git/" class="archive-article-date">
-  	<time datetime="2021-06-15T17:33:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://www.runoob.com/wp-content/uploads/2015/02/f7246b600c338744a9591cd7530fd9f9d62aa0f8.png" alt="Git 教程"></p>
-<p>Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。</p>
-<p>Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。</p>
-<p>Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。</p>
-        
-          <a class="article-more-a" href="/2021/06/16/dev-Git/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">开发者</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/16/dev-Git/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/16/Linux1/">初识Linux</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/16/Linux1/" class="archive-article-date">
-  	<time datetime="2021-06-15T17:33:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://www.runoob.com/wp-content/uploads/2014/06/linux.jpg" alt="linux"></p>
-<p>Linux 内核最初只是由芬兰人林纳斯·托瓦兹（Linus Torvalds）在赫尔辛基大学上学时出于个人爱好而编写的。</p>
-<p>Linux 是一套免费使用和自由传播的类 Unix 操作系统，是一个基于 POSIX（可移植操作系统接口） 和 UNIX 的多用户、多任务、支持多线程和多 CPU 的操作系统。</p>
-<p>Linux 能运行主要的 UNIX 工具软件、应用程序和网络协议。它支持 32 位和 64 位硬件。Linux 继承了 Unix 以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。</p>
-        
-          <a class="article-more-a" href="/2021/06/16/Linux1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">开发者</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/16/Linux1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-dev-CSS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/16/dev-CSS/">初识CSS</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/16/dev-CSS/" class="archive-article-date">
-  	<time datetime="2021-06-15T17:28:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/HTML">HTML</a>（<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%A0%87%E5%87%86%E9%80%9A%E7%94%A8%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80/6805073">标准通用标记语言</a>的一个应用）或<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/XML">XML</a>（标准通用标记语言的一个子集）等文件样式的计算机语言。CSS不仅可以静态地修饰网页，还可以配合各种脚本语言动态地对网页各元素进行格式化。</p>
-<p>CSS 能够对网页中元素位置的排版进行像素级精确控制，支持几乎所有的字体字号样式，拥有对网页对象和模型样式编辑的能力。</p>
-        
-          <a class="article-more-a" href="/2021/06/16/dev-CSS/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">开发者</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/16/dev-CSS/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-dev-HTML" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/16/dev-HTML/">初识HTML</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/16/dev-HTML/" class="archive-article-date">
-  	<time datetime="2021-06-15T17:20:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>HTML的全称为超文本标记语言，是一种<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80/5964436">标记语言</a>。它包括一系列标签．通过这些标签可以将网络上的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%87%E6%A1%A3/1009768">文档</a>格式统一，使分散的Internet资源连接为一个逻辑整体。HTML文本是由HTML命令组成的描述性<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%87%E6%9C%AC/5443630">文本</a>，HTML命令可以说明<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%87%E5%AD%97/612910">文字</a>，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9B%BE%E5%BD%A2/773307">图形</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8A%A8%E7%94%BB/206564">动画</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A3%B0%E9%9F%B3/33686">声音</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%A1%A8%E6%A0%BC/3371820">表格</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%93%BE%E6%8E%A5/2665501">链接</a>等。 </p>
-<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%B6%85%E6%96%87%E6%9C%AC/2832422">超文本</a>是一种组织信息的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%B9%E5%BC%8F/3616191">方式</a>，它通过超级链接方法将文本中的文字、图表与其他<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BF%A1%E6%81%AF%E5%AA%92%E4%BD%93/8400627">信息媒体</a>相关联。这些相互关联的信息媒体可能在同一文本中，也可能是其他文件，或是地理位置相距遥远的某台计算机上的文件。这种组织信息方式将分布在不同位置的信息资源用随机方式进行连接，为人们查找，检索信息提供方便。</p>
-        
-          <a class="article-more-a" href="/2021/06/16/dev-HTML/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">开发者</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/16/dev-HTML/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -995,8 +407,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

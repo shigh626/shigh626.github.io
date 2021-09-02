@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://shigh626.github.io">
-  <title>stone&#39;s blog</title>
+  <title>http状态码 | stone&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这都被你发现了">
-<meta property="og:type" content="website">
-<meta property="og:title" content="stone&#39;s blog">
-<meta property="og:url" content="https://shigh626.github.io/page/3/index.html">
+  <meta name="description" content="1．什么是Http协议？ http（超文本传输协议）是一个在器客户端和服务器端之间基于请求与响应模式的、无状态的、应用层的协议，常基于TCP的连接方式 2．什么是Http协议无状态协议？怎么解决Http协议无状态协议？ 无状态协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息 无状态协议解决办法： 通过1、Cookie 2、通过Session会话保存。  Http状态码一览">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http状态码">
+<meta property="og:url" content="https://shigh626.github.io/2021/06/26/note-005-http%E7%8A%B6%E6%80%81%E7%A0%81/index.html">
 <meta property="og:site_name" content="stone&#39;s blog">
-<meta property="og:description" content="这都被你发现了">
+<meta property="og:description" content="1．什么是Http协议？ http（超文本传输协议）是一个在器客户端和服务器端之间基于请求与响应模式的、无状态的、应用层的协议，常基于TCP的连接方式 2．什么是Http协议无状态协议？怎么解决Http协议无状态协议？ 无状态协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息 无状态协议解决办法： 通过1、Cookie 2、通过Session会话保存。  Http状态码一览">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-06-25T19:34:52.000Z">
+<meta property="article:modified_time" content="2021-09-02T03:03:52.322Z">
 <meta property="article:author" content="stone">
-<meta property="article:tag" content="java,golang">
+<meta property="article:tag" content="随笔">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="stone&#39;s blog" type="application/atom+xml">
@@ -159,370 +161,106 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-note-004-post提交数据的四种格式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-note-005-http状态码" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/26/note-004-post%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%A0%BC%E5%BC%8F/">四种常见的 POST 提交数据方式</a>
+    <h1 class="article-title" itemprop="name">
+      http状态码
     </h1>
   
 
         
-        <a href="/2021/06/26/note-004-post%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%A0%BC%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-06-25T18:34:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-26</time>
+        <a href="/2021/06/26/note-005-http%E7%8A%B6%E6%80%81%E7%A0%81/" class="archive-article-date">
+  	<time datetime="2021-06-25T19:34:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>文章目录</strong></p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://imququ.com/post/four-ways-to-post-data-in-http.html#toc-0">application/x-www-form-urlencoded</a></li>
-<li><a target="_blank" rel="noopener" href="https://imququ.com/post/four-ways-to-post-data-in-http.html#toc-1">multipart/form-data</a></li>
-<li><a target="_blank" rel="noopener" href="https://imququ.com/post/four-ways-to-post-data-in-http.html#toc-2">application/json</a></li>
-<li><a target="_blank" rel="noopener" href="https://imququ.com/post/four-ways-to-post-data-in-http.html#toc-3">text/xml</a></li>
+        <span id="more"></span>
+
+<h2 id="1．什么是Http协议？"><a href="#1．什么是Http协议？" class="headerlink" title="1．什么是Http协议？"></a>1．什么是Http协议？</h2><p> http（超文本传输协议）是一个在器客户端和服务器端之间基于<strong>请求与响应</strong>模式的、<strong>无状态的</strong>、<strong>应用层的</strong>协议，常基于<strong>TCP</strong>的连接方式</p>
+<h2 id="2．什么是Http协议无状态协议？怎么解决Http协议无状态协议？"><a href="#2．什么是Http协议无状态协议？怎么解决Http协议无状态协议？" class="headerlink" title="2．什么是Http协议无状态协议？怎么解决Http协议无状态协议？"></a>2．什么是Http协议无状态协议？怎么解决Http协议无状态协议？</h2><ul>
+<li>无状态协议对于<strong>事务</strong>处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息</li>
+<li>无状态协议解决办法： 通过1、<strong>Cookie</strong> 2、通过<strong>Session</strong>会话保存。</li>
 </ul>
-<p><a target="_blank" rel="noopener" href="http://www.ietf.org/rfc/rfc2616.txt">HTTP/1.1 协议</a>规定的 HTTP 请求方法有 OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE、CONNECT 这几种。其中 POST 一般用来向服务端提交数据，本文主要讨论 POST 提交数据的几种方式。</p>
-        
-          <a class="article-more-a" href="/2021/06/26/note-004-post%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%A0%BC%E5%BC%8F/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/26/note-004-post%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%A0%BC%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-note-003-计算机存储术语" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/26/note-003-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E6%9C%AF%E8%AF%AD/">计算机存储术语</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/26/note-003-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E6%9C%AF%E8%AF%AD/" class="archive-article-date">
-  	<time datetime="2021-06-25T17:34:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="计算机存储术语-扇区，磁盘块，页"><a href="#计算机存储术语-扇区，磁盘块，页" class="headerlink" title="计算机存储术语: 扇区，磁盘块，页"></a>计算机存储术语: 扇区，磁盘块，页</h1><ul>
-<li><p><a href="https://link.zhihu.com/?target=http://www.hellokang.net/os/storage-term.html%23%E6%89%87%E5%8C%BA%EF%BC%8Csector">扇区，sector</a></p>
-</li>
-<li><p><a href="https://link.zhihu.com/?target=http://www.hellokang.net/os/storage-term.html%23%E7%A3%81%E7%9B%98%E5%9D%97%EF%BC%8Cio-block">磁盘块，IO Block</a></p>
-</li>
-<li><p><a href="https://link.zhihu.com/?target=http://www.hellokang.net/os/storage-term.html%23%E9%A1%B5%EF%BC%8Cpage">页，page</a></p>
-</li>
-<li><p><a href="https://link.zhihu.com/?target=http://www.hellokang.net/os/storage-term.html%23%E5%91%BD%E4%BB%A4%E7%B4%A2%E5%BC%95">命令索引</a></p></li></ul>
-        
-          <a class="article-more-a" href="/2021/06/26/note-003-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E6%9C%AF%E8%AF%AD/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/26/note-003-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E6%9C%AF%E8%AF%AD/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-note-002-Golang实现RPC调用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/26/note-002-Golang%E5%AE%9E%E7%8E%B0RPC%E8%B0%83%E7%94%A8/">初识RPC-Golang实现RPC调用</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/26/note-002-Golang%E5%AE%9E%E7%8E%B0RPC%E8%B0%83%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2021-06-25T16:00:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="什么是RPC"><a href="#什么是RPC" class="headerlink" title="什么是RPC"></a>什么是RPC</h2><blockquote>
-<p>在分布式计算<strong>，远程过程调用</strong>（英语：Remote Procedure Call，缩写为 RPC）是一个计算机通信协议。该协议允许运行于一台计算机的程序调用另一个地址空间（通常为一个开放网络的一台计算机）的子程序，而程序员就像调用本地程序一样，无需额外地为这个交互作用编程（无需关注细节）。RPC 是一种服务器-客户端（ Client/Server ）模式，经典实现是一个通过 <strong>发送请求-接受回应</strong> 进行信息交互的系统。</p>
+<h2 id="Http状态码一览表"><a href="#Http状态码一览表" class="headerlink" title="Http状态码一览表"></a>Http状态码一览表</h2><p>一般常用到的有200号状态码和404号状态码。200号表示网页被下载成功，而404号表示不能成功下载并产生错误。下面是HTTP状态码一览表。</p>
+<blockquote>
+<p>1xx：请求收到，继续处理<br>2xx：操作成功收到，分析、接受<br>3xx：完成此请求必须进一步处理<br>4xx：请求包含一个错误语法或不能完成<br>5xx：服务器执行一个完全有效请求失败</p>
 </blockquote>
-<p>在这里引用一下维基百科对于 RPC 的解释， 可以针对与 HTTP 协议来比较分析，RPC 更适合于公司中大、中型项目分布式调用场景。</p>
-        
-          <a class="article-more-a" href="/2021/06/26/note-002-Golang%E5%AE%9E%E7%8E%B0RPC%E8%B0%83%E7%94%A8/#more">more >></a>
-        
-      
+<p>面试高频：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">200: OK,客户端请求成功</span><br><span class="line">301: 永久性重定向</span><br><span class="line">302: 临时重定向</span><br><span class="line">303: 与302状态码有相似功能，只是它希望客户端在请求一个URI的时候，能通过GET方法重定向到另一个URI上</span><br><span class="line">304: 发送附带条件的请求时，条件不满足时返回，与重定向无关</span><br><span class="line">400: Bad Request,客户端请求有语法错误，不能被服务器所理解</span><br><span class="line">401: Unauthorized,请求未经授权，这个状态代码必须和WWW-Authenticate报,头域一起使用 </span><br><span class="line">403: Forbidden,服务器收到请求，但是拒绝提供服务</span><br><span class="line">404: Not Found,请求资源不存在，eg：输入了错误的URL</span><br><span class="line">500: Internal Server Error,服务器发生不可预期的错误</span><br><span class="line">502: 服务器暂时不可用，有时是为了防止发生系统过载</span><br><span class="line">503: Server Unavailable,服务器当前不能处理客户端的请求，一段时间后，可能恢复正常</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RPC</a>
-        		</li>
-      		
-		</ul>
-	</div>
+ <!--more-->
 
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/26/note-002-Golang%E5%AE%9E%E7%8E%B0RPC%E8%B0%83%E7%94%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-note-001-RPC调用与HTTP调用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/26/note-001-RPC%E8%B0%83%E7%94%A8%E4%B8%8EHTTP%E8%B0%83%E7%94%A8/">初识RPC-RPC调用与HTTP调用</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/26/note-001-RPC%E8%B0%83%E7%94%A8%E4%B8%8EHTTP%E8%B0%83%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2021-06-25T16:00:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>很长时间以来都没有怎么好好搞清楚RPC（即Remote Procedure Call，远程过程调用）和HTTP调用的区别，不都是写一个服务然后在客户端调用么？这里请允许我迷之一笑~Naive！本文简单地介绍一下两种形式的C/S架构，先说一下他们最本质的区别，就是RPC主要是基于TCP/IP协议的，而HTTP服务主要是基于HTTP协议的，我们都知道HTTP协议是在传输层协议TCP之上的，所以效率来看的话，RPC当然是要更胜一筹啦！下面来具体说一说RPC服务和HTTP服务。</p>
-        
-          <a class="article-more-a" href="/2021/06/26/note-001-RPC%E8%B0%83%E7%94%A8%E4%B8%8EHTTP%E8%B0%83%E7%94%A8/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RPC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/26/note-001-RPC%E8%B0%83%E7%94%A8%E4%B8%8EHTTP%E8%B0%83%E7%94%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-note-000-Golang-ACM模式刷题输入输出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/26/note-000-Golang-ACM%E6%A8%A1%E5%BC%8F%E5%88%B7%E9%A2%98%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">Golang-ACM模式刷题-fmt.Scan</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/26/note-000-Golang-ACM%E6%A8%A1%E5%BC%8F%E5%88%B7%E9%A2%98%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" class="archive-article-date">
-  	<time datetime="2021-06-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在go语言中如果想获取用户输入，会用到Scan方法。scan在go语言中有很多中，今天介绍一下他们的使用方法和不同点。</p>
-<p>和print类似，scan也分为三大类：</p>
+<h2 id="1xx：请求收到，继续处理"><a href="#1xx：请求收到，继续处理" class="headerlink" title="1xx：请求收到，继续处理"></a>1xx：请求收到，继续处理</h2><p>100——客户必须继续发出请求<br>101——客户要求服务器根据请求转换HTTP协议版本</p>
+<h2 id="2xx：操作成功收到，分析、接受"><a href="#2xx：操作成功收到，分析、接受" class="headerlink" title="2xx：操作成功收到，分析、接受"></a>2xx：操作成功收到，分析、接受</h2><p>200——交易成功<br>201——提示知道新文件的URL<br>202——接受和处理、但处理未完成<br>203——返回信息不确定或不完整<br>204——请求收到，但返回信息为空<br>205——服务器完成了请求，用户代理必须复位当前已经浏览过的文件<br>206——服务器已经完成了部分用户的GET请求</p>
+<h2 id="3xx-重定向"><a href="#3xx-重定向" class="headerlink" title="3xx: 重定向"></a>3xx: 重定向</h2><pre><code>     要完成请求，需要进一步操作。通常，这些状态码用来**重定向**。Google 建议您在每次请求中使用重定向不要超过 5 次。您可以使用网站管理员工具查看一下 Googlebot 在抓取重定向网页时是否遇到问题。诊断下的网络抓取页列出了由于重定向错误导致 Googlebot 无法抓取的网址。
+</code></pre>
 <ul>
-<li><p>Scan、Scanf和Scanln: 从标准输入os.Stdin读取文本(从终端获取数据)</p>
+<li><p>300——(多种选择)针对请求，服务器可执行多种操作。服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。</p>
 </li>
-<li><p>Fscan、Fscanf、Fscanln: 从指定的io.Reader接口读取文本(通用)</p>
+<li><p>301——(永久性重定向)请求的网页已永久移动到新位置。服务器返回此响应(对 GET 或 HEAD 请求的响应)时，会自动将请求者转到新位置。您应使用此代码告诉 Googlebot 某个网页或网站已永久移动到新位置。</p>
 </li>
-<li><p>Sscan、Sscanf、Sscanln: 从一个参数字符串读取文本(从字符串string获取数据)</p></li></ul>
-        
-          <a class="article-more-a" href="/2021/06/26/note-000-Golang-ACM%E6%A8%A1%E5%BC%8F%E5%88%B7%E9%A2%98%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/#more">more >></a>
-        
+<li><p>302——(临时重定向)服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来响应以后的请求。此代码与响应 GET 和 HEAD 请求的 301 代码类似，会自动将请求者转到不同的位置，但您不应使用此代码来告诉 Googlebot 某个网页或网站已经移动，因为 Googlebot 会继续抓取原有位置并编制索引。</p>
+</li>
+<li><p>303——(查看其他位置)请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。对于除 HEAD 之外的所有请求，服务器会自动转到其他位置。</p>
+</li>
+<li><p>304——(未修改)自从上次请求后，请求的网页未修改过。服务器返回此响应时，不会返回网页内容。发送附带条件的请求时，条件不满足时返回，与重定向无关。</p>
+</li>
+<li><p>305——(使用代理)请求者只能使用代理访问请求的网页。如果服务器返回此响应，还表示请求者应使用代理。</p>
+</li>
+<li><p>307(临时重定向)服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来响应以后的请求。原本的用法是用于让post请求的跳转去新的post请求，但也用于hsts跳转</p>
+</li>
+</ul>
+<h2 id="4xx：请求包含一个错误语法或不能完成"><a href="#4xx：请求包含一个错误语法或不能完成" class="headerlink" title="4xx：请求包含一个错误语法或不能完成"></a>4xx：请求包含一个错误语法或不能完成</h2><p>400——错误请求，如语法错误<br>401——请求授权失败<br>402——保留有效ChargeTo头响应<br>403——请求不允许<br>404——没有发现文件、查询或URl<br>405——用户在Request-Line字段定义的方法不允许<br>406——根据用户发送的Accept拖，请求资源不可访问<br>407——类似401，用户必须首先在代理服务器上得到授权<br>408——客户端没有在用户指定的饿时间内完成请求<br>409——对当前资源状态，请求不能完成<br>410——服务器上不再有此资源且无进一步的参考地址<br>411——服务器拒绝用户定义的Content-Length属性请求<br>412——一个或多个请求头字段在当前请求中错误<br>413——请求的资源大于服务器允许的大小<br>414——请求的资源URL长于服务器允许的长度<br>415——请求资源不支持请求项目格式<br>416——请求中包含Range请求头字段，在当前请求资源范围内没有range指示值，请求也不包含If-Range请求头字段<br>417——服务器不满足请求Expect头字段指定的期望值，如果是代理服务器，可能是下一级服务器不能满足请求</p>
+<h2 id="5xx：服务器执行一个完全有效请求失败"><a href="#5xx：服务器执行一个完全有效请求失败" class="headerlink" title="5xx：服务器执行一个完全有效请求失败"></a>5xx：服务器执行一个完全有效请求失败</h2><p>500——服务器产生内部错误<br>501——服务器不支持请求的函数<br><strong>502——服务器暂时不可用，有时是为了防止发生系统过载</strong><br>503——服务器过载或暂停维修<br>504——关口过载，服务器使用另一个关口或服务来响应用户，等待时间设定值较长<br>505——服务器不支持或拒绝支请求头中指定的HTTP版本</p>
+<h2 id="6．Http协议中Http1-0与1-1区别？"><a href="#6．Http协议中Http1-0与1-1区别？" class="headerlink" title="6．Http协议中Http1.0与1.1区别？"></a>6．Http协议中Http1.0与1.1区别？</h2><ul>
+<li><p>在http1.0中，当建立连接后，客户端发送一个请求，服务器端返回一个信息后就关闭连接，当浏览器下次请求的时候又要建立连接，显然这种不断建立连接的方式，会造成很多问题。</p>
+</li>
+<li><p>在http1.1中，引入了持续连接的概念，通过这种连接，浏览器可以建立一个连接之后，发送请求并得到返回信息，然后继续发送请求再次等到返回信息，也就是说客户端可以连续发送多个请求，而不用等待每一个响应的到来。</p>
+</li>
+</ul>
+<h2 id="7．HTTP的缺点与HTTPS"><a href="#7．HTTP的缺点与HTTPS" class="headerlink" title="7．HTTP的缺点与HTTPS"></a>7．HTTP的缺点与HTTPS</h2><p>a、通信使用明文不加密，内容可能被窃听<br>b、不验证通信方身份，可能遭到伪装<br>c、无法验证报文完整性，可能被篡改</p>
+<p>HTTPS就是HTTP加上加密处理（一般是SSL安全通信线路）+认证+完整性保护</p>
+<h2 id="8．一次完整的HTTP请求所经历的7个步骤"><a href="#8．一次完整的HTTP请求所经历的7个步骤" class="headerlink" title="8．一次完整的HTTP请求所经历的7个步骤"></a>8．一次完整的HTTP请求所经历的7个步骤</h2><p>建立TCP连接-&gt;发送请求行-&gt;发送请求头-&gt;（到达服务器）发送状态行-&gt;发送响应头-&gt;发送响应数据-&gt;断TCP连接</p>
+<h2 id="9．常用的HTTP方法有哪些？"><a href="#9．常用的HTTP方法有哪些？" class="headerlink" title="9．常用的HTTP方法有哪些？"></a>9．常用的HTTP方法有哪些？</h2><p><em><strong>GET：</strong></em> 用于请求访问已经被URI（统一资源标识符）识别的资源，可以通过URL传参给服务器<br><em><strong>POST:</strong></em>  用于传输信息给服务器，主要功能与GET方法类似，但一般推荐使用POST方式。<br>**PUT: **  传输文件，报文主体中包含文件内容，保存到对应URI位置。<br><em><strong>HEAD:</strong></em> 获得报文首部，与GET方法类似，只是不返回报文主体，一般用于验证URI是否有效。<br><em><strong>DELETE：</strong></em>删除文件，与PUT方法相反，删除对应URI位置的文件。</p>
+<p>***OPTIONS:***查询相应URI支持的HTTP方法。</p>
+<h2 id="10．GET方法与POST方法的区别"><a href="#10．GET方法与POST方法的区别" class="headerlink" title="10．GET方法与POST方法的区别"></a>10．GET方法与POST方法的区别</h2><ul>
+<li>区别一：get重点在从服务器上获取资源，post重点在向服务器发送数据；</li>
+<li>区别二：get传输数据是通过URL请求，以field（字段）= value的形式，置于URL后，并用”?”连接，多个请求数据间用”&amp;”连接，如<a target="_blank" rel="noopener" href="http://127.0.0.1/Test/login.action?name=admin&amp;password=admin%EF%BC%8C%E8%BF%99%E4%B8%AA%E8%BF%87%E7%A8%8B%E7%94%A8%E6%88%B7%E6%98%AF%E5%8F%AF%E8%A7%81%E7%9A%84%EF%BC%9Bpost%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE%E9%80%9A%E8%BF%87Http%E7%9A%84post%E6%9C%BA%E5%88%B6%EF%BC%8C%E5%B0%86%E5%AD%97%E6%AE%B5%E4%B8%8E%E5%AF%B9%E5%BA%94%E5%80%BC%E5%B0%81%E5%AD%98%E5%9C%A8%E8%AF%B7%E6%B1%82%E5%AE%9E%E4%BD%93%E4%B8%AD%E5%8F%91%E9%80%81%E7%BB%99%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E8%BF%99%E4%B8%AA%E8%BF%87%E7%A8%8B%E5%AF%B9%E7%94%A8%E6%88%B7%E6%98%AF%E4%B8%8D%E5%8F%AF%E8%A7%81%E7%9A%84%EF%BC%9B">http://127.0.0.1/Test/login.action?name=admin&amp;password=admin，这个过程用户是可见的；post传输数据通过Http的post机制，将字段与对应值封存在请求实体中发送给服务器，这个过程对用户是不可见的；</a></li>
+<li>区别三：Get传输的数据量小，因为受URL长度限制，但效率较高；Post可以传输大量数据，所以上传文件时只能用Post方式；</li>
+<li>区别四：get是不安全的，因为URL是可见的，可能会泄露私密信息，如密码等；post较get安全性较高；</li>
+<li>区别五：get方式只能支持ASCII字符，向服务器传的中文字符可能会乱码；post支持标准字符集，可以正确传递中文字符</li>
+</ul>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -532,10 +270,6 @@
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
-        		</li>
-      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
         		</li>
@@ -546,16 +280,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/26/note-000-Golang-ACM%E6%A8%A1%E5%BC%8F%E5%88%B7%E9%A2%98%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://shigh626.github.io/2021/06/26/note-005-http%E7%8A%B6%E6%80%81%E7%A0%81/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2021/06/26/note-006-MVC%E6%A8%A1%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          深入理解MVC模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/06/26/note-004-post%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%A0%BC%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">四种常见的 POST 提交数据方式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -570,409 +372,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-dev-正则表达式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/22/dev-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/22/dev-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-06-21T16:47:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>正则表达式就是由普通字符（例如字符 a 到  z  ） 以及特殊字符（称为元字符）组成的文字模式。该模式描述在查找文字主体时待匹配的一个或多个字符串。正则表达式作为一个模板，将某个字符模式与所搜索的字 符串进行匹配。</p>
-<p>本文详细地列出了能在正则表达式中使用，以匹配文本的各种字符。当你需要解释一个现有的正则表达式时，可以作为一个快捷的参考。更多详 细内容</p>
-<p>正则学习网站：</p>
-<p>（1）<a target="_blank" rel="noopener" href="https://regexr-cn.com/">Test RegEx (regexr-cn.com)</a></p>
-<p>（2）<a target="_blank" rel="noopener" href="https://www.codejiaonang.com/#/course/regex_chapter1/0/0">编程胶囊 (codejiaonang.com)</a></p>
-        
-          <a class="article-more-a" href="/2021/06/22/dev-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">开发者</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/22/dev-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%8E%E4%BB%80%E4%B9%88%E6%98%AFHttp%E5%8D%8F%E8%AE%AE%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">1．什么是Http协议？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%8E%E4%BB%80%E4%B9%88%E6%98%AFHttp%E5%8D%8F%E8%AE%AE%E6%97%A0%E7%8A%B6%E6%80%81%E5%8D%8F%E8%AE%AE%EF%BC%9F%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3Http%E5%8D%8F%E8%AE%AE%E6%97%A0%E7%8A%B6%E6%80%81%E5%8D%8F%E8%AE%AE%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">2．什么是Http协议无状态协议？怎么解决Http协议无状态协议？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Http%E7%8A%B6%E6%80%81%E7%A0%81%E4%B8%80%E8%A7%88%E8%A1%A8"><span class="toc-number">3.</span> <span class="toc-text">Http状态码一览表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1xx%EF%BC%9A%E8%AF%B7%E6%B1%82%E6%94%B6%E5%88%B0%EF%BC%8C%E7%BB%A7%E7%BB%AD%E5%A4%84%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">1xx：请求收到，继续处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2xx%EF%BC%9A%E6%93%8D%E4%BD%9C%E6%88%90%E5%8A%9F%E6%94%B6%E5%88%B0%EF%BC%8C%E5%88%86%E6%9E%90%E3%80%81%E6%8E%A5%E5%8F%97"><span class="toc-number">5.</span> <span class="toc-text">2xx：操作成功收到，分析、接受</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3xx-%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">6.</span> <span class="toc-text">3xx: 重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4xx%EF%BC%9A%E8%AF%B7%E6%B1%82%E5%8C%85%E5%90%AB%E4%B8%80%E4%B8%AA%E9%94%99%E8%AF%AF%E8%AF%AD%E6%B3%95%E6%88%96%E4%B8%8D%E8%83%BD%E5%AE%8C%E6%88%90"><span class="toc-number">7.</span> <span class="toc-text">4xx：请求包含一个错误语法或不能完成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5xx%EF%BC%9A%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8C%E4%B8%80%E4%B8%AA%E5%AE%8C%E5%85%A8%E6%9C%89%E6%95%88%E8%AF%B7%E6%B1%82%E5%A4%B1%E8%B4%A5"><span class="toc-number">8.</span> <span class="toc-text">5xx：服务器执行一个完全有效请求失败</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%EF%BC%8EHttp%E5%8D%8F%E8%AE%AE%E4%B8%ADHttp1-0%E4%B8%8E1-1%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">9.</span> <span class="toc-text">6．Http协议中Http1.0与1.1区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%EF%BC%8EHTTP%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8EHTTPS"><span class="toc-number">10.</span> <span class="toc-text">7．HTTP的缺点与HTTPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8%EF%BC%8E%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84HTTP%E8%AF%B7%E6%B1%82%E6%89%80%E7%BB%8F%E5%8E%86%E7%9A%847%E4%B8%AA%E6%AD%A5%E9%AA%A4"><span class="toc-number">11.</span> <span class="toc-text">8．一次完整的HTTP请求所经历的7个步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9%EF%BC%8E%E5%B8%B8%E7%94%A8%E7%9A%84HTTP%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">12.</span> <span class="toc-text">9．常用的HTTP方法有哪些？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10%EF%BC%8EGET%E6%96%B9%E6%B3%95%E4%B8%8EPOST%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">13.</span> <span class="toc-text">10．GET方法与POST方法的区别</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-dev-Git" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/16/dev-Git/">初识Git</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/16/dev-Git/" class="archive-article-date">
-  	<time datetime="2021-06-15T17:33:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://www.runoob.com/wp-content/uploads/2015/02/f7246b600c338744a9591cd7530fd9f9d62aa0f8.png" alt="Git 教程"></p>
-<p>Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。</p>
-<p>Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。</p>
-<p>Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。</p>
-        
-          <a class="article-more-a" href="/2021/06/16/dev-Git/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">开发者</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/16/dev-Git/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/16/Linux1/">初识Linux</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/16/Linux1/" class="archive-article-date">
-  	<time datetime="2021-06-15T17:33:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://www.runoob.com/wp-content/uploads/2014/06/linux.jpg" alt="linux"></p>
-<p>Linux 内核最初只是由芬兰人林纳斯·托瓦兹（Linus Torvalds）在赫尔辛基大学上学时出于个人爱好而编写的。</p>
-<p>Linux 是一套免费使用和自由传播的类 Unix 操作系统，是一个基于 POSIX（可移植操作系统接口） 和 UNIX 的多用户、多任务、支持多线程和多 CPU 的操作系统。</p>
-<p>Linux 能运行主要的 UNIX 工具软件、应用程序和网络协议。它支持 32 位和 64 位硬件。Linux 继承了 Unix 以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。</p>
-        
-          <a class="article-more-a" href="/2021/06/16/Linux1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">开发者</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/16/Linux1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-dev-CSS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/16/dev-CSS/">初识CSS</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/16/dev-CSS/" class="archive-article-date">
-  	<time datetime="2021-06-15T17:28:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/HTML">HTML</a>（<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%A0%87%E5%87%86%E9%80%9A%E7%94%A8%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80/6805073">标准通用标记语言</a>的一个应用）或<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/XML">XML</a>（标准通用标记语言的一个子集）等文件样式的计算机语言。CSS不仅可以静态地修饰网页，还可以配合各种脚本语言动态地对网页各元素进行格式化。</p>
-<p>CSS 能够对网页中元素位置的排版进行像素级精确控制，支持几乎所有的字体字号样式，拥有对网页对象和模型样式编辑的能力。</p>
-        
-          <a class="article-more-a" href="/2021/06/16/dev-CSS/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">开发者</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/16/dev-CSS/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-dev-HTML" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/16/dev-HTML/">初识HTML</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/16/dev-HTML/" class="archive-article-date">
-  	<time datetime="2021-06-15T17:20:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>HTML的全称为超文本标记语言，是一种<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80/5964436">标记语言</a>。它包括一系列标签．通过这些标签可以将网络上的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%87%E6%A1%A3/1009768">文档</a>格式统一，使分散的Internet资源连接为一个逻辑整体。HTML文本是由HTML命令组成的描述性<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%87%E6%9C%AC/5443630">文本</a>，HTML命令可以说明<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%87%E5%AD%97/612910">文字</a>，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9B%BE%E5%BD%A2/773307">图形</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8A%A8%E7%94%BB/206564">动画</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A3%B0%E9%9F%B3/33686">声音</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%A1%A8%E6%A0%BC/3371820">表格</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%93%BE%E6%8E%A5/2665501">链接</a>等。 </p>
-<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%B6%85%E6%96%87%E6%9C%AC/2832422">超文本</a>是一种组织信息的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%B9%E5%BC%8F/3616191">方式</a>，它通过超级链接方法将文本中的文字、图表与其他<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BF%A1%E6%81%AF%E5%AA%92%E4%BD%93/8400627">信息媒体</a>相关联。这些相互关联的信息媒体可能在同一文本中，也可能是其他文件，或是地理位置相距遥远的某台计算机上的文件。这种组织信息方式将分布在不同位置的信息资源用随机方式进行连接，为人们查找，检索信息提供方便。</p>
-        
-          <a class="article-more-a" href="/2021/06/16/dev-HTML/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">开发者</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/16/dev-HTML/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -995,8 +420,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
