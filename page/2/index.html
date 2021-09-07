@@ -487,6 +487,98 @@
 
 
   
+    <article id="post-redis-00-开篇词" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/01/redis-00-%E5%BC%80%E7%AF%87%E8%AF%8D/">开篇词 | 这样学Redis，才能技高一筹</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/01/redis-00-%E5%BC%80%E7%AF%87%E8%AF%8D/" class="archive-article-date">
+  	<time datetime="2021-07-31T16:57:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>author</code>： 蒋德钧</p>
+<p><code>time</code>： 2021-08-01</p>
+<img src="/2021/08/01/redis-00-%E5%BC%80%E7%AF%87%E8%AF%8D/MyFile/Java_file/Java/JavaNote/Typora图片/0f0963bc50f97aa1171fa81ae6e96776.jpg" alt="img" style="zoom:101%;">
+
+
+
+<p>作为键值数据库，Redis 的应用非常广泛，如果你是后端工程师，我猜你出去面试，八成都会被问到与它相关的性能问题。比如说，为了保证数据的可靠性，Redis 需要在磁盘上读写 AOF 和 RDB，但在高并发场景里，这就会直接带来两个新问题：一个是写 AOF 和 RDB 会造成 Redis 性能抖动，另一个是 Redis 集群数据同步和实例恢复时，读 RDB 比较慢，限制了同步和恢复速度。</p>
+<p>那这个问题有没有好的解决方法呢？哈哈，这里我卖了个关子。其实，一个可行的解决方案就是使用非易失内存 NVM，因为它既能保证高速的读写，又能快速持久化数据。我和团队就在 NVM 的键值数据库上开展了诸多深入研究，先后申请了二十余项专利，也在顶级学术会议上发表了学术论文。</p>
+<p>当然，这些研究最后都是为了完成一开始说的那个大目标：设计一个单机千万级吞吐量的键值数据库。在这个过程中，我也深入、透彻地研究了 Redis，包括它的源代码、架构设计以及核心控制点。</p>
+<p>另外，因为各大互联网公司在 Redis 应用方面比较超前，场景比较丰富，他们会遇到各种各样的棘手问题，所以这几年，我和蚂蚁金服、百度、华为、中兴等公司都有合作，致力于和他们一起解决生产环境的各种疑难杂症。</p>
+<p>最后，对标 Redis，我们团队也研发了高性能键值数据库HiKV等，你感兴趣的话，可以点开链接看看整体的设计。</p>
+<p>正是因为有这样的研究和项目经历，让我目睹了同样是使用 Redis，但是不同公司的“玩法”却不太一样，比如说，有做缓存的，有做数据库的，也有用做分布式锁的。不过，他们遇见的“坑”，总体来说集中在四个方面：</p>
+<p>CPU 使用上的“坑”，例如数据结构的复杂度、跨 CPU 核的访问；</p>
+<p>内存使用上的“坑”，例如主从同步和 AOF 的内存竞争；</p>
+<p>存储持久化上的“坑”，例如在 SSD 上做快照的性能抖动；</p>
+<p>网络通信上的“坑”，例如多实例时的异常网络丢包。</p>
+<p>随着这些深入的研究、实战操作、案例积累，我拥有了一套从原理到实战的 Redis 知识总结。这一次，我想把我多年积累的经验分享给你。</p>
+        
+          <a class="article-more-a" href="/2021/08/01/redis-00-%E5%BC%80%E7%AF%87%E8%AF%8D/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/01/redis-00-%E5%BC%80%E7%AF%87%E8%AF%8D/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Redis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -863,135 +955,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/06/26/note-006-MVC%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-note-005-http状态码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/26/note-005-http%E7%8A%B6%E6%80%81%E7%A0%81/">http状态码</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/26/note-005-http%E7%8A%B6%E6%80%81%E7%A0%81/" class="archive-article-date">
-  	<time datetime="2021-06-25T19:34:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <span id="more"></span>
-
-<h2 id="1．什么是Http协议？"><a href="#1．什么是Http协议？" class="headerlink" title="1．什么是Http协议？"></a>1．什么是Http协议？</h2><p> http（超文本传输协议）是一个在器客户端和服务器端之间基于<strong>请求与响应</strong>模式的、<strong>无状态的</strong>、<strong>应用层的</strong>协议，常基于<strong>TCP</strong>的连接方式</p>
-<h2 id="2．什么是Http协议无状态协议？怎么解决Http协议无状态协议？"><a href="#2．什么是Http协议无状态协议？怎么解决Http协议无状态协议？" class="headerlink" title="2．什么是Http协议无状态协议？怎么解决Http协议无状态协议？"></a>2．什么是Http协议无状态协议？怎么解决Http协议无状态协议？</h2><ul>
-<li>无状态协议对于<strong>事务</strong>处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息</li>
-<li>无状态协议解决办法： 通过1、<strong>Cookie</strong> 2、通过<strong>Session</strong>会话保存。</li>
-</ul>
-<h2 id="Http状态码一览表"><a href="#Http状态码一览表" class="headerlink" title="Http状态码一览表"></a>Http状态码一览表</h2><p>一般常用到的有200号状态码和404号状态码。200号表示网页被下载成功，而404号表示不能成功下载并产生错误。下面是HTTP状态码一览表。</p>
-<blockquote>
-<p>1xx：请求收到，继续处理<br>2xx：操作成功收到，分析、接受<br>3xx：完成此请求必须进一步处理<br>4xx：请求包含一个错误语法或不能完成<br>5xx：服务器执行一个完全有效请求失败</p>
-</blockquote>
-<p>面试高频：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">200: OK,客户端请求成功</span><br><span class="line">301: 永久性重定向</span><br><span class="line">302: 临时重定向</span><br><span class="line">303: 与302状态码有相似功能，只是它希望客户端在请求一个URI的时候，能通过GET方法重定向到另一个URI上</span><br><span class="line">304: 发送附带条件的请求时，条件不满足时返回，与重定向无关</span><br><span class="line">400: Bad Request,客户端请求有语法错误，不能被服务器所理解</span><br><span class="line">401: Unauthorized,请求未经授权，这个状态代码必须和WWW-Authenticate报,头域一起使用 </span><br><span class="line">403: Forbidden,服务器收到请求，但是拒绝提供服务</span><br><span class="line">404: Not Found,请求资源不存在，eg：输入了错误的URL</span><br><span class="line">500: Internal Server Error,服务器发生不可预期的错误</span><br><span class="line">502: 服务器暂时不可用，有时是为了防止发生系统过载</span><br><span class="line">503: Server Unavailable,服务器当前不能处理客户端的请求，一段时间后，可能恢复正常</span><br></pre></td></tr></table></figure>
-
- <!--more-->
-
-<h2 id="1xx：请求收到，继续处理"><a href="#1xx：请求收到，继续处理" class="headerlink" title="1xx：请求收到，继续处理"></a>1xx：请求收到，继续处理</h2><p>100——客户必须继续发出请求<br>101——客户要求服务器根据请求转换HTTP协议版本</p>
-<h2 id="2xx：操作成功收到，分析、接受"><a href="#2xx：操作成功收到，分析、接受" class="headerlink" title="2xx：操作成功收到，分析、接受"></a>2xx：操作成功收到，分析、接受</h2><p>200——交易成功<br>201——提示知道新文件的URL<br>202——接受和处理、但处理未完成<br>203——返回信息不确定或不完整<br>204——请求收到，但返回信息为空<br>205——服务器完成了请求，用户代理必须复位当前已经浏览过的文件<br>206——服务器已经完成了部分用户的GET请求</p>
-<h2 id="3xx-重定向"><a href="#3xx-重定向" class="headerlink" title="3xx: 重定向"></a>3xx: 重定向</h2><pre><code>     要完成请求，需要进一步操作。通常，这些状态码用来**重定向**。Google 建议您在每次请求中使用重定向不要超过 5 次。您可以使用网站管理员工具查看一下 Googlebot 在抓取重定向网页时是否遇到问题。诊断下的网络抓取页列出了由于重定向错误导致 Googlebot 无法抓取的网址。
-</code></pre>
-<ul>
-<li><p>300——(多种选择)针对请求，服务器可执行多种操作。服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。</p>
-</li>
-<li><p>301——(永久性重定向)请求的网页已永久移动到新位置。服务器返回此响应(对 GET 或 HEAD 请求的响应)时，会自动将请求者转到新位置。您应使用此代码告诉 Googlebot 某个网页或网站已永久移动到新位置。</p>
-</li>
-<li><p>302——(临时重定向)服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来响应以后的请求。此代码与响应 GET 和 HEAD 请求的 301 代码类似，会自动将请求者转到不同的位置，但您不应使用此代码来告诉 Googlebot 某个网页或网站已经移动，因为 Googlebot 会继续抓取原有位置并编制索引。</p>
-</li>
-<li><p>303——(查看其他位置)请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。对于除 HEAD 之外的所有请求，服务器会自动转到其他位置。</p>
-</li>
-<li><p>304——(未修改)自从上次请求后，请求的网页未修改过。服务器返回此响应时，不会返回网页内容。发送附带条件的请求时，条件不满足时返回，与重定向无关。</p>
-</li>
-<li><p>305——(使用代理)请求者只能使用代理访问请求的网页。如果服务器返回此响应，还表示请求者应使用代理。</p>
-</li>
-<li><p>307(临时重定向)服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来响应以后的请求。原本的用法是用于让post请求的跳转去新的post请求，但也用于hsts跳转</p>
-</li>
-</ul>
-<h2 id="4xx：请求包含一个错误语法或不能完成"><a href="#4xx：请求包含一个错误语法或不能完成" class="headerlink" title="4xx：请求包含一个错误语法或不能完成"></a>4xx：请求包含一个错误语法或不能完成</h2><p>400——错误请求，如语法错误<br>401——请求授权失败<br>402——保留有效ChargeTo头响应<br>403——请求不允许<br>404——没有发现文件、查询或URl<br>405——用户在Request-Line字段定义的方法不允许<br>406——根据用户发送的Accept拖，请求资源不可访问<br>407——类似401，用户必须首先在代理服务器上得到授权<br>408——客户端没有在用户指定的饿时间内完成请求<br>409——对当前资源状态，请求不能完成<br>410——服务器上不再有此资源且无进一步的参考地址<br>411——服务器拒绝用户定义的Content-Length属性请求<br>412——一个或多个请求头字段在当前请求中错误<br>413——请求的资源大于服务器允许的大小<br>414——请求的资源URL长于服务器允许的长度<br>415——请求资源不支持请求项目格式<br>416——请求中包含Range请求头字段，在当前请求资源范围内没有range指示值，请求也不包含If-Range请求头字段<br>417——服务器不满足请求Expect头字段指定的期望值，如果是代理服务器，可能是下一级服务器不能满足请求</p>
-<h2 id="5xx：服务器执行一个完全有效请求失败"><a href="#5xx：服务器执行一个完全有效请求失败" class="headerlink" title="5xx：服务器执行一个完全有效请求失败"></a>5xx：服务器执行一个完全有效请求失败</h2><p>500——服务器产生内部错误<br>501——服务器不支持请求的函数<br><strong>502——服务器暂时不可用，有时是为了防止发生系统过载</strong><br>503——服务器过载或暂停维修<br>504——关口过载，服务器使用另一个关口或服务来响应用户，等待时间设定值较长<br>505——服务器不支持或拒绝支请求头中指定的HTTP版本</p>
-<h2 id="6．Http协议中Http1-0与1-1区别？"><a href="#6．Http协议中Http1-0与1-1区别？" class="headerlink" title="6．Http协议中Http1.0与1.1区别？"></a>6．Http协议中Http1.0与1.1区别？</h2><ul>
-<li><p>在http1.0中，当建立连接后，客户端发送一个请求，服务器端返回一个信息后就关闭连接，当浏览器下次请求的时候又要建立连接，显然这种不断建立连接的方式，会造成很多问题。</p>
-</li>
-<li><p>在http1.1中，引入了持续连接的概念，通过这种连接，浏览器可以建立一个连接之后，发送请求并得到返回信息，然后继续发送请求再次等到返回信息，也就是说客户端可以连续发送多个请求，而不用等待每一个响应的到来。</p>
-</li>
-</ul>
-<h2 id="7．HTTP的缺点与HTTPS"><a href="#7．HTTP的缺点与HTTPS" class="headerlink" title="7．HTTP的缺点与HTTPS"></a>7．HTTP的缺点与HTTPS</h2><p>a、通信使用明文不加密，内容可能被窃听<br>b、不验证通信方身份，可能遭到伪装<br>c、无法验证报文完整性，可能被篡改</p>
-<p>HTTPS就是HTTP加上加密处理（一般是SSL安全通信线路）+认证+完整性保护</p>
-<h2 id="8．一次完整的HTTP请求所经历的7个步骤"><a href="#8．一次完整的HTTP请求所经历的7个步骤" class="headerlink" title="8．一次完整的HTTP请求所经历的7个步骤"></a>8．一次完整的HTTP请求所经历的7个步骤</h2><p>建立TCP连接-&gt;发送请求行-&gt;发送请求头-&gt;（到达服务器）发送状态行-&gt;发送响应头-&gt;发送响应数据-&gt;断TCP连接</p>
-<h2 id="9．常用的HTTP方法有哪些？"><a href="#9．常用的HTTP方法有哪些？" class="headerlink" title="9．常用的HTTP方法有哪些？"></a>9．常用的HTTP方法有哪些？</h2><p><em><strong>GET：</strong></em> 用于请求访问已经被URI（统一资源标识符）识别的资源，可以通过URL传参给服务器<br><em><strong>POST:</strong></em>  用于传输信息给服务器，主要功能与GET方法类似，但一般推荐使用POST方式。<br>**PUT: **  传输文件，报文主体中包含文件内容，保存到对应URI位置。<br><em><strong>HEAD:</strong></em> 获得报文首部，与GET方法类似，只是不返回报文主体，一般用于验证URI是否有效。<br><em><strong>DELETE：</strong></em>删除文件，与PUT方法相反，删除对应URI位置的文件。</p>
-<p>***OPTIONS:***查询相应URI支持的HTTP方法。</p>
-<h2 id="10．GET方法与POST方法的区别"><a href="#10．GET方法与POST方法的区别" class="headerlink" title="10．GET方法与POST方法的区别"></a>10．GET方法与POST方法的区别</h2><ul>
-<li>区别一：get重点在从服务器上获取资源，post重点在向服务器发送数据；</li>
-<li>区别二：get传输数据是通过URL请求，以field（字段）= value的形式，置于URL后，并用”?”连接，多个请求数据间用”&amp;”连接，如<a target="_blank" rel="noopener" href="http://127.0.0.1/Test/login.action?name=admin&amp;password=admin%EF%BC%8C%E8%BF%99%E4%B8%AA%E8%BF%87%E7%A8%8B%E7%94%A8%E6%88%B7%E6%98%AF%E5%8F%AF%E8%A7%81%E7%9A%84%EF%BC%9Bpost%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE%E9%80%9A%E8%BF%87Http%E7%9A%84post%E6%9C%BA%E5%88%B6%EF%BC%8C%E5%B0%86%E5%AD%97%E6%AE%B5%E4%B8%8E%E5%AF%B9%E5%BA%94%E5%80%BC%E5%B0%81%E5%AD%98%E5%9C%A8%E8%AF%B7%E6%B1%82%E5%AE%9E%E4%BD%93%E4%B8%AD%E5%8F%91%E9%80%81%E7%BB%99%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E8%BF%99%E4%B8%AA%E8%BF%87%E7%A8%8B%E5%AF%B9%E7%94%A8%E6%88%B7%E6%98%AF%E4%B8%8D%E5%8F%AF%E8%A7%81%E7%9A%84%EF%BC%9B">http://127.0.0.1/Test/login.action?name=admin&amp;password=admin，这个过程用户是可见的；post传输数据通过Http的post机制，将字段与对应值封存在请求实体中发送给服务器，这个过程对用户是不可见的；</a></li>
-<li>区别三：Get传输的数据量小，因为受URL长度限制，但效率较高；Post可以传输大量数据，所以上传文件时只能用Post方式；</li>
-<li>区别四：get是不安全的，因为URL是可见的，可能会泄露私密信息，如密码等；post较get安全性较高；</li>
-<li>区别五：get方式只能支持ASCII字符，向服务器传的中文字符可能会乱码；post支持标准字符集，可以正确传递中文字符</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/26/note-005-http%E7%8A%B6%E6%80%81%E7%A0%81/">展开全文 >></a>
         </p>
       
 
